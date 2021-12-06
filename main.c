@@ -50,6 +50,7 @@
 #include "timer.h"
 
 void DoUSBComms(void);
+void disableInterrupts(void);
 
 //Used for USB
 char message_buffer[64];
@@ -62,6 +63,7 @@ static uint8_t writeBuffer[64];
 int main(void)
 {
     // initialize the device
+    INTCON2bits.ALTIVT = 1;
     SYSTEM_Initialize();
     TMR1_Init();
     delay_ms(1000);
@@ -74,20 +76,24 @@ int main(void)
     {
         // Add your application code
         DoUSBComms();
-        //        int t=0;
+//        int t=0;
 //        for(t=0; t<10; t++){
 //        int x=0;
 //        int y=0;
-////        PORTBbits.RB6 = 1;
+//        PORTBbits.RB6 = 1;
 //        for(x=0; x<1000; x++){
 //            for(y=0; y<1000; y++){;}
 //        }
-////        PORTBbits.RB6 = 0;
+//        PORTBbits.RB6 = 0;
 //        for(x=0; x<1000; x++){
 //            for(y=0; y<1000; y++){;}
 //        }
 //        }
-        asm("GOTO 0x2404");
+//        SRbits.IPL0 = 1;
+//        SRbits.IPL1 = 1;
+//        SRbits.IPL2 = 1;
+        disableInterrupts();
+        asm("GOTO 0x2400");
     }
 
     return 1;
@@ -144,6 +150,18 @@ void DoUSBComms(void)
     }
 
     CDCTxService();
+}
+
+void disableInterrupts(void)
+{
+    IEC0 = 0x0000;
+    IEC1 = 0x0000;
+    IEC2 = 0x0000;
+    IEC3 = 0x0000;
+    IEC4 = 0x0000;
+    IEC5 = 0x0000;
+    IEC6 = 0x0000;
+    IEC7 = 0x0000;
 }
 /**
  End of File

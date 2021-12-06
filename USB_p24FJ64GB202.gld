@@ -278,7 +278,521 @@ SECTIONS
   ** here, between sections .reset and .text.
   ** Vector table source code appears below.
   */
+.ivt __IVT_BASE :
+  {
+      LONG(J_ReservedTrap0);
+      LONG(J_OscillatorFail);
+      LONG(J_AddressError);
+      LONG(J_StackError);
+      LONG(J_MathError);
+      LONG(J_ReservedTrap5);
+      LONG(J_ReservedTrap6);
+      LONG(J_ReservedTrap7);
+      LONG(J_INT0Interrupt);
+      LONG(J_IC1Interrupt);
+      LONG(J_OC1Interrupt);
+      LONG(J_T1Interrupt);
+      LONG(J_Interrupt4);
+      LONG(J_IC2Interrupt);
+      LONG(J_OC2Interrupt);
+      LONG(J_T2Interrupt);
+      LONG(J_T3Interrupt);
+      LONG(J_SPI1ErrInterrupt);
+      LONG(J_SPI1Interrupt);
+      LONG(J_U1RXInterrupt);
+      LONG(J_U1TXInterrupt);
+      LONG(J_ADC1Interrupt);
+      LONG(J_Interrupt14);
+      LONG(J_Interrupt15);
+      LONG(J_SI2C1Interrupt);
+      LONG(J_MI2C1Interrupt);
+      LONG(J_CompInterrupt);
+      LONG(J_CNInterrupt);
+      LONG(J_INT1Interrupt);
+      LONG(J_Interrupt21);
+      LONG(J_Interrupt22);
+      LONG(J_Interrupt23);
+      LONG(J_Interrupt24);
+      LONG(J_OC3Interrupt);
+      LONG(J_OC4Interrupt);
+      LONG(J_T4Interrupt);
+      LONG(J_T5Interrupt);
+      LONG(J_INT2Interrupt);
+      LONG(J_U2RXInterrupt);
+      LONG(J_U2TXInterrupt);
+      LONG(J_SPI2ErrInterrupt);
+      LONG(J_SPI2Interrupt);
+      LONG(J_Interrupt34);
+      LONG(J_Interrupt35);
+      LONG(J_Interrupt36);
+      LONG(J_IC3Interrupt);
+      LONG(J_IC4Interrupt);
+      LONG(J_IC5Interrupt);
+      LONG(J_Interrupt40);
+      LONG(J_OC5Interrupt);
+      LONG(J_Interrupt42);
+      LONG(J_Interrupt43);
+      LONG(J_Interrupt44);
+      LONG(J_PMPInterrupt);
+      LONG(J_Interrupt46);
+      LONG(J_Interrupt47);
+      LONG(J_Interrupt48);
+      LONG(J_SI2C2Interrupt);
+      LONG(J_MI2C2Interrupt);
+      LONG(J_Interrupt51);
+      LONG(J_Interrupt52);
+      LONG(J_INT3Interrupt);
+      LONG(J_INT4Interrupt);
+      LONG(J_Interrupt55);
+      LONG(J_Interrupt56);
+      LONG(J_Interrupt57);
+      LONG(J_Interrupt58);
+      LONG(J_Interrupt59);
+      LONG(J_Interrupt60);
+      LONG(J_Interrupt61);
+      LONG(J_RTCCInterrupt);
+      LONG(J_Interrupt63);
+      LONG(J_Interrupt64);
+      LONG(J_U1ErrInterrupt);
+      LONG(J_U2ErrInterrupt);
+      LONG(J_CRCInterrupt);
+      LONG(J_Interrupt68);
+      LONG(J_Interrupt69);
+      LONG(J_Interrupt70);
+      LONG(J_Interrupt71);
+      LONG(J_Interrupt72);
+      LONG(J_Interrupt73);
+      LONG(J_Interrupt74);
+      LONG(J_Interrupt75);
+      LONG(J_Interrupt76);
+      LONG(J_Interrupt77);
+      LONG(J_Interrupt78);
+      LONG(J_Interrupt79);
+      LONG(J_Interrupt80);
+      LONG(J_Interrupt81);
+      LONG(J_Interrupt82);
+      LONG(J_Interrupt83);
+      LONG(J_Interrupt84);
+      LONG(J_Interrupt85);
+      LONG(J_Interrupt86);
+      LONG(J_Interrupt87);
+      LONG(J_Interrupt88);
+      LONG(J_Interrupt89);
+      LONG(J_Interrupt90);
+      LONG(J_Interrupt91);
+      LONG(J_Interrupt92);
+      LONG(J_Interrupt93);
+      LONG(J_Interrupt94);
+      LONG(J_Interrupt95);
+      LONG(J_Interrupt96);
+      LONG(J_Interrupt97);
+      LONG(J_Interrupt98);
+      LONG(J_Interrupt99);
+      LONG(J_Interrupt100);
+      LONG(J_Interrupt101);
+      LONG(J_Interrupt102);
+      LONG(J_Interrupt103);
+      LONG(J_Interrupt104);
+      LONG(J_Interrupt105);
+      LONG(J_Interrupt106);
+      LONG(J_Interrupt107);
+      LONG(J_Interrupt108);
+      LONG(J_Interrupt109);
+      LONG(J_Interrupt110);
+      LONG(J_Interrupt111);
+      LONG(J_Interrupt112);
+      LONG(J_Interrupt113);
+      LONG(J_Interrupt114);
+      LONG(J_Interrupt115);
+      LONG(J_Interrupt116);
+      LONG(J_Interrupt117);
+  } >ivt
 
+/*
+** Alternate Interrupt Vector Table
+*/
+.aivt __AIVT_BASE :
+  {
+    LONG( DEFINED(__AltReservedTrap0)    ? ABSOLUTE(__AltReservedTrap0)    :
+         (DEFINED(__ReservedTrap0)       ? ABSOLUTE(__ReservedTrap0)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltOscillatorFail)    ? ABSOLUTE(__AltOscillatorFail)    :
+         (DEFINED(__OscillatorFail)       ? ABSOLUTE(__OscillatorFail)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltAddressError)    ? ABSOLUTE(__AltAddressError)    :
+         (DEFINED(__AddressError)       ? ABSOLUTE(__AddressError)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltStackError)    ? ABSOLUTE(__AltStackError)    :
+         (DEFINED(__StackError)       ? ABSOLUTE(__StackError)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltMathError)    ? ABSOLUTE(__AltMathError)    :
+         (DEFINED(__MathError)       ? ABSOLUTE(__MathError)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltReservedTrap5)    ? ABSOLUTE(__AltReservedTrap5)    :
+         (DEFINED(__ReservedTrap5)       ? ABSOLUTE(__ReservedTrap5)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltReservedTrap6)    ? ABSOLUTE(__AltReservedTrap6)    :
+         (DEFINED(__ReservedTrap6)       ? ABSOLUTE(__ReservedTrap6)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltReservedTrap7)    ? ABSOLUTE(__AltReservedTrap7)    :
+         (DEFINED(__ReservedTrap7)       ? ABSOLUTE(__ReservedTrap7)       :
+         ABSOLUTE(__DefaultInterrupt)));
+
+    LONG( DEFINED(__AltINT0Interrupt)    ? ABSOLUTE(__AltINT0Interrupt)    :
+         (DEFINED(__INT0Interrupt)       ? ABSOLUTE(__INT0Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltIC1Interrupt)    ? ABSOLUTE(__AltIC1Interrupt)    :
+         (DEFINED(__IC1Interrupt)       ? ABSOLUTE(__IC1Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltOC1Interrupt)    ? ABSOLUTE(__AltOC1Interrupt)    :
+         (DEFINED(__OC1Interrupt)       ? ABSOLUTE(__OC1Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltT1Interrupt)    ? ABSOLUTE(__AltT1Interrupt)    :
+         (DEFINED(__T1Interrupt)       ? ABSOLUTE(__T1Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltDMA0Interrupt)    ? ABSOLUTE(__AltDMA0Interrupt)    :
+         (DEFINED(__DMA0Interrupt)       ? ABSOLUTE(__DMA0Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltIC2Interrupt)    ? ABSOLUTE(__AltIC2Interrupt)    :
+         (DEFINED(__IC2Interrupt)       ? ABSOLUTE(__IC2Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltOC2Interrupt)    ? ABSOLUTE(__AltOC2Interrupt)    :
+         (DEFINED(__OC2Interrupt)       ? ABSOLUTE(__OC2Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltT2Interrupt)    ? ABSOLUTE(__AltT2Interrupt)    :
+         (DEFINED(__T2Interrupt)       ? ABSOLUTE(__T2Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltT3Interrupt)    ? ABSOLUTE(__AltT3Interrupt)    :
+         (DEFINED(__T3Interrupt)       ? ABSOLUTE(__T3Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSPI1Interrupt)    ? ABSOLUTE(__AltSPI1Interrupt)    :
+         (DEFINED(__SPI1Interrupt)       ? ABSOLUTE(__SPI1Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSPI1TXInterrupt)    ? ABSOLUTE(__AltSPI1TXInterrupt)    :
+         (DEFINED(__SPI1TXInterrupt)       ? ABSOLUTE(__SPI1TXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU1RXInterrupt)    ? ABSOLUTE(__AltU1RXInterrupt)    :
+         (DEFINED(__U1RXInterrupt)       ? ABSOLUTE(__U1RXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU1TXInterrupt)    ? ABSOLUTE(__AltU1TXInterrupt)    :
+         (DEFINED(__U1TXInterrupt)       ? ABSOLUTE(__U1TXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltADC1Interrupt)    ? ABSOLUTE(__AltADC1Interrupt)    :
+         (DEFINED(__ADC1Interrupt)       ? ABSOLUTE(__ADC1Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltDMA1Interrupt)    ? ABSOLUTE(__AltDMA1Interrupt)    :
+         (DEFINED(__DMA1Interrupt)       ? ABSOLUTE(__DMA1Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt15)    ? ABSOLUTE(__AltInterrupt15)    :
+         (DEFINED(__Interrupt15)       ? ABSOLUTE(__Interrupt15)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSI2C1Interrupt)    ? ABSOLUTE(__AltSI2C1Interrupt)    :
+         (DEFINED(__SI2C1Interrupt)       ? ABSOLUTE(__SI2C1Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltMI2C1Interrupt)    ? ABSOLUTE(__AltMI2C1Interrupt)    :
+         (DEFINED(__MI2C1Interrupt)       ? ABSOLUTE(__MI2C1Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltCompInterrupt)    ? ABSOLUTE(__AltCompInterrupt)    :
+         (DEFINED(__CompInterrupt)       ? ABSOLUTE(__CompInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltCNInterrupt)    ? ABSOLUTE(__AltCNInterrupt)    :
+         (DEFINED(__CNInterrupt)       ? ABSOLUTE(__CNInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltINT1Interrupt)    ? ABSOLUTE(__AltINT1Interrupt)    :
+         (DEFINED(__INT1Interrupt)       ? ABSOLUTE(__INT1Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt21)    ? ABSOLUTE(__AltInterrupt21)    :
+         (DEFINED(__Interrupt21)       ? ABSOLUTE(__Interrupt21)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt22)    ? ABSOLUTE(__AltInterrupt22)    :
+         (DEFINED(__Interrupt22)       ? ABSOLUTE(__Interrupt22)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt23)    ? ABSOLUTE(__AltInterrupt23)    :
+         (DEFINED(__Interrupt23)       ? ABSOLUTE(__Interrupt23)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltDMA2Interrupt)    ? ABSOLUTE(__AltDMA2Interrupt)    :
+         (DEFINED(__DMA2Interrupt)       ? ABSOLUTE(__DMA2Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltOC3Interrupt)    ? ABSOLUTE(__AltOC3Interrupt)    :
+         (DEFINED(__OC3Interrupt)       ? ABSOLUTE(__OC3Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltOC4Interrupt)    ? ABSOLUTE(__AltOC4Interrupt)    :
+         (DEFINED(__OC4Interrupt)       ? ABSOLUTE(__OC4Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltT4Interrupt)    ? ABSOLUTE(__AltT4Interrupt)    :
+         (DEFINED(__T4Interrupt)       ? ABSOLUTE(__T4Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltT5Interrupt)    ? ABSOLUTE(__AltT5Interrupt)    :
+         (DEFINED(__T5Interrupt)       ? ABSOLUTE(__T5Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltINT2Interrupt)    ? ABSOLUTE(__AltINT2Interrupt)    :
+         (DEFINED(__INT2Interrupt)       ? ABSOLUTE(__INT2Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU2RXInterrupt)    ? ABSOLUTE(__AltU2RXInterrupt)    :
+         (DEFINED(__U2RXInterrupt)       ? ABSOLUTE(__U2RXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU2TXInterrupt)    ? ABSOLUTE(__AltU2TXInterrupt)    :
+         (DEFINED(__U2TXInterrupt)       ? ABSOLUTE(__U2TXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSPI2Interrupt)    ? ABSOLUTE(__AltSPI2Interrupt)    :
+         (DEFINED(__SPI2Interrupt)       ? ABSOLUTE(__SPI2Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSPI2TXInterrupt)    ? ABSOLUTE(__AltSPI2TXInterrupt)    :
+         (DEFINED(__SPI2TXInterrupt)       ? ABSOLUTE(__SPI2TXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt34)    ? ABSOLUTE(__AltInterrupt34)    :
+         (DEFINED(__Interrupt34)       ? ABSOLUTE(__Interrupt34)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt35)    ? ABSOLUTE(__AltInterrupt35)    :
+         (DEFINED(__Interrupt35)       ? ABSOLUTE(__Interrupt35)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltDMA3Interrupt)    ? ABSOLUTE(__AltDMA3Interrupt)    :
+         (DEFINED(__DMA3Interrupt)       ? ABSOLUTE(__DMA3Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltIC3Interrupt)    ? ABSOLUTE(__AltIC3Interrupt)    :
+         (DEFINED(__IC3Interrupt)       ? ABSOLUTE(__IC3Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltIC4Interrupt)    ? ABSOLUTE(__AltIC4Interrupt)    :
+         (DEFINED(__IC4Interrupt)       ? ABSOLUTE(__IC4Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltIC5Interrupt)    ? ABSOLUTE(__AltIC5Interrupt)    :
+         (DEFINED(__IC5Interrupt)       ? ABSOLUTE(__IC5Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltIC6Interrupt)    ? ABSOLUTE(__AltIC6Interrupt)    :
+         (DEFINED(__IC6Interrupt)       ? ABSOLUTE(__IC6Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltOC5Interrupt)    ? ABSOLUTE(__AltOC5Interrupt)    :
+         (DEFINED(__OC5Interrupt)       ? ABSOLUTE(__OC5Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltOC6Interrupt)    ? ABSOLUTE(__AltOC6Interrupt)    :
+         (DEFINED(__OC6Interrupt)       ? ABSOLUTE(__OC6Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt43)    ? ABSOLUTE(__AltInterrupt43)    :
+         (DEFINED(__Interrupt43)       ? ABSOLUTE(__Interrupt43)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt44)    ? ABSOLUTE(__AltInterrupt44)    :
+         (DEFINED(__Interrupt44)       ? ABSOLUTE(__Interrupt44)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltPMPInterrupt)    ? ABSOLUTE(__AltPMPInterrupt)    :
+         (DEFINED(__PMPInterrupt)       ? ABSOLUTE(__PMPInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltDMA4Interrupt)    ? ABSOLUTE(__AltDMA4Interrupt)    :
+         (DEFINED(__DMA4Interrupt)       ? ABSOLUTE(__DMA4Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt47)    ? ABSOLUTE(__AltInterrupt47)    :
+         (DEFINED(__Interrupt47)       ? ABSOLUTE(__Interrupt47)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt48)    ? ABSOLUTE(__AltInterrupt48)    :
+         (DEFINED(__Interrupt48)       ? ABSOLUTE(__Interrupt48)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSI2C2Interrupt)    ? ABSOLUTE(__AltSI2C2Interrupt)    :
+         (DEFINED(__SI2C2Interrupt)       ? ABSOLUTE(__SI2C2Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltMI2C2Interrupt)    ? ABSOLUTE(__AltMI2C2Interrupt)    :
+         (DEFINED(__MI2C2Interrupt)       ? ABSOLUTE(__MI2C2Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt51)    ? ABSOLUTE(__AltInterrupt51)    :
+         (DEFINED(__Interrupt51)       ? ABSOLUTE(__Interrupt51)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt52)    ? ABSOLUTE(__AltInterrupt52)    :
+         (DEFINED(__Interrupt52)       ? ABSOLUTE(__Interrupt52)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltINT3Interrupt)    ? ABSOLUTE(__AltINT3Interrupt)    :
+         (DEFINED(__INT3Interrupt)       ? ABSOLUTE(__INT3Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltINT4Interrupt)    ? ABSOLUTE(__AltINT4Interrupt)    :
+         (DEFINED(__INT4Interrupt)       ? ABSOLUTE(__INT4Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltCRYPTOInterrupt)    ? ABSOLUTE(__AltCRYPTOInterrupt)    :
+         (DEFINED(__CRYPTOInterrupt)       ? ABSOLUTE(__CRYPTOInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltCRYPTOKeyInterrupt)    ? ABSOLUTE(__AltCRYPTOKeyInterrupt)    :
+         (DEFINED(__CRYPTOKeyInterrupt)       ? ABSOLUTE(__CRYPTOKeyInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt57)    ? ABSOLUTE(__AltInterrupt57)    :
+         (DEFINED(__Interrupt57)       ? ABSOLUTE(__Interrupt57)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSPI1RXInterrupt)    ? ABSOLUTE(__AltSPI1RXInterrupt)    :
+         (DEFINED(__SPI1RXInterrupt)       ? ABSOLUTE(__SPI1RXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSPI2RXInterrupt)    ? ABSOLUTE(__AltSPI2RXInterrupt)    :
+         (DEFINED(__SPI2RXInterrupt)       ? ABSOLUTE(__SPI2RXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSPI3RXInterrupt)    ? ABSOLUTE(__AltSPI3RXInterrupt)    :
+         (DEFINED(__SPI3RXInterrupt)       ? ABSOLUTE(__SPI3RXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltDMA5Interrupt)    ? ABSOLUTE(__AltDMA5Interrupt)    :
+         (DEFINED(__DMA5Interrupt)       ? ABSOLUTE(__DMA5Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltRTCCInterrupt)    ? ABSOLUTE(__AltRTCCInterrupt)    :
+         (DEFINED(__RTCCInterrupt)       ? ABSOLUTE(__RTCCInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt63)    ? ABSOLUTE(__AltInterrupt63)    :
+         (DEFINED(__Interrupt63)       ? ABSOLUTE(__Interrupt63)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt64)    ? ABSOLUTE(__AltInterrupt64)    :
+         (DEFINED(__Interrupt64)       ? ABSOLUTE(__Interrupt64)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU1ErrInterrupt)    ? ABSOLUTE(__AltU1ErrInterrupt)    :
+         (DEFINED(__U1ErrInterrupt)       ? ABSOLUTE(__U1ErrInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU2ErrInterrupt)    ? ABSOLUTE(__AltU2ErrInterrupt)    :
+         (DEFINED(__U2ErrInterrupt)       ? ABSOLUTE(__U2ErrInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltCRCInterrupt)    ? ABSOLUTE(__AltCRCInterrupt)    :
+         (DEFINED(__CRCInterrupt)       ? ABSOLUTE(__CRCInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt68)    ? ABSOLUTE(__AltInterrupt68)    :
+         (DEFINED(__Interrupt68)       ? ABSOLUTE(__Interrupt68)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt69)    ? ABSOLUTE(__AltInterrupt69)    :
+         (DEFINED(__Interrupt69)       ? ABSOLUTE(__Interrupt69)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt70)    ? ABSOLUTE(__AltInterrupt70)    :
+         (DEFINED(__Interrupt70)       ? ABSOLUTE(__Interrupt70)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt71)    ? ABSOLUTE(__AltInterrupt71)    :
+         (DEFINED(__Interrupt71)       ? ABSOLUTE(__Interrupt71)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltLVDInterrupt)    ? ABSOLUTE(__AltLVDInterrupt)    :
+         (DEFINED(__LVDInterrupt)       ? ABSOLUTE(__LVDInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt73)    ? ABSOLUTE(__AltInterrupt73)    :
+         (DEFINED(__Interrupt73)       ? ABSOLUTE(__Interrupt73)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt74)    ? ABSOLUTE(__AltInterrupt74)    :
+         (DEFINED(__Interrupt74)       ? ABSOLUTE(__Interrupt74)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt75)    ? ABSOLUTE(__AltInterrupt75)    :
+         (DEFINED(__Interrupt75)       ? ABSOLUTE(__Interrupt75)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt76)    ? ABSOLUTE(__AltInterrupt76)    :
+         (DEFINED(__Interrupt76)       ? ABSOLUTE(__Interrupt76)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltCTMUInterrupt)    ? ABSOLUTE(__AltCTMUInterrupt)    :
+         (DEFINED(__CTMUInterrupt)       ? ABSOLUTE(__CTMUInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt78)    ? ABSOLUTE(__AltInterrupt78)    :
+         (DEFINED(__Interrupt78)       ? ABSOLUTE(__Interrupt78)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt79)    ? ABSOLUTE(__AltInterrupt79)    :
+         (DEFINED(__Interrupt79)       ? ABSOLUTE(__Interrupt79)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt80)    ? ABSOLUTE(__AltInterrupt80)    :
+         (DEFINED(__Interrupt80)       ? ABSOLUTE(__Interrupt80)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU3ErrInterrupt)    ? ABSOLUTE(__AltU3ErrInterrupt)    :
+         (DEFINED(__U3ErrInterrupt)       ? ABSOLUTE(__U3ErrInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU3RXInterrupt)    ? ABSOLUTE(__AltU3RXInterrupt)    :
+         (DEFINED(__U3RXInterrupt)       ? ABSOLUTE(__U3RXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU3TXInterrupt)    ? ABSOLUTE(__AltU3TXInterrupt)    :
+         (DEFINED(__U3TXInterrupt)       ? ABSOLUTE(__U3TXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltI2C1BCLInterrupt)    ? ABSOLUTE(__AltI2C1BCLInterrupt)    :
+         (DEFINED(__I2C1BCLInterrupt)       ? ABSOLUTE(__I2C1BCLInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltI2C2BCLInterrupt)    ? ABSOLUTE(__AltI2C2BCLInterrupt)    :
+         (DEFINED(__I2C2BCLInterrupt)       ? ABSOLUTE(__I2C2BCLInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltUSB1Interrupt)    ? ABSOLUTE(__AltUSB1Interrupt)    :
+         (DEFINED(__USB1Interrupt)       ? ABSOLUTE(__USB1Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU4ErrInterrupt)    ? ABSOLUTE(__AltU4ErrInterrupt)    :
+         (DEFINED(__U4ErrInterrupt)       ? ABSOLUTE(__U4ErrInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU4RXInterrupt)    ? ABSOLUTE(__AltU4RXInterrupt)    :
+         (DEFINED(__U4RXInterrupt)       ? ABSOLUTE(__U4RXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltU4TXInterrupt)    ? ABSOLUTE(__AltU4TXInterrupt)    :
+         (DEFINED(__U4TXInterrupt)       ? ABSOLUTE(__U4TXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSPI3Interrupt)    ? ABSOLUTE(__AltSPI3Interrupt)    :
+         (DEFINED(__SPI3Interrupt)       ? ABSOLUTE(__SPI3Interrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltSPI3TXInterrupt)    ? ABSOLUTE(__AltSPI3TXInterrupt)    :
+         (DEFINED(__SPI3TXInterrupt)       ? ABSOLUTE(__SPI3TXInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt92)    ? ABSOLUTE(__AltInterrupt92)    :
+         (DEFINED(__Interrupt92)       ? ABSOLUTE(__Interrupt92)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt93)    ? ABSOLUTE(__AltInterrupt93)    :
+         (DEFINED(__Interrupt93)       ? ABSOLUTE(__Interrupt93)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt94)    ? ABSOLUTE(__AltInterrupt94)    :
+         (DEFINED(__Interrupt94)       ? ABSOLUTE(__Interrupt94)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt95)    ? ABSOLUTE(__AltInterrupt95)    :
+         (DEFINED(__Interrupt95)       ? ABSOLUTE(__Interrupt95)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt96)    ? ABSOLUTE(__AltInterrupt96)    :
+         (DEFINED(__Interrupt96)       ? ABSOLUTE(__Interrupt96)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt97)    ? ABSOLUTE(__AltInterrupt97)    :
+         (DEFINED(__Interrupt97)       ? ABSOLUTE(__Interrupt97)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt98)    ? ABSOLUTE(__AltInterrupt98)    :
+         (DEFINED(__Interrupt98)       ? ABSOLUTE(__Interrupt98)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt99)    ? ABSOLUTE(__AltInterrupt99)    :
+         (DEFINED(__Interrupt99)       ? ABSOLUTE(__Interrupt99)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt100)    ? ABSOLUTE(__AltInterrupt100)    :
+         (DEFINED(__Interrupt100)       ? ABSOLUTE(__Interrupt100)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt101)    ? ABSOLUTE(__AltInterrupt101)    :
+         (DEFINED(__Interrupt101)       ? ABSOLUTE(__Interrupt101)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt102)    ? ABSOLUTE(__AltInterrupt102)    :
+         (DEFINED(__Interrupt102)       ? ABSOLUTE(__Interrupt102)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt103)    ? ABSOLUTE(__AltInterrupt103)    :
+         (DEFINED(__Interrupt103)       ? ABSOLUTE(__Interrupt103)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt104)    ? ABSOLUTE(__AltInterrupt104)    :
+         (DEFINED(__Interrupt104)       ? ABSOLUTE(__Interrupt104)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt105)    ? ABSOLUTE(__AltInterrupt105)    :
+         (DEFINED(__Interrupt105)       ? ABSOLUTE(__Interrupt105)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltFSTInterrupt)    ? ABSOLUTE(__AltFSTInterrupt)    :
+         (DEFINED(__FSTInterrupt)       ? ABSOLUTE(__FSTInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt107)    ? ABSOLUTE(__AltInterrupt107)    :
+         (DEFINED(__Interrupt107)       ? ABSOLUTE(__Interrupt107)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt108)    ? ABSOLUTE(__AltInterrupt108)    :
+         (DEFINED(__Interrupt108)       ? ABSOLUTE(__Interrupt108)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt109)    ? ABSOLUTE(__AltInterrupt109)    :
+         (DEFINED(__Interrupt109)       ? ABSOLUTE(__Interrupt109)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt110)    ? ABSOLUTE(__AltInterrupt110)    :
+         (DEFINED(__Interrupt110)       ? ABSOLUTE(__Interrupt110)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt111)    ? ABSOLUTE(__AltInterrupt111)    :
+         (DEFINED(__Interrupt111)       ? ABSOLUTE(__Interrupt111)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt112)    ? ABSOLUTE(__AltInterrupt112)    :
+         (DEFINED(__Interrupt112)       ? ABSOLUTE(__Interrupt112)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt113)    ? ABSOLUTE(__AltInterrupt113)    :
+         (DEFINED(__Interrupt113)       ? ABSOLUTE(__Interrupt113)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt114)    ? ABSOLUTE(__AltInterrupt114)    :
+         (DEFINED(__Interrupt114)       ? ABSOLUTE(__Interrupt114)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt115)    ? ABSOLUTE(__AltInterrupt115)    :
+         (DEFINED(__Interrupt115)       ? ABSOLUTE(__Interrupt115)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltInterrupt116)    ? ABSOLUTE(__AltInterrupt116)    :
+         (DEFINED(__Interrupt116)       ? ABSOLUTE(__Interrupt116)       :
+         ABSOLUTE(__DefaultInterrupt)));
+    LONG( DEFINED(__AltJTAGInterrupt)    ? ABSOLUTE(__AltJTAGInterrupt)    :
+         (DEFINED(__JTAGInterrupt)       ? ABSOLUTE(__JTAGInterrupt)       :
+         ABSOLUTE(__DefaultInterrupt)));
+  } >aivt
 
   /*
   ** User Code and Library Code
@@ -437,269 +951,7 @@ SECTIONS
 /*
 ** Interrupt Vector Table
 */
-.ivt __IVT_BASE :
-  {
-      LONG(J_ReservedTrap0);
-      LONG(J_OscillatorFail);
-      LONG(J_AddressError);
-      LONG(J_StackError);
-      LONG(J_MathError);
-      LONG(J_ReservedTrap5);
-      LONG(J_ReservedTrap6);
-      LONG(J_ReservedTrap7);
-      LONG(J_INT0Interrupt);
-      LONG(J_IC1Interrupt);
-      LONG(J_OC1Interrupt);
-      LONG(J_T1Interrupt);
-      LONG(J_Interrupt4);
-      LONG(J_IC2Interrupt);
-      LONG(J_OC2Interrupt);
-      LONG(J_T2Interrupt);
-      LONG(J_T3Interrupt);
-      LONG(J_SPI1ErrInterrupt);
-      LONG(J_SPI1Interrupt);
-      LONG(J_U1RXInterrupt);
-      LONG(J_U1TXInterrupt);
-      LONG(J_ADC1Interrupt);
-      LONG(J_Interrupt14);
-      LONG(J_Interrupt15);
-      LONG(J_SI2C1Interrupt);
-      LONG(J_MI2C1Interrupt);
-      LONG(J_CompInterrupt);
-      LONG(J_CNInterrupt);
-      LONG(J_INT1Interrupt);
-      LONG(J_Interrupt21);
-      LONG(J_Interrupt22);
-      LONG(J_Interrupt23);
-      LONG(J_Interrupt24);
-      LONG(J_OC3Interrupt);
-      LONG(J_OC4Interrupt);
-      LONG(J_T4Interrupt);
-      LONG(J_T5Interrupt);
-      LONG(J_INT2Interrupt);
-      LONG(J_U2RXInterrupt);
-      LONG(J_U2TXInterrupt);
-      LONG(J_SPI2ErrInterrupt);
-      LONG(J_SPI2Interrupt);
-      LONG(J_Interrupt34);
-      LONG(J_Interrupt35);
-      LONG(J_Interrupt36);
-      LONG(J_IC3Interrupt);
-      LONG(J_IC4Interrupt);
-      LONG(J_IC5Interrupt);
-      LONG(J_Interrupt40);
-      LONG(J_OC5Interrupt);
-      LONG(J_Interrupt42);
-      LONG(J_Interrupt43);
-      LONG(J_Interrupt44);
-      LONG(J_PMPInterrupt);
-      LONG(J_Interrupt46);
-      LONG(J_Interrupt47);
-      LONG(J_Interrupt48);
-      LONG(J_SI2C2Interrupt);
-      LONG(J_MI2C2Interrupt);
-      LONG(J_Interrupt51);
-      LONG(J_Interrupt52);
-      LONG(J_INT3Interrupt);
-      LONG(J_INT4Interrupt);
-      LONG(J_Interrupt55);
-      LONG(J_Interrupt56);
-      LONG(J_Interrupt57);
-      LONG(J_Interrupt58);
-      LONG(J_Interrupt59);
-      LONG(J_Interrupt60);
-      LONG(J_Interrupt61);
-      LONG(J_RTCCInterrupt);
-      LONG(J_Interrupt63);
-      LONG(J_Interrupt64);
-      LONG(J_U1ErrInterrupt);
-      LONG(J_U2ErrInterrupt);
-      LONG(J_CRCInterrupt);
-      LONG(J_Interrupt68);
-      LONG(J_Interrupt69);
-      LONG(J_Interrupt70);
-      LONG(J_Interrupt71);
-      LONG(J_Interrupt72);
-      LONG(J_Interrupt73);
-      LONG(J_Interrupt74);
-      LONG(J_Interrupt75);
-      LONG(J_Interrupt76);
-      LONG(J_Interrupt77);
-      LONG(J_Interrupt78);
-      LONG(J_Interrupt79);
-      LONG(J_Interrupt80);
-      LONG(J_Interrupt81);
-      LONG(J_Interrupt82);
-      LONG(J_Interrupt83);
-      LONG(J_Interrupt84);
-      LONG(J_Interrupt85);
-      LONG(J_Interrupt86);
-      LONG(J_Interrupt87);
-      LONG(J_Interrupt88);
-      LONG(J_Interrupt89);
-      LONG(J_Interrupt90);
-      LONG(J_Interrupt91);
-      LONG(J_Interrupt92);
-      LONG(J_Interrupt93);
-      LONG(J_Interrupt94);
-      LONG(J_Interrupt95);
-      LONG(J_Interrupt96);
-      LONG(J_Interrupt97);
-      LONG(J_Interrupt98);
-      LONG(J_Interrupt99);
-      LONG(J_Interrupt100);
-      LONG(J_Interrupt101);
-      LONG(J_Interrupt102);
-      LONG(J_Interrupt103);
-      LONG(J_Interrupt104);
-      LONG(J_Interrupt105);
-      LONG(J_Interrupt106);
-      LONG(J_Interrupt107);
-      LONG(J_Interrupt108);
-      LONG(J_Interrupt109);
-      LONG(J_Interrupt110);
-      LONG(J_Interrupt111);
-      LONG(J_Interrupt112);
-      LONG(J_Interrupt113);
-      LONG(J_Interrupt114);
-      LONG(J_Interrupt115);
-      LONG(J_Interrupt116);
-      LONG(J_Interrupt117);
-  } >ivt
 
-
-/*
-** Alternate Interrupt Vector Table
-*/
-.aivt __AIVT_BASE :
-  {
-      LONG(J_ReservedTrap0);
-      LONG(J_OscillatorFail);
-      LONG(J_AddressError);
-      LONG(J_StackError);
-      LONG(J_MathError);
-      LONG(J_ReservedTrap5);
-      LONG(J_ReservedTrap6);
-      LONG(J_ReservedTrap7);
-      LONG(J_INT0Interrupt);
-      LONG(J_IC1Interrupt);
-      LONG(J_OC1Interrupt);
-      LONG(J_T1Interrupt);
-      LONG(J_Interrupt4);
-      LONG(J_IC2Interrupt);
-      LONG(J_OC2Interrupt);
-      LONG(J_T2Interrupt);
-      LONG(J_T3Interrupt);
-      LONG(J_SPI1ErrInterrupt);
-      LONG(J_SPI1Interrupt);
-      LONG(J_U1RXInterrupt);
-      LONG(J_U1TXInterrupt);
-      LONG(J_ADC1Interrupt);
-      LONG(J_Interrupt14);
-      LONG(J_Interrupt15);
-      LONG(J_SI2C1Interrupt);
-      LONG(J_MI2C1Interrupt);
-      LONG(J_CompInterrupt);
-      LONG(J_CNInterrupt);
-      LONG(J_INT1Interrupt);
-      LONG(J_Interrupt21);
-      LONG(J_Interrupt22);
-      LONG(J_Interrupt23);
-      LONG(J_Interrupt24);
-      LONG(J_OC3Interrupt);
-      LONG(J_OC4Interrupt);
-      LONG(J_T4Interrupt);
-      LONG(J_T5Interrupt);
-      LONG(J_INT2Interrupt);
-      LONG(J_U2RXInterrupt);
-      LONG(J_U2TXInterrupt);
-      LONG(J_SPI2ErrInterrupt);
-      LONG(J_SPI2Interrupt);
-      LONG(J_Interrupt34);
-      LONG(J_Interrupt35);
-      LONG(J_Interrupt36);
-      LONG(J_IC3Interrupt);
-      LONG(J_IC4Interrupt);
-      LONG(J_IC5Interrupt);
-      LONG(J_Interrupt40);
-      LONG(J_OC5Interrupt);
-      LONG(J_Interrupt42);
-      LONG(J_Interrupt43);
-      LONG(J_Interrupt44);
-      LONG(J_PMPInterrupt);
-      LONG(J_Interrupt46);
-      LONG(J_Interrupt47);
-      LONG(J_Interrupt48);
-      LONG(J_SI2C2Interrupt);
-      LONG(J_MI2C2Interrupt);
-      LONG(J_Interrupt51);
-      LONG(J_Interrupt52);
-      LONG(J_INT3Interrupt);
-      LONG(J_INT4Interrupt);
-      LONG(J_Interrupt55);
-      LONG(J_Interrupt56);
-      LONG(J_Interrupt57);
-      LONG(J_Interrupt58);
-      LONG(J_Interrupt59);
-      LONG(J_Interrupt60);
-      LONG(J_Interrupt61);
-      LONG(J_RTCCInterrupt);
-      LONG(J_Interrupt63);
-      LONG(J_Interrupt64);
-      LONG(J_U1ErrInterrupt);
-      LONG(J_U2ErrInterrupt);
-      LONG(J_CRCInterrupt);
-      LONG(J_Interrupt68);
-      LONG(J_Interrupt69);
-      LONG(J_Interrupt70);
-      LONG(J_Interrupt71);
-      LONG(J_Interrupt72);
-      LONG(J_Interrupt73);
-      LONG(J_Interrupt74);
-      LONG(J_Interrupt75);
-      LONG(J_Interrupt76);
-      LONG(J_Interrupt77);
-      LONG(J_Interrupt78);
-      LONG(J_Interrupt79);
-      LONG(J_Interrupt80);
-      LONG(J_Interrupt81);
-      LONG(J_Interrupt82);
-      LONG(J_Interrupt83);
-      LONG(J_Interrupt84);
-      LONG(J_Interrupt85);
-      LONG(J_Interrupt86);
-      LONG(J_Interrupt87);
-      LONG(J_Interrupt88);
-      LONG(J_Interrupt89);
-      LONG(J_Interrupt90);
-      LONG(J_Interrupt91);
-      LONG(J_Interrupt92);
-      LONG(J_Interrupt93);
-      LONG(J_Interrupt94);
-      LONG(J_Interrupt95);
-      LONG(J_Interrupt96);
-      LONG(J_Interrupt97);
-      LONG(J_Interrupt98);
-      LONG(J_Interrupt99);
-      LONG(J_Interrupt100);
-      LONG(J_Interrupt101);
-      LONG(J_Interrupt102);
-      LONG(J_Interrupt103);
-      LONG(J_Interrupt104);
-      LONG(J_Interrupt105);
-      LONG(J_Interrupt106);
-      LONG(J_Interrupt107);
-      LONG(J_Interrupt108);
-      LONG(J_Interrupt109);
-      LONG(J_Interrupt110);
-      LONG(J_Interrupt111);
-      LONG(J_Interrupt112);
-      LONG(J_Interrupt113);
-      LONG(J_Interrupt114);
-      LONG(J_Interrupt115);
-      LONG(J_Interrupt116);
-      LONG(J_Interrupt117);
-  } >aivt
 } /* SECTIONS */
 #endif
 

@@ -97,7 +97,7 @@ bool USER_USB_CALLBACK_EVENT_HANDLER(USB_EVENT event, void *pdata, uint16_t size
     return true;
 }
 
-void __attribute__((interrupt,auto_psv)) _USB1Interrupt()
+void __attribute__((interrupt,auto_psv)) _AltUSB1Interrupt()
 {
     USBDeviceTasks();
 }
