@@ -6,8 +6,8 @@
 CND_BASEDIR=`pwd`
 # default configuration
 CND_ARTIFACT_DIR_default=dist/default/production
-CND_ARTIFACT_NAME_default=USB_Test.X.production.hex
-CND_ARTIFACT_PATH_default=dist/default/production/USB_Test.X.production.hex
+CND_ARTIFACT_NAME_default=USB_Bootloader.X.production.hex
+CND_ARTIFACT_PATH_default=dist/default/production/USB_Bootloader.X.production.hex
 CND_PACKAGE_DIR_default=${CND_DISTDIR}/default/package
-CND_PACKAGE_NAME_default=usbtest.x.tar
-CND_PACKAGE_PATH_default=${CND_DISTDIR}/default/package/usbtest.x.tar
+CND_PACKAGE_NAME_default=usbbootloader.x.tar
+CND_PACKAGE_PATH_default=${CND_DISTDIR}/default/package/usbbootloader.x.tar

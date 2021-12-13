@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=USB_Test.X
+PROJECTNAME=USB_Bootloader.X
 
 # Active Configuration
 DEFAULTCONF=default

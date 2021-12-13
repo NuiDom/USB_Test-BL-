@@ -45,6 +45,7 @@
 /**
   Section: Included Files
 */
+//BOOTLOADER
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/usb/usb.h"
 #include "timer.h"
@@ -76,6 +77,11 @@ int main(void)
     {
         // Add your application code
         DoUSBComms();
+//        if(USBUSARTIsTxTrfReady())
+//        {
+//            char bl[] = "UPGRADE";
+//            putUSBUSART(bl,8);
+//        }
 //        int t=0;
 //        for(t=0; t<10; t++){
 //        int x=0;
@@ -93,6 +99,8 @@ int main(void)
 //        SRbits.IPL1 = 1;
 //        SRbits.IPL2 = 1;
         disableInterrupts();
+        USBDeviceDetach();
+        delay_ms(200);
         asm("GOTO 0x2400");
     }
 
