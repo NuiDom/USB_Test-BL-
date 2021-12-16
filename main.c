@@ -49,32 +49,36 @@
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/usb/usb.h"
 #include "timer.h"
+#include <stdlib.h>
 
 void DoUSBComms(void);
 void disableInterrupts(void);
+void erase(void);
 
 //Used for USB
 char message_buffer[64];
 bool message_received = false;
 static uint8_t readBuffer[64];
 static uint8_t writeBuffer[64];
+char usbCmd[10] = "";
 /*
                          Main application
  */
 int main(void)
 {
     // initialize the device
-    INTCON2bits.ALTIVT = 1;
-    SYSTEM_Initialize();
-    TMR1_Init();
-    delay_ms(1000);
-    USBDeviceInit();
-    USBDeviceAttach();
-    delay_ms(1000);
-    USBDeviceTasks();
-    delay_ms(1000);
-    while (1)
-    {
+    if(RCON == 0){
+        INTCON2bits.ALTIVT = 1;
+        SYSTEM_Initialize();
+        TMR1_Init();
+        delay_ms(1000);
+        USBDeviceInit();
+        USBDeviceAttach();
+        delay_ms(1000);
+        USBDeviceTasks();
+        delay_ms(1000);
+        while (1)
+        {
         // Add your application code
         DoUSBComms();
 //        if(USBUSARTIsTxTrfReady())
@@ -98,12 +102,11 @@ int main(void)
 //        SRbits.IPL0 = 1;
 //        SRbits.IPL1 = 1;
 //        SRbits.IPL2 = 1;
-        disableInterrupts();
-        USBDeviceDetach();
-        delay_ms(200);
+        }
+    }
+    else if(RCONbits.POR == 1){
         asm("GOTO 0x2400");
     }
-
     return 1;
 }
 
@@ -135,7 +138,15 @@ void DoUSBComms(void)
                     putUSBUSART((uint8_t *)"Received full stop.\r\n",19);
                     return;
                 }
-                            
+            
+            sscanf(message_buffer, "%s", usbCmd);
+            if(strcmp(usbCmd,"JUMP")==0){    
+                disableInterrupts();
+                USBDeviceDetach();
+                delay_ms(600);
+                asm("GOTO 0x2400");
+            }
+            
             switch(readBuffer[i])
             {
                 /* echo line feeds and returns without modification. */
@@ -160,6 +171,22 @@ void DoUSBComms(void)
     CDCTxService();
 }
 
+void erase(void)
+{
+    // C example using MPLAB C30
+    unsigned long progAddr = 0x002400;      // Address of row to write
+    unsigned int offset;
+    //Set up pointer to the first memory location to be written
+    TBLPAG = progAddr>>16;                  // Initialize PM Page Boundary SFR
+    offset = progAddr & 0xFFFF;             // Initialize lower word of address
+    __builtin_tblwtl(offset, 0x0000);       // Set base address of erase block
+                                            // with dummy latch write
+    NVMCON = 0x4042;                        // Initialize NVMCON
+    asm("DISI #5");                         // Block all interrupts with priority <7
+                                            // for next 5 instructions
+    __builtin_write_NVM();                  // check function to perform unlock
+                                            // sequence and set WR
+}
 void disableInterrupts(void)
 {
     IEC0 = 0x0000;

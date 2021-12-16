@@ -246,7 +246,6 @@ J_Interrupt115       = 0x23EE;
 J_Interrupt116       = 0x23F2;
 J_JTAGInterrupt      = 0x23F6;
 
-
 /*
 ** ==================== Section Map ======================
 */
