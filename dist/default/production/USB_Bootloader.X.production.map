@@ -18,6 +18,8 @@ Command:
   -L/opt/microchip/xc16/v1.70/bin/bin/../../support/dsPIC33C/gld \
   -L/opt/microchip/xc16/v1.70/bin/bin/../../support/dsPIC33E/gld \
   -L/opt/microchip/xc16/v1.70/bin/bin/../../support/dsPIC33F/gld \
+  build/default/production/mcc_generated_files/memory/flash.o \
+  build/default/production/mcc_generated_files/memory/flash_demo.o \
   build/default/production/mcc_generated_files/usb/usb_device.o \
   build/default/production/mcc_generated_files/usb/usb_device_events.o \
   build/default/production/mcc_generated_files/usb/usb_descriptors.o \
@@ -125,12 +127,19 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x8c4           0xd26  (3366)
-.const                       0xac4                0xce           0x135  (309)
-.text                        0xb92               0xe5c          0x158a  (5514)
-.dinit                      0x19ee                0x54            0x7e  (126)
-.text                       0x1a42                0xc6           0x129  (297)
+.const                       0xac4                0xd0           0x138  (312)
+.text                        0xb94               0x9f0           0xee8  (3816)
+.text                       0x1584               0x248           0x36c  (876)
+.text                       0x17cc                0x32            0x4b  (75)
+_35b9b8c061c0ab4d           0x1800               0x400           0x600  (1536)
+.text                       0x1c00               0x142           0x1e3  (483)
+.NVM_flash                  0x1d42               0x12e           0x1c5  (453)
+.text                       0x1e70               0x1aa           0x27f  (639)
+.dinit                      0x201a                0x5e            0x8d  (141)
+.text                       0x2078                0x3e            0x5d  (93)
+.text                       0x20b6                0x56            0x81  (129)
 
-                 Total "program" memory used (bytes):         0x258c  (9612) 78%
+                 Total "program" memory used (bytes):         0x2e8f  (11919) 96%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -142,10 +151,10 @@ section                    address      alignment gaps    total length  (dec)
 .nbss                        0x83a                   0             0x2  (2)
 .bss                         0x83c                   0           0x164  (356)
 .bss                         0x9a0                   0            0x60  (96)
-_0x7f4a0d28f96061bb6803      0xa00                   0            0x30  (48)
-.data                        0xa30                   0             0xc  (12)
+_0x7fd34797d96061c0ab4d      0xa00                   0            0x30  (48)
+.data                        0xa30                   0            0x10  (16)
 
-                 Total "data" memory used (bytes):          0x23c  (572) 6%
+                 Total "data" memory used (bytes):          0x240  (576) 7%
 
 
 Dynamic Memory Usage
@@ -153,9 +162,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0xa3c                              0x1dc4  (7620)
+stack                        0xa40                              0x1dc0  (7616)
 
-                 Maximum dynamic memory (bytes):         0x1dc4  (7620)
+                 Maximum dynamic memory (bytes):         0x1dc0  (7616)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
@@ -309,75 +318,98 @@ External Symbols in Program Memory (by address):
                   0x000b52                  _sd002
                   0x000b6c                  _USB_CD_Ptr
                   0x000b6e                  _USB_SD_Ptr
-                  0x000ff0                  _USBDeviceInit
-                  0x001096                  _USBEnableEndpoint
-                  0x0010c2                  _USBTransferOnePacket
-                  0x00110c                  _USBStallEndpoint
-                  0x00115a                  _USBCancelIO
-                  0x00118e                  _USBDeviceDetach
-                  0x001196                  _USBDeviceAttach
-                  0x0011be                  _USBCtrlEPAllowStatusStage
-                  0x001306                  _USBCtrlEPAllowDataStage
-                  0x00146c                  _USBIncrement1msInternalTimers
-                  0x001486                  _USBDeviceTasks
-                  0x001572                  _USBGet1msTickCount
-                  0x001582                  _USBCheckCDCRequest
-                  0x001640                  _CDCInitEP
-                  0x001678                  _USBCDCEventHandler
-                  0x0016a6                  _getsUSBUSART
-                  0x0016da                  _putUSBUSART
-                  0x0016f0                  _putsUSBUSART
-                  0x001714                  _putrsUSBUSART
-                  0x001738                  _CDCTxService
-                  0x001842                  _USBMaskAllUSBInterrupts
-                  0x001852                  _USBRestoreUSBInterrupts
-                  0x00185a                  _USBVBUSSessionValidStateGet
-                  0x0018b2                  _USBSleepOnSuspend
-                  0x0018c8                  _USBRemoteWakeupAssertBlocking
-                  0x00190c                  _erase
-                  0x00192a                  _disableInterrupts
-                  0x00193c                  _DoUSBComms
-                  0x0019c4                  _main
-                  0x001a42                  _CLOCK_Initialize
-                  0x001a80                  _TMR1_Init
-                  0x001a8a                  _delay_ms
-                  0x001ab2                  _PIN_MANAGER_Initialize
-                  0x001ad8                  _USER_USB_CALLBACK_EVENT_HANDLER
-                  0x001af8                  _INTERRUPT_Initialize
-                  0x001b02                  _SYSTEM_Initialize
+                  0x000ff2                  _USBDeviceInit
+                  0x001098                  _USBEnableEndpoint
+                  0x0010c4                  _USBTransferOnePacket
+                  0x00110e                  _USBStallEndpoint
+                  0x00115c                  _USBCancelIO
+                  0x001190                  _USBDeviceDetach
+                  0x001198                  _USBDeviceAttach
+                  0x0011c0                  _USBCtrlEPAllowStatusStage
+                  0x001308                  _USBCtrlEPAllowDataStage
+                  0x00146e                  _USBIncrement1msInternalTimers
+                  0x001488                  _USBDeviceTasks
+                  0x001574                  _USBGet1msTickCount
+                  0x001584                  _USBCheckCDCRequest
+                  0x001642                  _CDCInitEP
+                  0x00167a                  _USBCDCEventHandler
+                  0x0016a8                  _getsUSBUSART
+                  0x0016dc                  _putUSBUSART
+                  0x0016f2                  _putsUSBUSART
+                  0x001716                  _putrsUSBUSART
+                  0x00173a                  _CDCTxService
+                  0x0017cc                  _TMR1_Init
+                  0x0017d6                  _delay_ms
+                  0x001c78                  _USBMaskAllUSBInterrupts
+                  0x001c88                  _USBRestoreUSBInterrupts
+                  0x001c90                  _USBVBUSSessionValidStateGet
+                  0x001ce8                  _USBSleepOnSuspend
+                  0x001cfe                  _USBRemoteWakeupAssertBlocking
+                  0x001d44                  _FLASH_Unlock
+                  0x001d4e                  _FLASH_Lock
+                  0x001d76                  _FLASH_ReadWord24
+                  0x001d82                  _FLASH_ReadWord16
+                  0x001d8e                  _FLASH_ErasePage
+                  0x001db4                  _FLASH_WriteWord24
+                  0x001dda                  _FLASH_WriteWord16
+                  0x001e02                  _FLASH_WriteRow24
+                  0x001e30                  _FLASH_WriteRow16
+                  0x001e60                  _FLASH_GetErasePageOffset
+                  0x001e66                  _FLASH_GetErasePageAddress
+                  0x001e70                  _disableInterrupts
+                  0x001e82                  _DoUSBComms
+                  0x001f24                  _main
+                  0x002016                  _FlashDemo
+                  0x002078                  _CLOCK_Initialize
+                  0x0020b6                  _PIN_MANAGER_Initialize
+                  0x0020dc                  _USER_USB_CALLBACK_EVENT_HANDLER
+                  0x0020fc                  _INTERRUPT_Initialize
+                  0x002106                  _SYSTEM_Initialize
 
 External Symbols in Program Memory (by name):
 
-                  0x001640                  _CDCInitEP
-                  0x001738                  _CDCTxService
-                  0x001a42                  _CLOCK_Initialize
-                  0x00193c                  _DoUSBComms
-                  0x001af8                  _INTERRUPT_Initialize
-                  0x001ab2                  _PIN_MANAGER_Initialize
-                  0x001b02                  _SYSTEM_Initialize
-                  0x001a80                  _TMR1_Init
-                  0x001678                  _USBCDCEventHandler
-                  0x00115a                  _USBCancelIO
-                  0x001582                  _USBCheckCDCRequest
-                  0x001306                  _USBCtrlEPAllowDataStage
-                  0x0011be                  _USBCtrlEPAllowStatusStage
-                  0x001196                  _USBDeviceAttach
-                  0x00118e                  _USBDeviceDetach
-                  0x000ff0                  _USBDeviceInit
-                  0x001486                  _USBDeviceTasks
-                  0x001096                  _USBEnableEndpoint
-                  0x001572                  _USBGet1msTickCount
-                  0x00146c                  _USBIncrement1msInternalTimers
-                  0x001842                  _USBMaskAllUSBInterrupts
-                  0x0018c8                  _USBRemoteWakeupAssertBlocking
-                  0x001852                  _USBRestoreUSBInterrupts
-                  0x0018b2                  _USBSleepOnSuspend
-                  0x00110c                  _USBStallEndpoint
-                  0x0010c2                  _USBTransferOnePacket
-                  0x00185a                  _USBVBUSSessionValidStateGet
+                  0x001642                  _CDCInitEP
+                  0x00173a                  _CDCTxService
+                  0x002078                  _CLOCK_Initialize
+                  0x001e82                  _DoUSBComms
+                  0x001d8e                  _FLASH_ErasePage
+                  0x001e66                  _FLASH_GetErasePageAddress
+                  0x001e60                  _FLASH_GetErasePageOffset
+                  0x001d4e                  _FLASH_Lock
+                  0x001d82                  _FLASH_ReadWord16
+                  0x001d76                  _FLASH_ReadWord24
+                  0x001d44                  _FLASH_Unlock
+                  0x001e30                  _FLASH_WriteRow16
+                  0x001e02                  _FLASH_WriteRow24
+                  0x001dda                  _FLASH_WriteWord16
+                  0x001db4                  _FLASH_WriteWord24
+                  0x002016                  _FlashDemo
+                  0x0020fc                  _INTERRUPT_Initialize
+                  0x0020b6                  _PIN_MANAGER_Initialize
+                  0x002106                  _SYSTEM_Initialize
+                  0x0017cc                  _TMR1_Init
+                  0x00167a                  _USBCDCEventHandler
+                  0x00115c                  _USBCancelIO
+                  0x001584                  _USBCheckCDCRequest
+                  0x001308                  _USBCtrlEPAllowDataStage
+                  0x0011c0                  _USBCtrlEPAllowStatusStage
+                  0x001198                  _USBDeviceAttach
+                  0x001190                  _USBDeviceDetach
+                  0x000ff2                  _USBDeviceInit
+                  0x001488                  _USBDeviceTasks
+                  0x001098                  _USBEnableEndpoint
+                  0x001574                  _USBGet1msTickCount
+                  0x00146e                  _USBIncrement1msInternalTimers
+                  0x001c78                  _USBMaskAllUSBInterrupts
+                  0x001cfe                  _USBRemoteWakeupAssertBlocking
+                  0x001c88                  _USBRestoreUSBInterrupts
+                  0x001ce8                  _USBSleepOnSuspend
+                  0x00110e                  _USBStallEndpoint
+                  0x0010c4                  _USBTransferOnePacket
+                  0x001c90                  _USBVBUSSessionValidStateGet
                   0x000b6c                  _USB_CD_Ptr
                   0x000b6e                  _USB_SD_Ptr
-                  0x001ad8                  _USER_USB_CALLBACK_EVENT_HANDLER
+                  0x0020dc                  _USER_USB_CALLBACK_EVENT_HANDLER
                   0x00036a                  __AddressError
                   0x000308                  __AltUSB1Interrupt
                   0x0008b6                  __Getstr
@@ -410,18 +442,17 @@ External Symbols in Program Memory (by name):
                   0x000630                  __sscanf_0
                   0x000630                  __sscanf_s
                   0x000ad6                  _configDescriptor1
-                  0x001a8a                  _delay_ms
+                  0x0017d6                  _delay_ms
                   0x000ac4                  _device_dsc
-                  0x00192a                  _disableInterrupts
-                  0x00190c                  _erase
-                  0x0016a6                  _getsUSBUSART
+                  0x001e70                  _disableInterrupts
+                  0x0016a8                  _getsUSBUSART
                   0x0007d2                  _isspace
-                  0x0019c4                  _main
+                  0x001f24                  _main
                   0x000aa4                  _memchr
                   0x00086e                  _memset
-                  0x0016da                  _putUSBUSART
-                  0x001714                  _putrsUSBUSART
-                  0x0016f0                  _putsUSBUSART
+                  0x0016dc                  _putUSBUSART
+                  0x001716                  _putrsUSBUSART
+                  0x0016f2                  _putsUSBUSART
                   0x000b1a                  _sd000
                   0x000b1e                  _sd001
                   0x000b52                  _sd002
@@ -447,6 +478,8 @@ CONFIG1          0x00abfe           0x000002
 
 Linker script and memory map
 
+LOAD build/default/production/mcc_generated_files/memory/flash.o
+LOAD build/default/production/mcc_generated_files/memory/flash_demo.o
 LOAD build/default/production/mcc_generated_files/usb/usb_device.o
 LOAD build/default/production/mcc_generated_files/usb/usb_device_events.o
 LOAD build/default/production/mcc_generated_files/usb/usb_descriptors.o
@@ -978,79 +1011,87 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x7d82
+.debug_info       0x000000       0x804c
  *(.debug_info)
- .debug_info      0x000000       0x2875 build/default/production/mcc_generated_files/usb/usb_device.o
- .debug_info      0x002875        0x596 build/default/production/mcc_generated_files/usb/usb_device_events.o
- .debug_info      0x002e0b        0x823 build/default/production/mcc_generated_files/usb/usb_descriptors.o
- .debug_info      0x00362e       0x15fc build/default/production/mcc_generated_files/usb/usb_device_cdc.o
- .debug_info      0x004c2a       0x1300 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
- .debug_info      0x005f2a        0x2b5 build/default/production/mcc_generated_files/interrupt_manager.o
- .debug_info      0x0061df        0x474 build/default/production/mcc_generated_files/clock.o
- .debug_info      0x006653        0x328 build/default/production/mcc_generated_files/pin_manager.o
- .debug_info      0x00697b        0x383 build/default/production/mcc_generated_files/traps.o
- .debug_info      0x006cfe        0x33a build/default/production/mcc_generated_files/system.o
- .debug_info      0x007038        0xb78 build/default/production/main.o
- .debug_info      0x007bb0        0x1d2 build/default/production/timer.o
+ .debug_info      0x000000         0x96 build/default/production/mcc_generated_files/memory/flash.o
+ .debug_info      0x000096        0x2ae build/default/production/mcc_generated_files/memory/flash_demo.o
+ .debug_info      0x000344       0x2875 build/default/production/mcc_generated_files/usb/usb_device.o
+ .debug_info      0x002bb9        0x596 build/default/production/mcc_generated_files/usb/usb_device_events.o
+ .debug_info      0x00314f        0x823 build/default/production/mcc_generated_files/usb/usb_descriptors.o
+ .debug_info      0x003972       0x15fc build/default/production/mcc_generated_files/usb/usb_device_cdc.o
+ .debug_info      0x004f6e       0x1300 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
+ .debug_info      0x00626e        0x2b5 build/default/production/mcc_generated_files/interrupt_manager.o
+ .debug_info      0x006523        0x474 build/default/production/mcc_generated_files/clock.o
+ .debug_info      0x006997        0x328 build/default/production/mcc_generated_files/pin_manager.o
+ .debug_info      0x006cbf        0x383 build/default/production/mcc_generated_files/traps.o
+ .debug_info      0x007042        0x33a build/default/production/mcc_generated_files/system.o
+ .debug_info      0x00737c        0xafe build/default/production/main.o
+ .debug_info      0x007e7a        0x1d2 build/default/production/timer.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0xe68
+.debug_abbrev     0x000000        0xf25
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x2b4 build/default/production/mcc_generated_files/usb/usb_device.o
- .debug_abbrev    0x0002b4         0x91 build/default/production/mcc_generated_files/usb/usb_device_events.o
- .debug_abbrev    0x000345        0x102 build/default/production/mcc_generated_files/usb/usb_descriptors.o
- .debug_abbrev    0x000447        0x26c build/default/production/mcc_generated_files/usb/usb_device_cdc.o
- .debug_abbrev    0x0006b3        0x1d3 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
- .debug_abbrev    0x000886         0xb4 build/default/production/mcc_generated_files/interrupt_manager.o
- .debug_abbrev    0x00093a         0xc5 build/default/production/mcc_generated_files/clock.o
- .debug_abbrev    0x0009ff         0x6a build/default/production/mcc_generated_files/pin_manager.o
- .debug_abbrev    0x000a69        0x10d build/default/production/mcc_generated_files/traps.o
- .debug_abbrev    0x000b76         0xb4 build/default/production/mcc_generated_files/system.o
- .debug_abbrev    0x000c2a          0x1 build/default/production/mcc_generated_files/mcc.o
- .debug_abbrev    0x000c2b        0x1b3 build/default/production/main.o
- .debug_abbrev    0x000dde         0x8a build/default/production/timer.o
+ .debug_abbrev    0x000000         0x14 build/default/production/mcc_generated_files/memory/flash.o
+ .debug_abbrev    0x000014         0xa9 build/default/production/mcc_generated_files/memory/flash_demo.o
+ .debug_abbrev    0x0000bd        0x2b4 build/default/production/mcc_generated_files/usb/usb_device.o
+ .debug_abbrev    0x000371         0x91 build/default/production/mcc_generated_files/usb/usb_device_events.o
+ .debug_abbrev    0x000402        0x102 build/default/production/mcc_generated_files/usb/usb_descriptors.o
+ .debug_abbrev    0x000504        0x26c build/default/production/mcc_generated_files/usb/usb_device_cdc.o
+ .debug_abbrev    0x000770        0x1d3 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
+ .debug_abbrev    0x000943         0xb4 build/default/production/mcc_generated_files/interrupt_manager.o
+ .debug_abbrev    0x0009f7         0xc5 build/default/production/mcc_generated_files/clock.o
+ .debug_abbrev    0x000abc         0x6a build/default/production/mcc_generated_files/pin_manager.o
+ .debug_abbrev    0x000b26        0x10d build/default/production/mcc_generated_files/traps.o
+ .debug_abbrev    0x000c33         0xb4 build/default/production/mcc_generated_files/system.o
+ .debug_abbrev    0x000ce7          0x1 build/default/production/mcc_generated_files/mcc.o
+ .debug_abbrev    0x000ce8        0x1b3 build/default/production/main.o
+ .debug_abbrev    0x000e9b         0x8a build/default/production/timer.o
 
-.debug_line       0x000000       0x10f7
+.debug_line       0x000000       0x12ac
  *(.debug_line)
- .debug_line      0x000000        0x3d3 build/default/production/mcc_generated_files/usb/usb_device.o
- .debug_line      0x0003d3         0xd6 build/default/production/mcc_generated_files/usb/usb_device_events.o
- .debug_line      0x0004a9         0xbb build/default/production/mcc_generated_files/usb/usb_descriptors.o
- .debug_line      0x000564        0x1f5 build/default/production/mcc_generated_files/usb/usb_device_cdc.o
- .debug_line      0x000759        0x1a9 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
- .debug_line      0x000902        0x10c build/default/production/mcc_generated_files/interrupt_manager.o
- .debug_line      0x000a0e        0x10f build/default/production/mcc_generated_files/clock.o
- .debug_line      0x000b1d        0x113 build/default/production/mcc_generated_files/pin_manager.o
- .debug_line      0x000c30        0x130 build/default/production/mcc_generated_files/traps.o
- .debug_line      0x000d60        0x103 build/default/production/mcc_generated_files/system.o
- .debug_line      0x000e63         0x1a build/default/production/mcc_generated_files/mcc.o
- .debug_line      0x000e7d        0x188 build/default/production/main.o
- .debug_line      0x001005         0xf2 build/default/production/timer.o
+ .debug_line      0x000000         0xf7 build/default/production/mcc_generated_files/memory/flash.o
+ .debug_line      0x0000f7         0xc0 build/default/production/mcc_generated_files/memory/flash_demo.o
+ .debug_line      0x0001b7        0x3d3 build/default/production/mcc_generated_files/usb/usb_device.o
+ .debug_line      0x00058a         0xd6 build/default/production/mcc_generated_files/usb/usb_device_events.o
+ .debug_line      0x000660         0xbb build/default/production/mcc_generated_files/usb/usb_descriptors.o
+ .debug_line      0x00071b        0x1f5 build/default/production/mcc_generated_files/usb/usb_device_cdc.o
+ .debug_line      0x000910        0x1a9 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
+ .debug_line      0x000ab9        0x10c build/default/production/mcc_generated_files/interrupt_manager.o
+ .debug_line      0x000bc5        0x10f build/default/production/mcc_generated_files/clock.o
+ .debug_line      0x000cd4        0x113 build/default/production/mcc_generated_files/pin_manager.o
+ .debug_line      0x000de7        0x130 build/default/production/mcc_generated_files/traps.o
+ .debug_line      0x000f17        0x103 build/default/production/mcc_generated_files/system.o
+ .debug_line      0x00101a         0x1a build/default/production/mcc_generated_files/mcc.o
+ .debug_line      0x001034        0x186 build/default/production/main.o
+ .debug_line      0x0011ba         0xf2 build/default/production/timer.o
 
-.debug_frame      0x000000        0x5f2
+.debug_frame      0x000000        0x674
  *(.debug_frame)
- .debug_frame     0x000000        0x204 build/default/production/mcc_generated_files/usb/usb_device.o
- .debug_frame     0x000204         0x5e build/default/production/mcc_generated_files/usb/usb_device_events.o
- .debug_frame     0x000262         0x9e build/default/production/mcc_generated_files/usb/usb_device_cdc.o
- .debug_frame     0x000300         0x8e build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
- .debug_frame     0x00038e         0x24 build/default/production/mcc_generated_files/interrupt_manager.o
- .debug_frame     0x0003b2         0x24 build/default/production/mcc_generated_files/clock.o
- .debug_frame     0x0003d6         0x24 build/default/production/mcc_generated_files/pin_manager.o
- .debug_frame     0x0003fa        0x104 build/default/production/mcc_generated_files/traps.o
- .debug_frame     0x0004fe         0x24 build/default/production/mcc_generated_files/system.o
- .debug_frame     0x000522         0x92 build/default/production/main.o
- .debug_frame     0x0005b4         0x3e build/default/production/timer.o
+ .debug_frame     0x000000         0x92 build/default/production/mcc_generated_files/memory/flash_demo.o
+ .debug_frame     0x000092        0x204 build/default/production/mcc_generated_files/usb/usb_device.o
+ .debug_frame     0x000296         0x5e build/default/production/mcc_generated_files/usb/usb_device_events.o
+ .debug_frame     0x0002f4         0x9e build/default/production/mcc_generated_files/usb/usb_device_cdc.o
+ .debug_frame     0x000392         0x8e build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
+ .debug_frame     0x000420         0x24 build/default/production/mcc_generated_files/interrupt_manager.o
+ .debug_frame     0x000444         0x24 build/default/production/mcc_generated_files/clock.o
+ .debug_frame     0x000468         0x24 build/default/production/mcc_generated_files/pin_manager.o
+ .debug_frame     0x00048c        0x104 build/default/production/mcc_generated_files/traps.o
+ .debug_frame     0x000590         0x24 build/default/production/mcc_generated_files/system.o
+ .debug_frame     0x0005b4         0x82 build/default/production/main.o
+ .debug_frame     0x000636         0x3e build/default/production/timer.o
 
-.debug_str        0x000000        0x4fd
+.debug_str        0x000000        0x513
  *(.debug_str)
- .debug_str       0x000000        0x2ae build/default/production/mcc_generated_files/usb/usb_device.o
- .debug_str       0x0002ae         0x2a build/default/production/mcc_generated_files/usb/usb_descriptors.o
- .debug_str       0x0002d8         0xde build/default/production/mcc_generated_files/usb/usb_device_cdc.o
- .debug_str       0x0003b6         0xa1 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
- .debug_str       0x000457          0xa build/default/production/mcc_generated_files/interrupt_manager.o
- .debug_str       0x000461         0x27 build/default/production/mcc_generated_files/clock.o
- .debug_str       0x000488          0xc build/default/production/mcc_generated_files/traps.o
- .debug_str       0x000494          0xc build/default/production/mcc_generated_files/system.o
- .debug_str       0x0004a0         0x5d build/default/production/main.o
+ .debug_str       0x000000         0x16 build/default/production/mcc_generated_files/memory/flash_demo.o
+ .debug_str       0x000016        0x2ae build/default/production/mcc_generated_files/usb/usb_device.o
+ .debug_str       0x0002c4         0x2a build/default/production/mcc_generated_files/usb/usb_descriptors.o
+ .debug_str       0x0002ee         0xde build/default/production/mcc_generated_files/usb/usb_device_cdc.o
+ .debug_str       0x0003cc         0xa1 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
+ .debug_str       0x00046d          0xa build/default/production/mcc_generated_files/interrupt_manager.o
+ .debug_str       0x000477         0x27 build/default/production/mcc_generated_files/clock.o
+ .debug_str       0x00049e          0xc build/default/production/mcc_generated_files/traps.o
+ .debug_str       0x0004aa          0xc build/default/production/mcc_generated_files/system.o
+ .debug_str       0x0004b6         0x5d build/default/production/main.o
 
 .debug_loc
  *(.debug_loc)
@@ -1059,60 +1100,66 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x876
+                  0x000000        0x88c
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000        0x3a3 build/default/production/mcc_generated_files/usb/usb_device.o
+                  0x000000         0x20 build/default/production/mcc_generated_files/memory/flash_demo.o
  .debug_pubnames
-                  0x0003a3         0x4c build/default/production/mcc_generated_files/usb/usb_device_events.o
+                  0x000020        0x3a3 build/default/production/mcc_generated_files/usb/usb_device.o
  .debug_pubnames
-                  0x0003ef         0x73 build/default/production/mcc_generated_files/usb/usb_descriptors.o
+                  0x0003c3         0x4c build/default/production/mcc_generated_files/usb/usb_device_events.o
  .debug_pubnames
-                  0x000462        0x1b2 build/default/production/mcc_generated_files/usb/usb_device_cdc.o
+                  0x00040f         0x73 build/default/production/mcc_generated_files/usb/usb_descriptors.o
  .debug_pubnames
-                  0x000614         0xa2 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
+                  0x000482        0x1b2 build/default/production/mcc_generated_files/usb/usb_device_cdc.o
  .debug_pubnames
-                  0x0006b6         0x2b build/default/production/mcc_generated_files/interrupt_manager.o
+                  0x000634         0xa2 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
  .debug_pubnames
-                  0x0006e1         0x27 build/default/production/mcc_generated_files/clock.o
+                  0x0006d6         0x2b build/default/production/mcc_generated_files/interrupt_manager.o
  .debug_pubnames
-                  0x000708         0x2d build/default/production/mcc_generated_files/pin_manager.o
+                  0x000701         0x27 build/default/production/mcc_generated_files/clock.o
  .debug_pubnames
-                  0x000735         0x6f build/default/production/mcc_generated_files/traps.o
+                  0x000728         0x2d build/default/production/mcc_generated_files/pin_manager.o
  .debug_pubnames
-                  0x0007a4         0x28 build/default/production/mcc_generated_files/system.o
+                  0x000755         0x6f build/default/production/mcc_generated_files/traps.o
  .debug_pubnames
-                  0x0007cc         0x7d build/default/production/main.o
+                  0x0007c4         0x28 build/default/production/mcc_generated_files/system.o
  .debug_pubnames
-                  0x000849         0x2d build/default/production/timer.o
+                  0x0007ec         0x73 build/default/production/main.o
+ .debug_pubnames
+                  0x00085f         0x2d build/default/production/timer.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000        0x108
+.debug_aranges    0x000000        0x138
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/mcc_generated_files/usb/usb_device.o
+                  0x000000         0x18 build/default/production/mcc_generated_files/memory/flash.o
  .debug_aranges
-                  0x000018         0x18 build/default/production/mcc_generated_files/usb/usb_device_events.o
+                  0x000018         0x18 build/default/production/mcc_generated_files/memory/flash_demo.o
  .debug_aranges
-                  0x000030         0x18 build/default/production/mcc_generated_files/usb/usb_device_cdc.o
+                  0x000030         0x18 build/default/production/mcc_generated_files/usb/usb_device.o
  .debug_aranges
-                  0x000048         0x18 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
+                  0x000048         0x18 build/default/production/mcc_generated_files/usb/usb_device_events.o
  .debug_aranges
-                  0x000060         0x18 build/default/production/mcc_generated_files/interrupt_manager.o
+                  0x000060         0x18 build/default/production/mcc_generated_files/usb/usb_device_cdc.o
  .debug_aranges
-                  0x000078         0x18 build/default/production/mcc_generated_files/clock.o
+                  0x000078         0x18 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
  .debug_aranges
-                  0x000090         0x18 build/default/production/mcc_generated_files/pin_manager.o
+                  0x000090         0x18 build/default/production/mcc_generated_files/interrupt_manager.o
  .debug_aranges
-                  0x0000a8         0x18 build/default/production/mcc_generated_files/traps.o
+                  0x0000a8         0x18 build/default/production/mcc_generated_files/clock.o
  .debug_aranges
-                  0x0000c0         0x18 build/default/production/mcc_generated_files/system.o
+                  0x0000c0         0x18 build/default/production/mcc_generated_files/pin_manager.o
  .debug_aranges
-                  0x0000d8         0x18 build/default/production/main.o
+                  0x0000d8         0x18 build/default/production/mcc_generated_files/traps.o
  .debug_aranges
-                  0x0000f0         0x18 build/default/production/timer.o
+                  0x0000f0         0x18 build/default/production/mcc_generated_files/system.o
+ .debug_aranges
+                  0x000108         0x18 build/default/production/main.o
+ .debug_aranges
+                  0x000120         0x18 build/default/production/timer.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -2492,110 +2539,114 @@ LOAD jump_table
 LOAD data_init
 
 .debug_pubtypes
-                  0x000108        0x7be
+                  0x000138        0x7e9
  .debug_pubtypes
-                  0x000108        0x267 build/default/production/mcc_generated_files/usb/usb_device.o
+                  0x000138         0x2b build/default/production/mcc_generated_files/memory/flash_demo.o
  .debug_pubtypes
-                  0x00036f         0x2d build/default/production/mcc_generated_files/usb/usb_device_events.o
+                  0x000163        0x267 build/default/production/mcc_generated_files/usb/usb_device.o
  .debug_pubtypes
-                  0x00039c         0x60 build/default/production/mcc_generated_files/usb/usb_descriptors.o
+                  0x0003ca         0x2d build/default/production/mcc_generated_files/usb/usb_device_events.o
  .debug_pubtypes
-                  0x0003fc        0x15f build/default/production/mcc_generated_files/usb/usb_device_cdc.o
+                  0x0003f7         0x60 build/default/production/mcc_generated_files/usb/usb_descriptors.o
  .debug_pubtypes
-                  0x00055b        0x172 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
+                  0x000457        0x15f build/default/production/mcc_generated_files/usb/usb_device_cdc.o
  .debug_pubtypes
-                  0x0006cd         0x3e build/default/production/mcc_generated_files/interrupt_manager.o
+                  0x0005b6        0x172 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
  .debug_pubtypes
-                  0x00070b         0x4c build/default/production/mcc_generated_files/clock.o
+                  0x000728         0x3e build/default/production/mcc_generated_files/interrupt_manager.o
  .debug_pubtypes
-                  0x000757         0x1f build/default/production/mcc_generated_files/pin_manager.o
+                  0x000766         0x4c build/default/production/mcc_generated_files/clock.o
  .debug_pubtypes
-                  0x000776         0x4e build/default/production/mcc_generated_files/traps.o
+                  0x0007b2         0x1f build/default/production/mcc_generated_files/pin_manager.o
  .debug_pubtypes
-                  0x0007c4         0x42 build/default/production/mcc_generated_files/system.o
+                  0x0007d1         0x4e build/default/production/mcc_generated_files/traps.o
  .debug_pubtypes
-                  0x000806         0xa1 build/default/production/main.o
+                  0x00081f         0x42 build/default/production/mcc_generated_files/system.o
  .debug_pubtypes
-                  0x0008a7         0x1f build/default/production/timer.o
+                  0x000861         0xa1 build/default/production/main.o
+ .debug_pubtypes
+                  0x000902         0x1f build/default/production/timer.o
 
 __c30_signature
-                  0x0008c6         0xe4
+                  0x000921         0xea
  __c30_signature
-                  0x0008c6          0x6 build/default/production/mcc_generated_files/usb/usb_device.o
+                  0x000921          0x6 build/default/production/mcc_generated_files/memory/flash_demo.o
  __c30_signature
-                  0x0008cc          0x6 build/default/production/mcc_generated_files/usb/usb_device_events.o
+                  0x000927          0x6 build/default/production/mcc_generated_files/usb/usb_device.o
  __c30_signature
-                  0x0008d2          0x6 build/default/production/mcc_generated_files/usb/usb_descriptors.o
+                  0x00092d          0x6 build/default/production/mcc_generated_files/usb/usb_device_events.o
  __c30_signature
-                  0x0008d8          0x6 build/default/production/mcc_generated_files/usb/usb_device_cdc.o
+                  0x000933          0x6 build/default/production/mcc_generated_files/usb/usb_descriptors.o
  __c30_signature
-                  0x0008de          0x6 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
+                  0x000939          0x6 build/default/production/mcc_generated_files/usb/usb_device_cdc.o
  __c30_signature
-                  0x0008e4          0x6 build/default/production/mcc_generated_files/interrupt_manager.o
+                  0x00093f          0x6 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
  __c30_signature
-                  0x0008ea          0x6 build/default/production/mcc_generated_files/clock.o
+                  0x000945          0x6 build/default/production/mcc_generated_files/interrupt_manager.o
  __c30_signature
-                  0x0008f0          0x6 build/default/production/mcc_generated_files/pin_manager.o
+                  0x00094b          0x6 build/default/production/mcc_generated_files/clock.o
  __c30_signature
-                  0x0008f6          0x6 build/default/production/mcc_generated_files/traps.o
+                  0x000951          0x6 build/default/production/mcc_generated_files/pin_manager.o
  __c30_signature
-                  0x0008fc          0x6 build/default/production/mcc_generated_files/system.o
+                  0x000957          0x6 build/default/production/mcc_generated_files/traps.o
  __c30_signature
-                  0x000902          0x6 build/default/production/mcc_generated_files/mcc.o
+                  0x00095d          0x6 build/default/production/mcc_generated_files/system.o
  __c30_signature
-                  0x000908          0x6 build/default/production/main.o
+                  0x000963          0x6 build/default/production/mcc_generated_files/mcc.o
  __c30_signature
-                  0x00090e          0x6 build/default/production/timer.o
+                  0x000969          0x6 build/default/production/main.o
  __c30_signature
-                  0x000914          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-pic30-elf.a(crt0_extended24.o)
+                  0x00096f          0x6 build/default/production/timer.o
  __c30_signature
-                  0x00091a          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-pic30-elf.a(data_init_24.o)
+                  0x000975          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-pic30-elf.a(crt0_extended24.o)
  __c30_signature
-                  0x000920          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(divsf3.daeo)
+                  0x00097b          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-pic30-elf.a(data_init_24.o)
  __c30_signature
-                  0x000926          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(feqltle.daeo)
+                  0x000981          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(divsf3.daeo)
  __c30_signature
-                  0x00092c          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(floatsisf.daeo)
+                  0x000987          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(feqltle.daeo)
  __c30_signature
-                  0x000932          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(floatunsisf.daeo)
+                  0x00098d          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(floatsisf.daeo)
  __c30_signature
-                  0x000938          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(fpack.daeo)
+                  0x000993          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(floatunsisf.daeo)
  __c30_signature
-                  0x00093e          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(funpack2.daeo)
+                  0x000999          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(fpack.daeo)
  __c30_signature
-                  0x000944          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(futil.daeo)
+                  0x00099f          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(funpack2.daeo)
  __c30_signature
-                  0x00094a          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(mulsf3.daeo)
+                  0x0009a5          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(futil.daeo)
  __c30_signature
-                  0x000950          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(fcompare.daeo)
+                  0x0009ab          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(mulsf3.daeo)
  __c30_signature
-                  0x000956          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(floatdisf.daeo)
+                  0x0009b1          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(fcompare.daeo)
  __c30_signature
-                  0x00095c          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(floatundisf.daeo)
+                  0x0009b7          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(floatdisf.daeo)
  __c30_signature
-                  0x000962          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(funpack.daeo)
+                  0x0009bd          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(floatundisf.daeo)
  __c30_signature
-                  0x000968          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(strcmp.DA_eo)
+                  0x0009c3          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/libm-elf.a(funpack.daeo)
  __c30_signature
-                  0x00096e          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(sscanf_s.DAeo)
+                  0x0009c9          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(strcmp.DA_eo)
  __c30_signature
-                  0x000974          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xscanf_s.DAeo)
+                  0x0009cf          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(sscanf_s.DAeo)
  __c30_signature
-                  0x00097a          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(isspace.DA_eso)
+                  0x0009d5          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xscanf_s.DAeo)
  __c30_signature
-                  0x000980          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(strchr.DA_eo)
+                  0x0009db          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(isspace.DA_eso)
  __c30_signature
-                  0x000986          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xvacopy.DA_eo)
+                  0x0009e1          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(strchr.DA_eo)
  __c30_signature
-                  0x00098c          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xgetfld_s.DAeo)
+                  0x0009e7          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xvacopy.DA_eo)
  __c30_signature
-                  0x000992          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(memset.DA_eo)
+                  0x0009ed          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xgetfld_s.DAeo)
  __c30_signature
-                  0x000998          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xgetstr.DA_eo)
+                  0x0009f3          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(memset.DA_eo)
  __c30_signature
-                  0x00099e          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(memchr.DA_eo)
+                  0x0009f9          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xgetstr.DA_eo)
  __c30_signature
-                  0x0009a4          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(strlen.DA_eo)
+                  0x0009ff          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(memchr.DA_eo)
+ __c30_signature
+                  0x000a05          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(strlen.DA_eo)
 
 .nbss               0x0800         0x38
  .nbss              0x0800         0x1c build/default/production/mcc_generated_files/usb/usb_device.o
@@ -2650,9 +2701,9 @@ __c30_signature
                     0x0958                  _cdc_data_rx
                     0x0998                  _dummy_encapsulated_cmd_response
 
-_0x7f4a0d28f96061bb6803
+_0x7fd34797d96061c0ab4d
                     0x0a00         0x30
- _0x7f4a0d28f96061bb6803
+ _0x7fd34797d96061c0ab4d
                     0x0a00         0x30 build/default/production/mcc_generated_files/usb/usb_device.o
                     0x0a00                  _BDT
 
@@ -2670,8 +2721,9 @@ _0x7f4a0d28f96061bb6803
  .bss               0x09d2         0x20 build/default/production/mcc_generated_files/traps.o
  .bss               0x09f2          0xe build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
 
-.data               0x0a30          0xc
+.data               0x0a30         0x10
  .data              0x0a30          0xc /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xscanf_s.DAeo)
+ .data              0x0a3c          0x4 build/default/production/mcc_generated_files/memory/flash.o
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
@@ -2688,7 +2740,7 @@ _0x7f4a0d28f96061bb6803
  .config_IOL1WAY
                   0x00abf8          0x2 build/default/production/mcc_generated_files/system.o
 
-.const              0x8ac4         0xce load address 0x000ac4  
+.const              0x8ac4         0xd0 load address 0x000ac4  
  .const             0x8ac4         0xb0 build/default/production/mcc_generated_files/usb/usb_descriptors.o
                     0x8ac4                  _device_dsc
                     0x8ad6                  _configDescriptor1
@@ -2697,59 +2749,89 @@ _0x7f4a0d28f96061bb6803
                     0x8b52                  _sd002
                     0x8b6c                  _USB_CD_Ptr
                     0x8b6e                  _USB_SD_Ptr
- .const             0x8b74         0x1e build/default/production/main.o
+ .const             0x8b74         0x20 build/default/production/main.o
 
-.text             0x000b92        0xe5c
- .text            0x000b92        0x9f0 build/default/production/mcc_generated_files/usb/usb_device.o
-                  0x000ff0                  _USBDeviceInit
-                  0x001096                  _USBEnableEndpoint
-                  0x0010c2                  _USBTransferOnePacket
-                  0x00110c                  _USBStallEndpoint
-                  0x00115a                  _USBCancelIO
-                  0x00118e                  _USBDeviceDetach
-                  0x001196                  _USBDeviceAttach
-                  0x0011be                  _USBCtrlEPAllowStatusStage
-                  0x001306                  _USBCtrlEPAllowDataStage
-                  0x00146c                  _USBIncrement1msInternalTimers
-                  0x001486                  _USBDeviceTasks
-                  0x001572                  _USBGet1msTickCount
- .text            0x001582        0x248 build/default/production/mcc_generated_files/usb/usb_device_cdc.o
-                  0x001582                  _USBCheckCDCRequest
-                  0x001640                  _CDCInitEP
-                  0x001678                  _USBCDCEventHandler
-                  0x0016a6                  _getsUSBUSART
-                  0x0016da                  _putUSBUSART
-                  0x0016f0                  _putsUSBUSART
-                  0x001714                  _putrsUSBUSART
-                  0x001738                  _CDCTxService
- .text            0x0017ca        0x142 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
-                  0x001842                  _USBMaskAllUSBInterrupts
-                  0x001852                  _USBRestoreUSBInterrupts
-                  0x00185a                  _USBVBUSSessionValidStateGet
-                  0x0018b2                  _USBSleepOnSuspend
-                  0x0018c8                  _USBRemoteWakeupAssertBlocking
- .text            0x00190c         0xe2 build/default/production/main.o
-                  0x00190c                  _erase
-                  0x00192a                  _disableInterrupts
-                  0x00193c                  _DoUSBComms
-                  0x0019c4                  _main
+.text             0x000b94        0x9f0
+ .text            0x000b94        0x9f0 build/default/production/mcc_generated_files/usb/usb_device.o
+                  0x000ff2                  _USBDeviceInit
+                  0x001098                  _USBEnableEndpoint
+                  0x0010c4                  _USBTransferOnePacket
+                  0x00110e                  _USBStallEndpoint
+                  0x00115c                  _USBCancelIO
+                  0x001190                  _USBDeviceDetach
+                  0x001198                  _USBDeviceAttach
+                  0x0011c0                  _USBCtrlEPAllowStatusStage
+                  0x001308                  _USBCtrlEPAllowDataStage
+                  0x00146e                  _USBIncrement1msInternalTimers
+                  0x001488                  _USBDeviceTasks
+                  0x001574                  _USBGet1msTickCount
 
-.dinit            0x0019ee         0x54
- .dinit           0x0019ee         0x54 data_init
+_35b9b8c061c0ab4d
+                  0x001800        0x400
+ _35b9b8c061c0ab4d
+                  0x001800        0x400 build/default/production/mcc_generated_files/memory/flash_demo.o
 
-.text             0x001a42         0xc6
- .text            0x001a42         0x3e build/default/production/mcc_generated_files/clock.o
-                  0x001a42                  _CLOCK_Initialize
- .text            0x001a80         0x32 build/default/production/timer.o
-                  0x001a80                  _TMR1_Init
-                  0x001a8a                  _delay_ms
- .text            0x001ab2         0x26 build/default/production/mcc_generated_files/pin_manager.o
-                  0x001ab2                  _PIN_MANAGER_Initialize
- .text            0x001ad8         0x12 build/default/production/mcc_generated_files/usb/usb_device_events.o
-                  0x001ad8                  _USER_USB_CALLBACK_EVENT_HANDLER
- .text            0x001aea          0xe build/default/production/mcc_generated_files/traps.o
-                  0x001af4                  _TRAPS_halt_on_error
- .text            0x001af8          0xa build/default/production/mcc_generated_files/interrupt_manager.o
-                  0x001af8                  _INTERRUPT_Initialize
- .text            0x001b02          0x6 build/default/production/mcc_generated_files/system.o
-                  0x001b02                  _SYSTEM_Initialize
+.text             0x001584        0x248
+ .text            0x001584        0x248 build/default/production/mcc_generated_files/usb/usb_device_cdc.o
+                  0x001584                  _USBCheckCDCRequest
+                  0x001642                  _CDCInitEP
+                  0x00167a                  _USBCDCEventHandler
+                  0x0016a8                  _getsUSBUSART
+                  0x0016dc                  _putUSBUSART
+                  0x0016f2                  _putsUSBUSART
+                  0x001716                  _putrsUSBUSART
+                  0x00173a                  _CDCTxService
+
+.text             0x001c00        0x142
+ .text            0x001c00        0x142 build/default/production/mcc_generated_files/usb/usb_hal_16bit.o
+                  0x001c78                  _USBMaskAllUSBInterrupts
+                  0x001c88                  _USBRestoreUSBInterrupts
+                  0x001c90                  _USBVBUSSessionValidStateGet
+                  0x001ce8                  _USBSleepOnSuspend
+                  0x001cfe                  _USBRemoteWakeupAssertBlocking
+
+.NVM_flash        0x001d42        0x12e
+ .NVM_flash       0x001d42        0x12e build/default/production/mcc_generated_files/memory/flash.o
+                  0x001d44                  _FLASH_Unlock
+                  0x001d4e                  _FLASH_Lock
+                  0x001d76                  _FLASH_ReadWord24
+                  0x001d82                  _FLASH_ReadWord16
+                  0x001d8e                  _FLASH_ErasePage
+                  0x001db4                  _FLASH_WriteWord24
+                  0x001dda                  _FLASH_WriteWord16
+                  0x001e02                  _FLASH_WriteRow24
+                  0x001e30                  _FLASH_WriteRow16
+                  0x001e60                  _FLASH_GetErasePageOffset
+                  0x001e66                  _FLASH_GetErasePageAddress
+
+.text             0x001e70        0x1aa
+ .text            0x001e70         0xde build/default/production/main.o
+                  0x001e70                  _disableInterrupts
+                  0x001e82                  _DoUSBComms
+                  0x001f24                  _main
+ .text            0x001f4e         0xcc build/default/production/mcc_generated_files/memory/flash_demo.o
+                  0x002016                  _FlashDemo
+
+.dinit            0x00201a         0x5e
+ .dinit           0x00201a         0x5e data_init
+
+.text             0x002078         0x3e
+ .text            0x002078         0x3e build/default/production/mcc_generated_files/clock.o
+                  0x002078                  _CLOCK_Initialize
+
+.text             0x0017cc         0x32
+ .text            0x0017cc         0x32 build/default/production/timer.o
+                  0x0017cc                  _TMR1_Init
+                  0x0017d6                  _delay_ms
+
+.text             0x0020b6         0x56
+ .text            0x0020b6         0x26 build/default/production/mcc_generated_files/pin_manager.o
+                  0x0020b6                  _PIN_MANAGER_Initialize
+ .text            0x0020dc         0x12 build/default/production/mcc_generated_files/usb/usb_device_events.o
+                  0x0020dc                  _USER_USB_CALLBACK_EVENT_HANDLER
+ .text            0x0020ee          0xe build/default/production/mcc_generated_files/traps.o
+                  0x0020f8                  _TRAPS_halt_on_error
+ .text            0x0020fc          0xa build/default/production/mcc_generated_files/interrupt_manager.o
+                  0x0020fc                  _INTERRUPT_Initialize
+ .text            0x002106          0x6 build/default/production/mcc_generated_files/system.o
+                  0x002106                  _SYSTEM_Initialize

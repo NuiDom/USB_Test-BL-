@@ -19,36 +19,11 @@
         Compiler          :  XC16 v1.61
         MPLAB 	          :  MPLAB X v5.45
 */
-
-/*
-    (c) 2020 Microchip Technology Inc. and its subsidiaries. You may use this
-    software and any derivatives exclusively with Microchip products.
-
-    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
-    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
-    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
-    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
-    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
-
-    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
-    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
-    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
-    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
-    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
-    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
-    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
-
-    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
-    TERMS.
-*/
-
-/**
-  Section: Included Files
-*/
 //BOOTLOADER
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/usb/usb.h"
 #include "timer.h"
+#include "mcc_generated_files/memory/flash.h"
 #include <stdlib.h>
 
 void DoUSBComms(void);
@@ -102,6 +77,15 @@ int main(void)
 //        SRbits.IPL0 = 1;
 //        SRbits.IPL1 = 1;
 //        SRbits.IPL2 = 1;
+//        FLASH_Unlock(FLASH_UNLOCK_KEY);
+//        FLASH_ErasePage(0x002400);
+//        FLASH_Lock();
+//        FLASH_ErasePage(0x2800);
+//        FLASH_ErasePage(0x3200);
+//        FLASH_ErasePage(0x3600);
+//        FLASH_ErasePage(0x4000);
+//        FLASH_ErasePage(0x4400);
+//        FLASH_ErasePage(0x4800);
         }
     }
     else if(RCONbits.POR == 1){
@@ -146,6 +130,11 @@ void DoUSBComms(void)
                 delay_ms(600);
                 asm("GOTO 0x2400");
             }
+            else if(strcmp(usbCmd,"1")==0){
+                FLASH_Unlock(FLASH_UNLOCK_KEY);
+                FLASH_ErasePage(0x002400);
+                FLASH_Lock();              
+            }
             
             switch(readBuffer[i])
             {
@@ -171,22 +160,24 @@ void DoUSBComms(void)
     CDCTxService();
 }
 
-void erase(void)
-{
-    // C example using MPLAB C30
-    unsigned long progAddr = 0x002400;      // Address of row to write
-    unsigned int offset;
-    //Set up pointer to the first memory location to be written
-    TBLPAG = progAddr>>16;                  // Initialize PM Page Boundary SFR
-    offset = progAddr & 0xFFFF;             // Initialize lower word of address
-    __builtin_tblwtl(offset, 0x0000);       // Set base address of erase block
-                                            // with dummy latch write
-    NVMCON = 0x4042;                        // Initialize NVMCON
-    asm("DISI #5");                         // Block all interrupts with priority <7
-                                            // for next 5 instructions
-    __builtin_write_NVM();                  // check function to perform unlock
-                                            // sequence and set WR
-}
+//void erase(void)
+//{
+//    // C example using MPLAB C30
+//    unsigned long progAddr = 0x002400;      // Address of row to write
+//    unsigned int offset;
+//    //Set up pointer to the first memory location to be written
+//    TBLPAG = progAddr>>16;                  // Initialize PM Page Boundary SFR
+//    offset = progAddr & 0xFFFF;             // Initialize lower word of address
+//    __builtin_tblwtl(offset, 0x0000);       // Set base address of erase block
+//                                            // with dummy latch write
+//    NVMCON = 0x4042;                        // Initialize NVMCON
+//    asm("DISI #5");                         // Block all interrupts with priority <7
+//                                            // for next 5 instructions
+//    NVMCONbits.WR = 1;                      // check function to perform unlock
+//    asm ("NOP");                            // sequence and set WR
+//    asm ("NOP");
+//    NVMCONbits.WREN = 0;
+//}
 void disableInterrupts(void)
 {
     IEC0 = 0x0000;

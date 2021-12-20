@@ -7,6 +7,10 @@
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
+        <logicalFolder name="memory" displayName="memory" projectFiles="true">
+          <itemPath>mcc_generated_files/memory/flash.h</itemPath>
+          <itemPath>mcc_generated_files/memory/flash_demo.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="usb" displayName="usb" projectFiles="true">
           <itemPath>mcc_generated_files/usb/usb_device_cdc.h</itemPath>
           <itemPath>mcc_generated_files/usb/usb.h</itemPath>
@@ -38,6 +42,10 @@
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
+        <logicalFolder name="memory" displayName="memory" projectFiles="true">
+          <itemPath>mcc_generated_files/memory/flash.s</itemPath>
+          <itemPath>mcc_generated_files/memory/flash_demo.c</itemPath>
+        </logicalFolder>
         <logicalFolder name="usb" displayName="usb" projectFiles="true">
           <itemPath>mcc_generated_files/usb/usb_device.c</itemPath>
           <itemPath>mcc_generated_files/usb/usb_device_events.c</itemPath>
@@ -283,6 +291,7 @@
         <property key="UART 4" value="true"/>
         <property key="USB" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>

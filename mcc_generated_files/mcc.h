@@ -53,6 +53,7 @@
 
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "memory/flash.h"
 #include "usb/usb.h"
 
 #warning "This file will be removed in future MCC releases. Use system.h instead."

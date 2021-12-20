@@ -91,6 +91,7 @@
 #include "system.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "memory/flash.h"
 #include "usb/usb.h"
 
 void SYSTEM_Initialize(void)

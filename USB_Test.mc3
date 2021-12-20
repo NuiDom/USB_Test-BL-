@@ -6,6 +6,10 @@
          <string>class com.microchip.mcc.modules.mcu16.deviceclass.CDCDevice.CDCDevice</string>
       </entry>
       <entry>
+         <string>FLASH</string>
+         <string>class com.microchip.mcc.mcu16.modules.flash.FLASH</string>
+      </entry>
+      <entry>
          <string>ICD</string>
          <string>class com.microchip.mcc.mcu16.systemManager.icd.Icd</string>
       </entry>
@@ -66,6 +70,90 @@
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="CDCDevice" name="GenerateExampleCode"/>
          <value>disabled</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="FLASH" name="DemoCodeGeneration"/>
+         <value>enabled</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="ERASE" alias="Perform erase operation specified by NVMOP on next WR command"/>
+         <value>1</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="ERASE" alias="Perform program operation specified by NVMOP on next WR command"/>
+         <value>0</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP" alias="Memory bulk erase operation"/>
+         <value>15</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP" alias="Memory page erase operation"/>
+         <value>2</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP" alias="Memory row program operation"/>
+         <value>1</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP" alias="Memory word program operation"/>
+         <value>3</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WR" alias="Initiates a Flash memory program or erase operation"/>
+         <value>1</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WR" alias="Program or erase operation is complete and inactive"/>
+         <value>0</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WREN" alias="Enable Flash program/erase operations"/>
+         <value>1</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WREN" alias="Inhibit Flash program/erase operations"/>
+         <value>0</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WRERR" alias="An improper program or erase sequence attempt, or termination occurred"/>
+         <value>1</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WRERR" alias="The program or erase operation completed normally"/>
+         <value>0</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="FLASH" registerAlias="NVMCON"/>
+         <value>66</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="FLASH" registerAlias="NVMKEY"/>
+         <value>0</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="ERASE"/>
+         <value>Perform erase operation specified by NVMOP on next WR command</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP"/>
+         <value>Memory page erase operation</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WR"/>
+         <value>Program or erase operation is complete and inactive</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WREN"/>
+         <value>Inhibit Flash program/erase operations</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WRERR"/>
+         <value>The program or erase operation completed normally</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMKEY" settingAlias="NVMKEY"/>
+         <value>0</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="ICD" name="customICS"/>
@@ -7883,7 +7971,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files/system.c</file>
-         <hash>ff28b2c8176261c204c05d79951c742957883d8fb364bd9eab7ca4df9f4aadc1</hash>
+         <hash>934aebdcb5047a3003a0509d5f0f1845c844b871aef44c97536ec25d64944587</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/clock.h</file>
@@ -7894,12 +7982,20 @@
          <hash>c28ac725be48e18477dc8b9ba251b88e5bcc812410db0de92eab8ea7d24ac92f</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files/clock.c</file>
-         <hash>e9c7fc48cfb791c9991656aeba078e7320aca4b79c3b5aa725db9938e3258925</hash>
+         <file>mcc_generated_files/memory/flash_demo.h</file>
+         <hash>f5718b465041eebf1610e57e54055d9c177becb419c8f9190482ee7ef7e949e5</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/usb/usb_device.h</file>
          <hash>3f4a0c34b7049915e61e846a71067acde7949a923779a14aeb0f1314d2db1bc0</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files/clock.c</file>
+         <hash>e9c7fc48cfb791c9991656aeba078e7320aca4b79c3b5aa725db9938e3258925</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files/memory/flash.h</file>
+         <hash>efcd3cd1886a71bb45e297db76c38f82c2c15de8d7d0d9fa3f5ac8d30daf7bce</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/usb/usb_device.c</file>
@@ -7907,7 +8003,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files/mcc.h</file>
-         <hash>9e38ea5d3ecae669b014b5b434e83cd69468cce916bd57cd0eca77acb2315a13</hash>
+         <hash>050f6d091d5771b73f873285f1064ebb187ca2383a328196cca89e78bf85bf70</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/interrupt_manager.c</file>
@@ -7934,6 +8030,10 @@
          <hash>b999aed9f2a650573cb4d3c9c37322ca362a57aa6f1508e3da4720a8b9b412a3</hash>
       </entry>
       <entry>
+         <file>mcc_generated_files/memory/flash.s</file>
+         <hash>cea210b6cccd71e172c1cdb89b1412fd5c6f7e4944d85ab66767eea629d9792e</hash>
+      </entry>
+      <entry>
          <file>mcc_generated_files/traps.h</file>
          <hash>0264d93d2158b627e21a8dd0bbf7368454234e22cc07af5d1b7b5271c37af96c</hash>
       </entry>
@@ -7956,6 +8056,10 @@
       <entry>
          <file>mcc_generated_files/usb/usb.h</file>
          <hash>9de38e5cda15c760bb9b8ec78702566b8a326306626cfd8e6c9ee35bcab030f0</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files/memory/flash_demo.c</file>
+         <hash>4bf50d8a79c1e1179525d94909b5f5d6281461f80f3ed43b977c6182ef4e23a3</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/usb/usb_device_cdc.h</file>
