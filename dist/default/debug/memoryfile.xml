@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/USB_Bootloader.X.production.elf">
+  <executable name="dist/default/debug/USB_Bootloader.X.debug.elf">
     <memory name="data">
       <units>bytes</units>
       <length>8192</length>
-      <used>1154</used>
-      <free>7038</free>
+      <used>1232</used>
+      <free>6960</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>12288</length>
-      <used>12036</used>
-      <free>252</free>
+      <used>12048</used>
+      <free>240</free>
     </memory>
   </executable>
 </project>

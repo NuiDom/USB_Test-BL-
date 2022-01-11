@@ -26,16 +26,24 @@
 #include "mcc_generated_files/memory/flash.h"
 #include <stdlib.h>
 
+#define PROGRAM_START_ADDRESS   0x002400
+#define FLASH_PAGE_SIZE         0x000400
+#define FLASH_ROW_SIZE          0x000080
+
 void DoUSBComms(void);
 void disableInterrupts(void);
 void erase(void);
+void clearUsbBuffers(void);
 
+bool upgrade_mode = false;
+static uint32_t *upgradeBuffer[192];
 //Used for USB
-char message_buffer[64];
+char message_buffer[192];
 bool message_received = false;
-static uint8_t readBuffer[64];
+static uint8_t readBuffer[192];
 static uint8_t writeBuffer[64];
 char usbCmd[10] = "";
+static int upgradeRow = 0;
 /*
                          Main application
  */
@@ -52,31 +60,14 @@ int main(void)
         delay_ms(1000);
         USBDeviceTasks();
         delay_ms(1000);
+        int y=0;
+        for(y=0; y<192; y++)
+            readBuffer[y]='\0';
+        
         while (1)
         {
         // Add your application code
         DoUSBComms();
-//        if(USBUSARTIsTxTrfReady())
-//        {
-//            char bl[] = "UPGRADE";
-//            putUSBUSART(bl,8);
-//        }
-//        int t=0;
-//        for(t=0; t<10; t++){
-//        int x=0;
-//        int y=0;
-//        PORTBbits.RB6 = 1;
-//        for(x=0; x<1000; x++){
-//            for(y=0; y<1000; y++){;}
-//        }
-//        PORTBbits.RB6 = 0;
-//        for(x=0; x<1000; x++){
-//            for(y=0; y<1000; y++){;}
-//        }
-//        }
-//        SRbits.IPL0 = 1;
-//        SRbits.IPL1 = 1;
-//        SRbits.IPL2 = 1;
 //        FLASH_Unlock(FLASH_UNLOCK_KEY);
 //        FLASH_ErasePage(0x002400);
 //        FLASH_Lock();
@@ -94,6 +85,15 @@ int main(void)
     return 1;
 }
 
+void clearUsbBuffers(void){
+    int x=0;
+    
+    for(x=0; x<10; x++)
+        usbCmd[x]='\0';
+    
+    for(x=0; x<192; x++)
+        readBuffer[x]='\0';
+}
 void DoUSBComms(void)
 {
     if( USBGetDeviceState() < DEFAULT_STATE )
@@ -105,56 +105,140 @@ void DoUSBComms(void)
     {
         return;
     }
+    uint8_t i;
+    uint8_t numBytesRead;
 
+    numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
+    sscanf(readBuffer, "%s", usbCmd);
+    
+    for(i=0; i<numBytesRead; i++){
+        upgradeBuffer[i] = readBuffer[i];
+        if(upgradeBuffer[i] != '\0')
+        {
+            message_received = true;
+        }
+    }
+    if(message_received == false)
+        return;
+    
+    else{
+    
+    if(upgrade_mode == false)
+    {     
+        if(strcmp(usbCmd,"JUMP")==0){
+            disableInterrupts();
+            delay_ms(50);
+            USBDeviceDetach();
+            delay_ms(700);
+            asm("GOTO 0x2400");
+        }
+            
+        else if(strcmp(usbCmd,"UPGRADE")==0){
+            upgrade_mode = true;
+            message_received = false;
+            clearUsbBuffers();
+//            putUSBUSART((uint8_t *)"OK",2);
+        }
+        
+    }
+    
+    if(upgrade_mode == true)
+    {
+        if(strcmp(usbCmd,"1")==0){
+            FLASH_Unlock(FLASH_UNLOCK_KEY);
+            FLASH_ErasePage(0x002400);
+            FLASH_Lock();
+            message_received = false;
+            clearUsbBuffers();
+            putUSBUSART((uint8_t *)"OK",2);
+        }
+        
+        if(numBytesRead == 192){
+            FLASH_Unlock(FLASH_UNLOCK_KEY);
+            FLASH_WriteRow24(PROGRAM_START_ADDRESS+(0x80*upgradeRow), upgradeBuffer);
+            FLASH_Lock();
+            putUSBUSART((uint8_t *)"OK",2);
+            message_received = false;
+            upgradeRow++;
+            numBytesRead = 0;
+        }
+        
+        if(strcmp(usbCmd,"JUMP")==0){
+            disableInterrupts();
+            delay_ms(50);
+            USBDeviceDetach();
+            delay_ms(700);
+            asm("GOTO 0x2400");
+        }
+    }
     if( USBUSARTIsTxTrfReady() == true)
     {
-        uint8_t i;
-        uint8_t numBytesRead;
-
-        numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
-
-        for(i=0; i<numBytesRead; i++)
-        {
-            message_buffer[i] = readBuffer[i];
-                if(message_buffer[i] == '.')
-                {
-                    message_received = true;
-                    putUSBUSART((uint8_t *)"Received full stop.\r\n",19);
-                    return;
-                }
-            
-            sscanf(message_buffer, "%s", usbCmd);
-            if(strcmp(usbCmd,"JUMP")==0){    
-                disableInterrupts();
-                USBDeviceDetach();
-                delay_ms(600);
-                asm("GOTO 0x2400");
-            }
-            else if(strcmp(usbCmd,"1")==0){
-                FLASH_Unlock(FLASH_UNLOCK_KEY);
-                FLASH_ErasePage(0x002400);
-                FLASH_Lock();              
-            }
-            
-            switch(readBuffer[i])
-            {
-                /* echo line feeds and returns without modification. */
-                case 0x0A:
-                case 0x0D:
-                    writeBuffer[i] = readBuffer[i];
-                    break;
-
-                /* all other characters get +1 (e.g. 'a' -> 'b') */
-                default:
-                    writeBuffer[i] = readBuffer[i] + 1;
-                    break;
-            }
-        }
-
-        if(numBytesRead > 0)
-        {
-            putUSBUSART(writeBuffer,numBytesRead);
-        }
+//        uint8_t i;
+//        uint8_t numBytesRead;
+//
+//        numBytesRead = getsUSBUSART(readBuffer, sizeof(readBuffer));
+//        
+//        sscanf(readBuffer, "%s", usbCmd);
+//         
+//        if(strcmp(usbCmd,"JUMP")==0){
+//            disableInterrupts();
+//            delay_ms(50);
+//            USBDeviceDetach();
+//            delay_ms(700);
+//            asm("GOTO 0x2400");
+//        }
+//            
+//        else if(strcmp(usbCmd,"1")==0){
+//            FLASH_Unlock(FLASH_UNLOCK_KEY);
+//            FLASH_ErasePage(0x002400);
+//            FLASH_Lock();              
+//        }
+//        
+//        else if(strcmp(usbCmd,"UPGRADE")==0){
+//            delay_ms(50);
+//            putUSBUSART((uint8_t *)"OK",2);
+////            usbCmd = 0x00;
+////            upgrade_mode = true;
+//        }
+//        
+//        if(numBytesRead == 192){
+//            for(i=0; i<numBytesRead; i++){
+//            upgradeBuffer[i] = readBuffer[i];
+//            }
+//            FLASH_Unlock(FLASH_UNLOCK_KEY);
+//            FLASH_WriteRow24(PROGRAM_START_ADDRESS, upgradeBuffer);
+//            FLASH_Lock();
+//        }
+//        for(i=0; i<numBytesRead; i++)
+//        {
+//            message_buffer[i] = readBuffer[i];
+//                if(message_buffer[i] == '.')
+//                {
+//                    message_received = true;
+//                    putUSBUSART((uint8_t *)"Received full stop.\r\n",19);
+//                    return;
+//                }
+//            
+//            switch(readBuffer[i])
+//            {
+//                /* echo line feeds and returns without modification. */
+//                case 0x0A:
+//                case 0x0D:
+//                    writeBuffer[i] = readBuffer[i];
+//                    break;
+//
+//                /* all other characters get +1 (e.g. 'a' -> 'b') */
+//                default:
+//                    writeBuffer[i] = readBuffer[i] + 1;
+//                    break;
+//            }
+//        }
+//
+//        if(numBytesRead > 0)
+//        {
+//            putUSBUSART(writeBuffer,numBytesRead);
+//        }
+    }
     }
 
     CDCTxService();
