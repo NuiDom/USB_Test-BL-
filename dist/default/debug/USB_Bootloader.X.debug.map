@@ -4,13 +4,13 @@ Tool Name:
   /opt/microchip/xc16/v1.70/bin/bin/../bin/elf-ld
 
 Command:
-  -T/tmp/tmp0001914b.00 \
-  -T/tmp/tmp0001914b.01 \
-  -T/tmp/tmp0001914b.02 \
-  -T/tmp/tmp0001914b.03 \
-  -T/tmp/tmp0001914b.04 \
-  -T/tmp/tmp0001914b.05 \
-  -T/tmp/tmp0001914b.06 \
+  -T/tmp/tmp000025c4.00 \
+  -T/tmp/tmp000025c4.01 \
+  -T/tmp/tmp000025c4.02 \
+  -T/tmp/tmp000025c4.03 \
+  -T/tmp/tmp000025c4.04 \
+  -T/tmp/tmp000025c4.05 \
+  -T/tmp/tmp000025c4.06 \
   -p24FJ64GB202 \
   --mdfp=/opt/microchip/mplabx/v5.50/packs/Microchip/PIC24F-GA-GB_DFP/1.4.141/xc16 \
   -o \
@@ -132,7 +132,7 @@ Default Code Model: Small
 Default Data Model: Large
 Default Scalar Model: Small
 
-"program" Memory  [Origin = 0x200, Length = 0x2000]
+"program" Memory  [Origin = 0x200, Length = 0x2200]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
@@ -141,14 +141,14 @@ section                    address   length (PC units)   length (bytes) (dec)
 .text                        0xb8a               0x9f0           0xee8  (3816)
 .text                       0x157a               0x248           0x36c  (876)
 .text                       0x17c2                0x3e            0x5d  (93)
-_a58108c061dc478f           0x1800               0x400           0x600  (1536)
-.text                       0x1c00               0x27e           0x3bd  (957)
-.NVM_flash                  0x1e7e               0x12e           0x1c5  (453)
-.text                       0x1fac                0xcc           0x132  (306)
-.dinit                      0x2078                0x5e            0x8d  (141)
-.text                       0x20d6                0x8a            0xcf  (207)
+_5f3948c061e04e57           0x1800               0x400           0x600  (1536)
+.text                       0x1c00               0x2c6           0x429  (1065)
+.NVM_flash                  0x1ec6               0x12e           0x1c5  (453)
+.text                       0x1ff4                0xcc           0x132  (306)
+.dinit                      0x20c0                0x5e            0x8d  (141)
+.text                       0x211e                0x8a            0xcf  (207)
 
-                 Total "program" memory used (bytes):         0x2f10  (12048) 98%
+                 Total "program" memory used (bytes):         0x2f7c  (12156) 93%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -163,13 +163,16 @@ reserve_data_0x822           0x822                 0x2             0x2  (2)
 reserve_data_0x824           0x824                 0x4             0x4  (4)
 .ndata                       0x828                   0             0x2  (2)
 reserve_data_0x82a           0x82a                0x26            0x26  (38)
-.nbss                        0x850                   0            0x3c  (60)
-.bss                         0x88c                   0           0x3a4  (932)
-.bss                         0xc30                   0            0x60  (96)
-.data                        0xc90                   0            0x10  (16)
-_0x7f847a1e196061dc478f      0xe00                   0            0x30  (48)
+.nbss                        0x850                   0            0x3e  (62)
+.bss                         0x88e                   0           0x324  (804)
+.bss                         0xbb2                   0            0x32  (50)
+.bss                         0xbe4                   0             0xe  (14)
+.data                        0xbf2                   0             0xc  (12)
+_0x7faee8e0496061e04e57      0xc00                   0            0x30  (48)
+.bss                         0xc30                   0            0x20  (32)
+.data                        0xc50                   0             0x4  (4)
 
-                 Total "data" memory used (bytes):          0x4d0  (1232) 15%
+                 Total "data" memory used (bytes):          0x452  (1106) 13%
 
 
 Dynamic Memory Usage
@@ -177,9 +180,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0xe30                              0x19d0  (6608)
+stack                        0xc54                              0x1bac  (7084)
 
-                 Maximum dynamic memory (bytes):         0x19d0  (6608)
+                 Maximum dynamic memory (bytes):         0x1bac  (7084)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
@@ -218,37 +221,37 @@ External Symbols in Data Memory (by address):
                     0x087a                  _BaudRateGen
                     0x0888                  _upgrade_mode
                     0x0889                  _message_received
-                    0x088c                  _usbCmd
-                    0x0896                  _message_buffer
-                    0x0b96                  _cdc_notice
-                    0x0ba0                  _line_coding
-                    0x0ba8                  _cdc_data_tx
-                    0x0be8                  _cdc_data_rx
-                    0x0c28                  _dummy_encapsulated_cmd_response
-                    0x0c30                  _inPipes
-                    0x0c36                  _outPipes
-                    0x0c3e                  _pBDTEntryOut
-                    0x0c44                  _pBDTEntryIn
-                    0x0c4a                  _SetupPkt
-                    0x0c52                  _USBAlternateInterface
-                    0x0c54                  _ep_data_in
-                    0x0c57                  _ep_data_out
-                    0x0c5a                  _CtrlTrfData
-                    0x0e00                  _BDT
+                    0x088e                  _usbCmd
+                    0x0898                  _message_buffer
+                    0x0b18                  _cdc_notice
+                    0x0b22                  _line_coding
+                    0x0b2a                  _cdc_data_tx
+                    0x0b6a                  _cdc_data_rx
+                    0x0baa                  _dummy_encapsulated_cmd_response
+                    0x0bb2                  _inPipes
+                    0x0bb8                  _outPipes
+                    0x0bc0                  _pBDTEntryOut
+                    0x0bc6                  _pBDTEntryIn
+                    0x0bcc                  _SetupPkt
+                    0x0bd4                  _USBAlternateInterface
+                    0x0bd6                  _ep_data_in
+                    0x0bd9                  _ep_data_out
+                    0x0bdc                  _CtrlTrfData
+                    0x0c00                  _BDT
 
 External Symbols in Data Memory (by name):
 
-                    0x0e00                  _BDT
+                    0x0c00                  _BDT
                     0x087a                  _BaudRateGen
                     0x0864                  _BothEP0OutUOWNsSet
                     0x0876                  _CDCDataInHandle
                     0x0874                  _CDCDataOutHandle
-                    0x0c5a                  _CtrlTrfData
+                    0x0bdc                  _CtrlTrfData
                     0x0853                  _RemoteWakeup
-                    0x0c4a                  _SetupPkt
+                    0x0bcc                  _SetupPkt
                     0x0868                  _USB1msTickCount
                     0x0858                  _USBActiveConfiguration
-                    0x0c52                  _USBAlternateInterface
+                    0x0bd4                  _USBAlternateInterface
                     0x0854                  _USBBusIsSuspended
                     0x0852                  _USBDeferINDataStagePackets
                     0x0850                  _USBDeferOUTDataStagePackets
@@ -259,34 +262,34 @@ External Symbols in Data Memory (by name):
                     0x0865                  _USBStatusStageTimeoutCounter
                     0x0859                  _USBTicksSinceSuspendEnd
                     0x0862                  _USTATcopy
-                    0x0be8                  _cdc_data_rx
-                    0x0ba8                  _cdc_data_tx
+                    0x0b6a                  _cdc_data_rx
+                    0x0b2a                  _cdc_data_tx
                     0x0871                  _cdc_mem_type
-                    0x0b96                  _cdc_notice
+                    0x0b18                  _cdc_notice
                     0x086c                  _cdc_rx_len
                     0x086d                  _cdc_trf_state
                     0x0870                  _cdc_tx_len
                     0x085f                  _controlTransferState
                     0x0878                  _control_signal_bitmap
-                    0x0c28                  _dummy_encapsulated_cmd_response
+                    0x0baa                  _dummy_encapsulated_cmd_response
                     0x0863                  _endpoint_number
-                    0x0c54                  _ep_data_in
-                    0x0c57                  _ep_data_out
-                    0x0c30                  _inPipes
-                    0x0ba0                  _line_coding
-                    0x0896                  _message_buffer
+                    0x0bd6                  _ep_data_in
+                    0x0bd9                  _ep_data_out
+                    0x0bb2                  _inPipes
+                    0x0b22                  _line_coding
+                    0x0898                  _message_buffer
                     0x0889                  _message_received
-                    0x0c36                  _outPipes
+                    0x0bb8                  _outPipes
                     0x085a                  _pBDTEntryEP0OutCurrent
                     0x085c                  _pBDTEntryEP0OutNext
-                    0x0c44                  _pBDTEntryIn
-                    0x0c3e                  _pBDTEntryOut
+                    0x0bc6                  _pBDTEntryIn
+                    0x0bc0                  _pBDTEntryOut
                     0x0872                  _pCDCDst
                     0x086e                  _pCDCSrc
                     0x0860                  _pDst
                     0x085e                  _shortPacketStatus
                     0x0888                  _upgrade_mode
-                    0x088c                  _usbCmd
+                    0x088e                  _usbCmd
 
 External Symbols in Program Memory (by address):
 
@@ -356,56 +359,56 @@ External Symbols in Program Memory (by address):
                   0x00170c                  _putrsUSBUSART
                   0x001730                  _CDCTxService
                   0x0017c2                  _CLOCK_Initialize
-                  0x001c78                  _USBMaskAllUSBInterrupts
-                  0x001c88                  _USBRestoreUSBInterrupts
-                  0x001c90                  _USBVBUSSessionValidStateGet
-                  0x001ce8                  _USBSleepOnSuspend
-                  0x001cfe                  _USBRemoteWakeupAssertBlocking
-                  0x001d42                  _clearUsbBuffers
-                  0x001d5a                  _disableInterrupts
-                  0x001d6c                  _DoUSBComms
-                  0x001e48                  _main
-                  0x001e80                  _FLASH_Unlock
-                  0x001e8a                  _FLASH_Lock
-                  0x001eb2                  _FLASH_ReadWord24
-                  0x001ebe                  _FLASH_ReadWord16
-                  0x001eca                  _FLASH_ErasePage
-                  0x001ef0                  _FLASH_WriteWord24
-                  0x001f16                  _FLASH_WriteWord16
-                  0x001f3e                  _FLASH_WriteRow24
-                  0x001f6c                  _FLASH_WriteRow16
-                  0x001f9c                  _FLASH_GetErasePageOffset
-                  0x001fa2                  _FLASH_GetErasePageAddress
-                  0x002074                  _FlashDemo
-                  0x0020d6                  _TMR1_Init
-                  0x0020e0                  _delay_ms
-                  0x002108                  _PIN_MANAGER_Initialize
-                  0x00212e                  _USER_USB_CALLBACK_EVENT_HANDLER
-                  0x002150                  _INTERRUPT_Initialize
-                  0x00215a                  _SYSTEM_Initialize
+                  0x001c00                  _clearUsbBuffers
+                  0x001c18                  _disableInterrupts
+                  0x001c2a                  _DoUSBComms
+                  0x001d4e                  _main
+                  0x001dfc                  _USBMaskAllUSBInterrupts
+                  0x001e0c                  _USBRestoreUSBInterrupts
+                  0x001e14                  _USBVBUSSessionValidStateGet
+                  0x001e6c                  _USBSleepOnSuspend
+                  0x001e82                  _USBRemoteWakeupAssertBlocking
+                  0x001ec8                  _FLASH_Unlock
+                  0x001ed2                  _FLASH_Lock
+                  0x001efa                  _FLASH_ReadWord24
+                  0x001f06                  _FLASH_ReadWord16
+                  0x001f12                  _FLASH_ErasePage
+                  0x001f38                  _FLASH_WriteWord24
+                  0x001f5e                  _FLASH_WriteWord16
+                  0x001f86                  _FLASH_WriteRow24
+                  0x001fb4                  _FLASH_WriteRow16
+                  0x001fe4                  _FLASH_GetErasePageOffset
+                  0x001fea                  _FLASH_GetErasePageAddress
+                  0x0020bc                  _FlashDemo
+                  0x00211e                  _TMR1_Init
+                  0x002128                  _delay_ms
+                  0x002150                  _PIN_MANAGER_Initialize
+                  0x002176                  _USER_USB_CALLBACK_EVENT_HANDLER
+                  0x002198                  _INTERRUPT_Initialize
+                  0x0021a2                  _SYSTEM_Initialize
 
 External Symbols in Program Memory (by name):
 
                   0x001638                  _CDCInitEP
                   0x001730                  _CDCTxService
                   0x0017c2                  _CLOCK_Initialize
-                  0x001d6c                  _DoUSBComms
-                  0x001eca                  _FLASH_ErasePage
-                  0x001fa2                  _FLASH_GetErasePageAddress
-                  0x001f9c                  _FLASH_GetErasePageOffset
-                  0x001e8a                  _FLASH_Lock
-                  0x001ebe                  _FLASH_ReadWord16
-                  0x001eb2                  _FLASH_ReadWord24
-                  0x001e80                  _FLASH_Unlock
-                  0x001f6c                  _FLASH_WriteRow16
-                  0x001f3e                  _FLASH_WriteRow24
-                  0x001f16                  _FLASH_WriteWord16
-                  0x001ef0                  _FLASH_WriteWord24
-                  0x002074                  _FlashDemo
-                  0x002150                  _INTERRUPT_Initialize
-                  0x002108                  _PIN_MANAGER_Initialize
-                  0x00215a                  _SYSTEM_Initialize
-                  0x0020d6                  _TMR1_Init
+                  0x001c2a                  _DoUSBComms
+                  0x001f12                  _FLASH_ErasePage
+                  0x001fea                  _FLASH_GetErasePageAddress
+                  0x001fe4                  _FLASH_GetErasePageOffset
+                  0x001ed2                  _FLASH_Lock
+                  0x001f06                  _FLASH_ReadWord16
+                  0x001efa                  _FLASH_ReadWord24
+                  0x001ec8                  _FLASH_Unlock
+                  0x001fb4                  _FLASH_WriteRow16
+                  0x001f86                  _FLASH_WriteRow24
+                  0x001f5e                  _FLASH_WriteWord16
+                  0x001f38                  _FLASH_WriteWord24
+                  0x0020bc                  _FlashDemo
+                  0x002198                  _INTERRUPT_Initialize
+                  0x002150                  _PIN_MANAGER_Initialize
+                  0x0021a2                  _SYSTEM_Initialize
+                  0x00211e                  _TMR1_Init
                   0x001670                  _USBCDCEventHandler
                   0x001152                  _USBCancelIO
                   0x00157a                  _USBCheckCDCRequest
@@ -418,16 +421,16 @@ External Symbols in Program Memory (by name):
                   0x00108e                  _USBEnableEndpoint
                   0x00156a                  _USBGet1msTickCount
                   0x001464                  _USBIncrement1msInternalTimers
-                  0x001c78                  _USBMaskAllUSBInterrupts
-                  0x001cfe                  _USBRemoteWakeupAssertBlocking
-                  0x001c88                  _USBRestoreUSBInterrupts
-                  0x001ce8                  _USBSleepOnSuspend
+                  0x001dfc                  _USBMaskAllUSBInterrupts
+                  0x001e82                  _USBRemoteWakeupAssertBlocking
+                  0x001e0c                  _USBRestoreUSBInterrupts
+                  0x001e6c                  _USBSleepOnSuspend
                   0x001104                  _USBStallEndpoint
                   0x0010ba                  _USBTransferOnePacket
-                  0x001c90                  _USBVBUSSessionValidStateGet
+                  0x001e14                  _USBVBUSSessionValidStateGet
                   0x000b6c                  _USB_CD_Ptr
                   0x000b6e                  _USB_SD_Ptr
-                  0x00212e                  _USER_USB_CALLBACK_EVENT_HANDLER
+                  0x002176                  _USER_USB_CALLBACK_EVENT_HANDLER
                   0x00036a                  __AddressError
                   0x000308                  __AltUSB1Interrupt
                   0x0008b6                  __Getstr
@@ -459,14 +462,14 @@ External Symbols in Program Memory (by name):
                   0x000200                  __resetPRI
                   0x000630                  __sscanf_0
                   0x000630                  __sscanf_s
-                  0x001d42                  _clearUsbBuffers
+                  0x001c00                  _clearUsbBuffers
                   0x000ad6                  _configDescriptor1
-                  0x0020e0                  _delay_ms
+                  0x002128                  _delay_ms
                   0x000ac4                  _device_dsc
-                  0x001d5a                  _disableInterrupts
+                  0x001c18                  _disableInterrupts
                   0x00169e                  _getsUSBUSART
                   0x0007d2                  _isspace
-                  0x001e48                  _main
+                  0x001d4e                  _main
                   0x000aa4                  _memchr
                   0x00086e                  _memset
                   0x0016d2                  _putUSBUSART
@@ -488,7 +491,7 @@ reset            0x000000           0x000004
 ivt              0x000004           0x0000fc  
 _reserved        0x000100           0x000004  
 aivt             0x000104           0x0000fc  
-program          0x000200           0x002000           xr
+program          0x000200           0x002200           xr
 CONFIG4          0x00abf8           0x000002  
 CONFIG3          0x00abfa           0x000002  
 CONFIG2          0x00abfc           0x000002  
@@ -559,137 +562,137 @@ LOAD /opt/microchip/xc16/v1.70/bin/bin/../../lib/libfx-elf.a
                     0xabfe                  __CONFIG1 = 0xabfe
                     0x0001                  __NO_HANDLES = 0x1
                     0x0200                  __CODE_BASE = 0x200
-                    0x2000                  __CODE_LENGTH = 0x2000
+                    0x2200                  __CODE_LENGTH = 0x2200
                     0x0004                  __IVT_BASE = 0x4
                     0x0104                  __AIVT_BASE = 0x104
                     0x0800                  __DATA_BASE = 0x800
                     0x2000                  __DATA_LENGTH = 0x2000
-                    0x2202                  J_ReservedTrap0 = 0x2202
-                    0x2206                  J_OscillatorFail = 0x2206
-                    0x220a                  J_AddressError = 0x220a
-                    0x220e                  J_StackError = 0x220e
-                    0x2212                  J_MathError = 0x2212
-                    0x2216                  J_ReservedTrap5 = 0x2216
-                    0x221a                  J_ReservedTrap6 = 0x221a
-                    0x221e                  J_ReservedTrap7 = 0x221e
-                    0x2222                  J_INT0Interrupt = 0x2222
-                    0x2226                  J_IC1Interrupt = 0x2226
-                    0x222a                  J_OC1Interrupt = 0x222a
-                    0x222e                  J_T1Interrupt = 0x222e
-                    0x2232                  J_DMA0Interrupt = 0x2232
-                    0x2236                  J_IC2Interrupt = 0x2236
-                    0x223a                  J_OC2Interrupt = 0x223a
-                    0x223e                  J_T2Interrupt = 0x223e
-                    0x2242                  J_T3Interrupt = 0x2242
-                    0x2246                  J_SPI1Interrupt = 0x2246
-                    0x224a                  J_SPI1TXInterrupt = 0x224a
-                    0x224e                  J_U1RXInterrupt = 0x224e
-                    0x2252                  J_U1TXInterrupt = 0x2252
-                    0x2256                  J_ADC1Interrupt = 0x2256
-                    0x225a                  J_DMA1Interrupt = 0x225a
-                    0x225e                  J_Interrupt15 = 0x225e
-                    0x2262                  J_SI2C1Interrupt = 0x2262
-                    0x2266                  J_MI2C1Interrupt = 0x2266
-                    0x226a                  J_CompInterrupt = 0x226a
-                    0x226e                  J_CNInterrupt = 0x226e
-                    0x2272                  J_INT1Interrupt = 0x2272
-                    0x2276                  J_Interrupt21 = 0x2276
-                    0x227a                  J_Interrupt22 = 0x227a
-                    0x227e                  J_Interrupt23 = 0x227e
-                    0x2282                  J_DMA2Interrupt = 0x2282
-                    0x2286                  J_OC3Interrupt = 0x2286
-                    0x228a                  J_OC4Interrupt = 0x228a
-                    0x228e                  J_T4Interrupt = 0x228e
-                    0x2292                  J_T5Interrupt = 0x2292
-                    0x2296                  J_INT2Interrupt = 0x2296
-                    0x229a                  J_U2RXInterrupt = 0x229a
-                    0x229e                  J_U2TXInterrupt = 0x229e
-                    0x22a2                  J_SPI2Interrupt = 0x22a2
-                    0x22a6                  J_SPI2TXInterrupt = 0x22a6
-                    0x22aa                  J_Interrupt34 = 0x22aa
-                    0x22ae                  J_Interrupt35 = 0x22ae
-                    0x22b2                  J_DMA3Interrupt = 0x22b2
-                    0x22b6                  J_IC3Interrupt = 0x22b6
-                    0x22ba                  J_IC4Interrupt = 0x22ba
-                    0x22be                  J_IC5Interrupt = 0x22be
-                    0x22c2                  J_IC6Interrupt = 0x22c2
-                    0x22c6                  J_OC5Interrupt = 0x22c6
-                    0x22ca                  J_OC6Interrupt = 0x22ca
-                    0x22ce                  J_Interrupt43 = 0x22ce
-                    0x22d2                  J_Interrupt44 = 0x22d2
-                    0x22d6                  J_PMPInterrupt = 0x22d6
-                    0x22da                  J_DMA4Interrupt = 0x22da
-                    0x22de                  J_Interrupt47 = 0x22de
-                    0x22e2                  J_Interrupt48 = 0x22e2
-                    0x22e6                  J_SI2C2Interrupt = 0x22e6
-                    0x22ea                  J_MI2C2Interrupt = 0x22ea
-                    0x22ee                  J_Interrupt51 = 0x22ee
-                    0x22f2                  J_Interrupt52 = 0x22f2
-                    0x22f6                  J_INT3Interrupt = 0x22f6
-                    0x22fa                  J_INT4Interrupt = 0x22fa
-                    0x22fe                  J_CRYPTOInterrupt = 0x22fe
-                    0x2302                  J_CRYPTOKeyInterrupt = 0x2302
-                    0x2306                  J_Interrupt57 = 0x2306
-                    0x230a                  J_SPI1RXInterrupt = 0x230a
-                    0x230e                  J_SPI2RXInterrupt = 0x230e
-                    0x2312                  J_SPI3RXInterrupt = 0x2312
-                    0x2316                  J_DMA5Interrupt = 0x2316
-                    0x231a                  J_RTCCInterrupt = 0x231a
-                    0x231e                  J_Interrupt63 = 0x231e
-                    0x2322                  J_Interrupt64 = 0x2322
-                    0x2326                  J_U1ErrInterrupt = 0x2326
-                    0x232a                  J_U2ErrInterrupt = 0x232a
-                    0x232e                  J_CRCInterrupt = 0x232e
-                    0x2332                  J_Interrupt68 = 0x2332
-                    0x2336                  J_Interrupt69 = 0x2336
-                    0x233a                  J_Interrupt70 = 0x233a
-                    0x233e                  J_Interrupt71 = 0x233e
-                    0x2342                  J_LVDInterrupt = 0x2342
-                    0x2346                  J_Interrupt73 = 0x2346
-                    0x234a                  J_Interrupt74 = 0x234a
-                    0x234e                  J_Interrupt75 = 0x234e
-                    0x2352                  J_Interrupt76 = 0x2352
-                    0x2356                  J_CTMUInterrupt = 0x2356
-                    0x235a                  J_Interrupt78 = 0x235a
-                    0x235e                  J_Interrupt79 = 0x235e
-                    0x2362                  J_Interrupt80 = 0x2362
-                    0x2366                  J_U3ErrInterrupt = 0x2366
-                    0x236a                  J_U3RXInterrupt = 0x236a
-                    0x236e                  J_U3TXInterrupt = 0x236e
-                    0x2372                  J_I2C1BCLInterrupt = 0x2372
-                    0x2376                  J_I2C2BCLInterrupt = 0x2376
-                    0x237a                  J_USB1Interrupt = 0x237a
-                    0x237e                  J_U4ErrInterrupt = 0x237e
-                    0x2382                  J_U4RXInterrupt = 0x2382
-                    0x2386                  J_U4TXInterrupt = 0x2386
-                    0x238a                  J_SPI3Interrupt = 0x238a
-                    0x238e                  J_SPI3TXInterrupt = 0x238e
-                    0x2392                  J_Interrupt92 = 0x2392
-                    0x2396                  J_Interrupt93 = 0x2396
-                    0x239a                  J_Interrupt94 = 0x239a
-                    0x239e                  J_Interrupt95 = 0x239e
-                    0x23a2                  J_Interrupt96 = 0x23a2
-                    0x23a6                  J_Interrupt97 = 0x23a6
-                    0x23aa                  J_Interrupt98 = 0x23aa
-                    0x23ae                  J_Interrupt99 = 0x23ae
-                    0x23b2                  J_Interrupt100 = 0x23b2
-                    0x23b6                  J_Interrupt101 = 0x23b6
-                    0x23ba                  J_Interrupt102 = 0x23ba
-                    0x23be                  J_Interrupt103 = 0x23be
-                    0x23c2                  J_Interrupt104 = 0x23c2
-                    0x23c6                  J_Interrupt105 = 0x23c6
-                    0x23ca                  J_FSTInterrupt = 0x23ca
-                    0x23ce                  J_Interrupt107 = 0x23ce
-                    0x23d2                  J_Interrupt108 = 0x23d2
-                    0x23d6                  J_Interrupt109 = 0x23d6
-                    0x23da                  J_Interrupt110 = 0x23da
-                    0x23de                  J_Interrupt111 = 0x23de
-                    0x23e2                  J_Interrupt112 = 0x23e2
-                    0x23e6                  J_Interrupt113 = 0x23e6
-                    0x23ea                  J_Interrupt114 = 0x23ea
-                    0x23ee                  J_Interrupt115 = 0x23ee
-                    0x23f2                  J_Interrupt116 = 0x23f2
-                    0x23f6                  J_JTAGInterrupt = 0x23f6
+                    0x2402                  J_ReservedTrap0 = 0x2402
+                    0x2406                  J_OscillatorFail = 0x2406
+                    0x240a                  J_AddressError = 0x240a
+                    0x240e                  J_StackError = 0x240e
+                    0x2412                  J_MathError = 0x2412
+                    0x2416                  J_ReservedTrap5 = 0x2416
+                    0x241a                  J_ReservedTrap6 = 0x241a
+                    0x241e                  J_ReservedTrap7 = 0x241e
+                    0x2422                  J_INT0Interrupt = 0x2422
+                    0x2426                  J_IC1Interrupt = 0x2426
+                    0x242a                  J_OC1Interrupt = 0x242a
+                    0x242e                  J_T1Interrupt = 0x242e
+                    0x2432                  J_DMA0Interrupt = 0x2432
+                    0x2436                  J_IC2Interrupt = 0x2436
+                    0x243a                  J_OC2Interrupt = 0x243a
+                    0x243e                  J_T2Interrupt = 0x243e
+                    0x2442                  J_T3Interrupt = 0x2442
+                    0x2446                  J_SPI1Interrupt = 0x2446
+                    0x244a                  J_SPI1TXInterrupt = 0x244a
+                    0x244e                  J_U1RXInterrupt = 0x244e
+                    0x2452                  J_U1TXInterrupt = 0x2452
+                    0x2456                  J_ADC1Interrupt = 0x2456
+                    0x245a                  J_DMA1Interrupt = 0x245a
+                    0x245e                  J_Interrupt15 = 0x245e
+                    0x2462                  J_SI2C1Interrupt = 0x2462
+                    0x2466                  J_MI2C1Interrupt = 0x2466
+                    0x246a                  J_CompInterrupt = 0x246a
+                    0x246e                  J_CNInterrupt = 0x246e
+                    0x2472                  J_INT1Interrupt = 0x2472
+                    0x2476                  J_Interrupt21 = 0x2476
+                    0x247a                  J_Interrupt22 = 0x247a
+                    0x247e                  J_Interrupt23 = 0x247e
+                    0x2482                  J_DMA2Interrupt = 0x2482
+                    0x2486                  J_OC3Interrupt = 0x2486
+                    0x248a                  J_OC4Interrupt = 0x248a
+                    0x248e                  J_T4Interrupt = 0x248e
+                    0x2492                  J_T5Interrupt = 0x2492
+                    0x2496                  J_INT2Interrupt = 0x2496
+                    0x249a                  J_U2RXInterrupt = 0x249a
+                    0x249e                  J_U2TXInterrupt = 0x249e
+                    0x24a2                  J_SPI2Interrupt = 0x24a2
+                    0x24a6                  J_SPI2TXInterrupt = 0x24a6
+                    0x24aa                  J_Interrupt34 = 0x24aa
+                    0x24ae                  J_Interrupt35 = 0x24ae
+                    0x24b2                  J_DMA3Interrupt = 0x24b2
+                    0x24b6                  J_IC3Interrupt = 0x24b6
+                    0x24ba                  J_IC4Interrupt = 0x24ba
+                    0x24be                  J_IC5Interrupt = 0x24be
+                    0x24c2                  J_IC6Interrupt = 0x24c2
+                    0x24c6                  J_OC5Interrupt = 0x24c6
+                    0x24ca                  J_OC6Interrupt = 0x24ca
+                    0x24ce                  J_Interrupt43 = 0x24ce
+                    0x24d2                  J_Interrupt44 = 0x24d2
+                    0x24d6                  J_PMPInterrupt = 0x24d6
+                    0x24da                  J_DMA4Interrupt = 0x24da
+                    0x24de                  J_Interrupt47 = 0x24de
+                    0x24e2                  J_Interrupt48 = 0x24e2
+                    0x24e6                  J_SI2C2Interrupt = 0x24e6
+                    0x24ea                  J_MI2C2Interrupt = 0x24ea
+                    0x24ee                  J_Interrupt51 = 0x24ee
+                    0x24f2                  J_Interrupt52 = 0x24f2
+                    0x24f6                  J_INT3Interrupt = 0x24f6
+                    0x24fa                  J_INT4Interrupt = 0x24fa
+                    0x24fe                  J_CRYPTOInterrupt = 0x24fe
+                    0x2502                  J_CRYPTOKeyInterrupt = 0x2502
+                    0x2506                  J_Interrupt57 = 0x2506
+                    0x250a                  J_SPI1RXInterrupt = 0x250a
+                    0x250e                  J_SPI2RXInterrupt = 0x250e
+                    0x2512                  J_SPI3RXInterrupt = 0x2512
+                    0x2516                  J_DMA5Interrupt = 0x2516
+                    0x251a                  J_RTCCInterrupt = 0x251a
+                    0x251e                  J_Interrupt63 = 0x251e
+                    0x2522                  J_Interrupt64 = 0x2522
+                    0x2526                  J_U1ErrInterrupt = 0x2526
+                    0x252a                  J_U2ErrInterrupt = 0x252a
+                    0x252e                  J_CRCInterrupt = 0x252e
+                    0x2532                  J_Interrupt68 = 0x2532
+                    0x2536                  J_Interrupt69 = 0x2536
+                    0x253a                  J_Interrupt70 = 0x253a
+                    0x253e                  J_Interrupt71 = 0x253e
+                    0x2542                  J_LVDInterrupt = 0x2542
+                    0x2546                  J_Interrupt73 = 0x2546
+                    0x254a                  J_Interrupt74 = 0x254a
+                    0x254e                  J_Interrupt75 = 0x254e
+                    0x2552                  J_Interrupt76 = 0x2552
+                    0x2556                  J_CTMUInterrupt = 0x2556
+                    0x255a                  J_Interrupt78 = 0x255a
+                    0x255e                  J_Interrupt79 = 0x255e
+                    0x2562                  J_Interrupt80 = 0x2562
+                    0x2566                  J_U3ErrInterrupt = 0x2566
+                    0x256a                  J_U3RXInterrupt = 0x256a
+                    0x256e                  J_U3TXInterrupt = 0x256e
+                    0x2572                  J_I2C1BCLInterrupt = 0x2572
+                    0x2576                  J_I2C2BCLInterrupt = 0x2576
+                    0x257a                  J_USB1Interrupt = 0x257a
+                    0x257e                  J_U4ErrInterrupt = 0x257e
+                    0x2582                  J_U4RXInterrupt = 0x2582
+                    0x2586                  J_U4TXInterrupt = 0x2586
+                    0x258a                  J_SPI3Interrupt = 0x258a
+                    0x258e                  J_SPI3TXInterrupt = 0x258e
+                    0x2592                  J_Interrupt92 = 0x2592
+                    0x2596                  J_Interrupt93 = 0x2596
+                    0x259a                  J_Interrupt94 = 0x259a
+                    0x259e                  J_Interrupt95 = 0x259e
+                    0x25a2                  J_Interrupt96 = 0x25a2
+                    0x25a6                  J_Interrupt97 = 0x25a6
+                    0x25aa                  J_Interrupt98 = 0x25aa
+                    0x25ae                  J_Interrupt99 = 0x25ae
+                    0x25b2                  J_Interrupt100 = 0x25b2
+                    0x25b6                  J_Interrupt101 = 0x25b6
+                    0x25ba                  J_Interrupt102 = 0x25ba
+                    0x25be                  J_Interrupt103 = 0x25be
+                    0x25c2                  J_Interrupt104 = 0x25c2
+                    0x25c6                  J_Interrupt105 = 0x25c6
+                    0x25ca                  J_FSTInterrupt = 0x25ca
+                    0x25ce                  J_Interrupt107 = 0x25ce
+                    0x25d2                  J_Interrupt108 = 0x25d2
+                    0x25d6                  J_Interrupt109 = 0x25d6
+                    0x25da                  J_Interrupt110 = 0x25da
+                    0x25de                  J_Interrupt111 = 0x25de
+                    0x25e2                  J_Interrupt112 = 0x25e2
+                    0x25e6                  J_Interrupt113 = 0x25e6
+                    0x25ea                  J_Interrupt114 = 0x25ea
+                    0x25ee                  J_Interrupt115 = 0x25ee
+                    0x25f2                  J_Interrupt116 = 0x25f2
+                    0x25f6                  J_JTAGInterrupt = 0x25f6
 
 .reset            0x000000          0x4
                   0x000000          0x2 SHORT 0x200 ABSOLUTE (__reset)
@@ -698,132 +701,132 @@ LOAD /opt/microchip/xc16/v1.70/bin/bin/../../lib/libfx-elf.a
                   0x000003          0x2 SHORT 0x0
 
 .ivt              0x000004         0xfc
-                  0x000004          0x4 LONG 0x2202 J_ReservedTrap0
-                  0x000006          0x4 LONG 0x2206 J_OscillatorFail
-                  0x000008          0x4 LONG 0x220a J_AddressError
-                  0x00000a          0x4 LONG 0x220e J_StackError
-                  0x00000c          0x4 LONG 0x2212 J_MathError
-                  0x00000e          0x4 LONG 0x2216 J_ReservedTrap5
-                  0x000010          0x4 LONG 0x221a J_ReservedTrap6
-                  0x000012          0x4 LONG 0x221e J_ReservedTrap7
-                  0x000014          0x4 LONG 0x2222 J_INT0Interrupt
-                  0x000016          0x4 LONG 0x2226 J_IC1Interrupt
-                  0x000018          0x4 LONG 0x222a J_OC1Interrupt
-                  0x00001a          0x4 LONG 0x222e J_T1Interrupt
-                  0x00001c          0x4 LONG 0x2232 J_DMA0Interrupt
-                  0x00001e          0x4 LONG 0x2236 J_IC2Interrupt
-                  0x000020          0x4 LONG 0x223a J_OC2Interrupt
-                  0x000022          0x4 LONG 0x223e J_T2Interrupt
-                  0x000024          0x4 LONG 0x2242 J_T3Interrupt
-                  0x000026          0x4 LONG 0x2246 J_SPI1Interrupt
-                  0x000028          0x4 LONG 0x224a J_SPI1TXInterrupt
-                  0x00002a          0x4 LONG 0x224e J_U1RXInterrupt
-                  0x00002c          0x4 LONG 0x2252 J_U1TXInterrupt
-                  0x00002e          0x4 LONG 0x2256 J_ADC1Interrupt
-                  0x000030          0x4 LONG 0x225a J_DMA1Interrupt
-                  0x000032          0x4 LONG 0x225e J_Interrupt15
-                  0x000034          0x4 LONG 0x2262 J_SI2C1Interrupt
-                  0x000036          0x4 LONG 0x2266 J_MI2C1Interrupt
-                  0x000038          0x4 LONG 0x226a J_CompInterrupt
-                  0x00003a          0x4 LONG 0x226e J_CNInterrupt
-                  0x00003c          0x4 LONG 0x2272 J_INT1Interrupt
-                  0x00003e          0x4 LONG 0x2276 J_Interrupt21
-                  0x000040          0x4 LONG 0x227a J_Interrupt22
-                  0x000042          0x4 LONG 0x227e J_Interrupt23
-                  0x000044          0x4 LONG 0x2282 J_DMA2Interrupt
-                  0x000046          0x4 LONG 0x2286 J_OC3Interrupt
-                  0x000048          0x4 LONG 0x228a J_OC4Interrupt
-                  0x00004a          0x4 LONG 0x228e J_T4Interrupt
-                  0x00004c          0x4 LONG 0x2292 J_T5Interrupt
-                  0x00004e          0x4 LONG 0x2296 J_INT2Interrupt
-                  0x000050          0x4 LONG 0x229a J_U2RXInterrupt
-                  0x000052          0x4 LONG 0x229e J_U2TXInterrupt
-                  0x000054          0x4 LONG 0x22a2 J_SPI2Interrupt
-                  0x000056          0x4 LONG 0x22a6 J_SPI2TXInterrupt
-                  0x000058          0x4 LONG 0x22aa J_Interrupt34
-                  0x00005a          0x4 LONG 0x22ae J_Interrupt35
-                  0x00005c          0x4 LONG 0x22b2 J_DMA3Interrupt
-                  0x00005e          0x4 LONG 0x22b6 J_IC3Interrupt
-                  0x000060          0x4 LONG 0x22ba J_IC4Interrupt
-                  0x000062          0x4 LONG 0x22be J_IC5Interrupt
-                  0x000064          0x4 LONG 0x22c2 J_IC6Interrupt
-                  0x000066          0x4 LONG 0x22c6 J_OC5Interrupt
-                  0x000068          0x4 LONG 0x22ca J_OC6Interrupt
-                  0x00006a          0x4 LONG 0x22ce J_Interrupt43
-                  0x00006c          0x4 LONG 0x22d2 J_Interrupt44
-                  0x00006e          0x4 LONG 0x22d6 J_PMPInterrupt
-                  0x000070          0x4 LONG 0x22da J_DMA4Interrupt
-                  0x000072          0x4 LONG 0x22de J_Interrupt47
-                  0x000074          0x4 LONG 0x22e2 J_Interrupt48
-                  0x000076          0x4 LONG 0x22e6 J_SI2C2Interrupt
-                  0x000078          0x4 LONG 0x22ea J_MI2C2Interrupt
-                  0x00007a          0x4 LONG 0x22ee J_Interrupt51
-                  0x00007c          0x4 LONG 0x22f2 J_Interrupt52
-                  0x00007e          0x4 LONG 0x22f6 J_INT3Interrupt
-                  0x000080          0x4 LONG 0x22fa J_INT4Interrupt
-                  0x000082          0x4 LONG 0x22fe J_CRYPTOInterrupt
-                  0x000084          0x4 LONG 0x2302 J_CRYPTOKeyInterrupt
-                  0x000086          0x4 LONG 0x2306 J_Interrupt57
-                  0x000088          0x4 LONG 0x230a J_SPI1RXInterrupt
-                  0x00008a          0x4 LONG 0x230e J_SPI2RXInterrupt
-                  0x00008c          0x4 LONG 0x2312 J_SPI3RXInterrupt
-                  0x00008e          0x4 LONG 0x2316 J_DMA5Interrupt
-                  0x000090          0x4 LONG 0x231a J_RTCCInterrupt
-                  0x000092          0x4 LONG 0x231e J_Interrupt63
-                  0x000094          0x4 LONG 0x2322 J_Interrupt64
-                  0x000096          0x4 LONG 0x2326 J_U1ErrInterrupt
-                  0x000098          0x4 LONG 0x232a J_U2ErrInterrupt
-                  0x00009a          0x4 LONG 0x232e J_CRCInterrupt
-                  0x00009c          0x4 LONG 0x2332 J_Interrupt68
-                  0x00009e          0x4 LONG 0x2336 J_Interrupt69
-                  0x0000a0          0x4 LONG 0x233a J_Interrupt70
-                  0x0000a2          0x4 LONG 0x233e J_Interrupt71
-                  0x0000a4          0x4 LONG 0x2342 J_LVDInterrupt
-                  0x0000a6          0x4 LONG 0x2346 J_Interrupt73
-                  0x0000a8          0x4 LONG 0x234a J_Interrupt74
-                  0x0000aa          0x4 LONG 0x234e J_Interrupt75
-                  0x0000ac          0x4 LONG 0x2352 J_Interrupt76
-                  0x0000ae          0x4 LONG 0x2356 J_CTMUInterrupt
-                  0x0000b0          0x4 LONG 0x235a J_Interrupt78
-                  0x0000b2          0x4 LONG 0x235e J_Interrupt79
-                  0x0000b4          0x4 LONG 0x2362 J_Interrupt80
-                  0x0000b6          0x4 LONG 0x2366 J_U3ErrInterrupt
-                  0x0000b8          0x4 LONG 0x236a J_U3RXInterrupt
-                  0x0000ba          0x4 LONG 0x236e J_U3TXInterrupt
-                  0x0000bc          0x4 LONG 0x2372 J_I2C1BCLInterrupt
-                  0x0000be          0x4 LONG 0x2376 J_I2C2BCLInterrupt
-                  0x0000c0          0x4 LONG 0x237a J_USB1Interrupt
-                  0x0000c2          0x4 LONG 0x237e J_U4ErrInterrupt
-                  0x0000c4          0x4 LONG 0x2382 J_U4RXInterrupt
-                  0x0000c6          0x4 LONG 0x2386 J_U4TXInterrupt
-                  0x0000c8          0x4 LONG 0x238a J_SPI3Interrupt
-                  0x0000ca          0x4 LONG 0x238e J_SPI3TXInterrupt
-                  0x0000cc          0x4 LONG 0x2392 J_Interrupt92
-                  0x0000ce          0x4 LONG 0x2396 J_Interrupt93
-                  0x0000d0          0x4 LONG 0x239a J_Interrupt94
-                  0x0000d2          0x4 LONG 0x239e J_Interrupt95
-                  0x0000d4          0x4 LONG 0x23a2 J_Interrupt96
-                  0x0000d6          0x4 LONG 0x23a6 J_Interrupt97
-                  0x0000d8          0x4 LONG 0x23aa J_Interrupt98
-                  0x0000da          0x4 LONG 0x23ae J_Interrupt99
-                  0x0000dc          0x4 LONG 0x23b2 J_Interrupt100
-                  0x0000de          0x4 LONG 0x23b6 J_Interrupt101
-                  0x0000e0          0x4 LONG 0x23ba J_Interrupt102
-                  0x0000e2          0x4 LONG 0x23be J_Interrupt103
-                  0x0000e4          0x4 LONG 0x23c2 J_Interrupt104
-                  0x0000e6          0x4 LONG 0x23c6 J_Interrupt105
-                  0x0000e8          0x4 LONG 0x23ca J_FSTInterrupt
-                  0x0000ea          0x4 LONG 0x23ce J_Interrupt107
-                  0x0000ec          0x4 LONG 0x23d2 J_Interrupt108
-                  0x0000ee          0x4 LONG 0x23d6 J_Interrupt109
-                  0x0000f0          0x4 LONG 0x23da J_Interrupt110
-                  0x0000f2          0x4 LONG 0x23de J_Interrupt111
-                  0x0000f4          0x4 LONG 0x23e2 J_Interrupt112
-                  0x0000f6          0x4 LONG 0x23e6 J_Interrupt113
-                  0x0000f8          0x4 LONG 0x23ea J_Interrupt114
-                  0x0000fa          0x4 LONG 0x23ee J_Interrupt115
-                  0x0000fc          0x4 LONG 0x23f2 J_Interrupt116
-                  0x0000fe          0x4 LONG 0x23f6 J_JTAGInterrupt
+                  0x000004          0x4 LONG 0x2402 J_ReservedTrap0
+                  0x000006          0x4 LONG 0x2406 J_OscillatorFail
+                  0x000008          0x4 LONG 0x240a J_AddressError
+                  0x00000a          0x4 LONG 0x240e J_StackError
+                  0x00000c          0x4 LONG 0x2412 J_MathError
+                  0x00000e          0x4 LONG 0x2416 J_ReservedTrap5
+                  0x000010          0x4 LONG 0x241a J_ReservedTrap6
+                  0x000012          0x4 LONG 0x241e J_ReservedTrap7
+                  0x000014          0x4 LONG 0x2422 J_INT0Interrupt
+                  0x000016          0x4 LONG 0x2426 J_IC1Interrupt
+                  0x000018          0x4 LONG 0x242a J_OC1Interrupt
+                  0x00001a          0x4 LONG 0x242e J_T1Interrupt
+                  0x00001c          0x4 LONG 0x2432 J_DMA0Interrupt
+                  0x00001e          0x4 LONG 0x2436 J_IC2Interrupt
+                  0x000020          0x4 LONG 0x243a J_OC2Interrupt
+                  0x000022          0x4 LONG 0x243e J_T2Interrupt
+                  0x000024          0x4 LONG 0x2442 J_T3Interrupt
+                  0x000026          0x4 LONG 0x2446 J_SPI1Interrupt
+                  0x000028          0x4 LONG 0x244a J_SPI1TXInterrupt
+                  0x00002a          0x4 LONG 0x244e J_U1RXInterrupt
+                  0x00002c          0x4 LONG 0x2452 J_U1TXInterrupt
+                  0x00002e          0x4 LONG 0x2456 J_ADC1Interrupt
+                  0x000030          0x4 LONG 0x245a J_DMA1Interrupt
+                  0x000032          0x4 LONG 0x245e J_Interrupt15
+                  0x000034          0x4 LONG 0x2462 J_SI2C1Interrupt
+                  0x000036          0x4 LONG 0x2466 J_MI2C1Interrupt
+                  0x000038          0x4 LONG 0x246a J_CompInterrupt
+                  0x00003a          0x4 LONG 0x246e J_CNInterrupt
+                  0x00003c          0x4 LONG 0x2472 J_INT1Interrupt
+                  0x00003e          0x4 LONG 0x2476 J_Interrupt21
+                  0x000040          0x4 LONG 0x247a J_Interrupt22
+                  0x000042          0x4 LONG 0x247e J_Interrupt23
+                  0x000044          0x4 LONG 0x2482 J_DMA2Interrupt
+                  0x000046          0x4 LONG 0x2486 J_OC3Interrupt
+                  0x000048          0x4 LONG 0x248a J_OC4Interrupt
+                  0x00004a          0x4 LONG 0x248e J_T4Interrupt
+                  0x00004c          0x4 LONG 0x2492 J_T5Interrupt
+                  0x00004e          0x4 LONG 0x2496 J_INT2Interrupt
+                  0x000050          0x4 LONG 0x249a J_U2RXInterrupt
+                  0x000052          0x4 LONG 0x249e J_U2TXInterrupt
+                  0x000054          0x4 LONG 0x24a2 J_SPI2Interrupt
+                  0x000056          0x4 LONG 0x24a6 J_SPI2TXInterrupt
+                  0x000058          0x4 LONG 0x24aa J_Interrupt34
+                  0x00005a          0x4 LONG 0x24ae J_Interrupt35
+                  0x00005c          0x4 LONG 0x24b2 J_DMA3Interrupt
+                  0x00005e          0x4 LONG 0x24b6 J_IC3Interrupt
+                  0x000060          0x4 LONG 0x24ba J_IC4Interrupt
+                  0x000062          0x4 LONG 0x24be J_IC5Interrupt
+                  0x000064          0x4 LONG 0x24c2 J_IC6Interrupt
+                  0x000066          0x4 LONG 0x24c6 J_OC5Interrupt
+                  0x000068          0x4 LONG 0x24ca J_OC6Interrupt
+                  0x00006a          0x4 LONG 0x24ce J_Interrupt43
+                  0x00006c          0x4 LONG 0x24d2 J_Interrupt44
+                  0x00006e          0x4 LONG 0x24d6 J_PMPInterrupt
+                  0x000070          0x4 LONG 0x24da J_DMA4Interrupt
+                  0x000072          0x4 LONG 0x24de J_Interrupt47
+                  0x000074          0x4 LONG 0x24e2 J_Interrupt48
+                  0x000076          0x4 LONG 0x24e6 J_SI2C2Interrupt
+                  0x000078          0x4 LONG 0x24ea J_MI2C2Interrupt
+                  0x00007a          0x4 LONG 0x24ee J_Interrupt51
+                  0x00007c          0x4 LONG 0x24f2 J_Interrupt52
+                  0x00007e          0x4 LONG 0x24f6 J_INT3Interrupt
+                  0x000080          0x4 LONG 0x24fa J_INT4Interrupt
+                  0x000082          0x4 LONG 0x24fe J_CRYPTOInterrupt
+                  0x000084          0x4 LONG 0x2502 J_CRYPTOKeyInterrupt
+                  0x000086          0x4 LONG 0x2506 J_Interrupt57
+                  0x000088          0x4 LONG 0x250a J_SPI1RXInterrupt
+                  0x00008a          0x4 LONG 0x250e J_SPI2RXInterrupt
+                  0x00008c          0x4 LONG 0x2512 J_SPI3RXInterrupt
+                  0x00008e          0x4 LONG 0x2516 J_DMA5Interrupt
+                  0x000090          0x4 LONG 0x251a J_RTCCInterrupt
+                  0x000092          0x4 LONG 0x251e J_Interrupt63
+                  0x000094          0x4 LONG 0x2522 J_Interrupt64
+                  0x000096          0x4 LONG 0x2526 J_U1ErrInterrupt
+                  0x000098          0x4 LONG 0x252a J_U2ErrInterrupt
+                  0x00009a          0x4 LONG 0x252e J_CRCInterrupt
+                  0x00009c          0x4 LONG 0x2532 J_Interrupt68
+                  0x00009e          0x4 LONG 0x2536 J_Interrupt69
+                  0x0000a0          0x4 LONG 0x253a J_Interrupt70
+                  0x0000a2          0x4 LONG 0x253e J_Interrupt71
+                  0x0000a4          0x4 LONG 0x2542 J_LVDInterrupt
+                  0x0000a6          0x4 LONG 0x2546 J_Interrupt73
+                  0x0000a8          0x4 LONG 0x254a J_Interrupt74
+                  0x0000aa          0x4 LONG 0x254e J_Interrupt75
+                  0x0000ac          0x4 LONG 0x2552 J_Interrupt76
+                  0x0000ae          0x4 LONG 0x2556 J_CTMUInterrupt
+                  0x0000b0          0x4 LONG 0x255a J_Interrupt78
+                  0x0000b2          0x4 LONG 0x255e J_Interrupt79
+                  0x0000b4          0x4 LONG 0x2562 J_Interrupt80
+                  0x0000b6          0x4 LONG 0x2566 J_U3ErrInterrupt
+                  0x0000b8          0x4 LONG 0x256a J_U3RXInterrupt
+                  0x0000ba          0x4 LONG 0x256e J_U3TXInterrupt
+                  0x0000bc          0x4 LONG 0x2572 J_I2C1BCLInterrupt
+                  0x0000be          0x4 LONG 0x2576 J_I2C2BCLInterrupt
+                  0x0000c0          0x4 LONG 0x257a J_USB1Interrupt
+                  0x0000c2          0x4 LONG 0x257e J_U4ErrInterrupt
+                  0x0000c4          0x4 LONG 0x2582 J_U4RXInterrupt
+                  0x0000c6          0x4 LONG 0x2586 J_U4TXInterrupt
+                  0x0000c8          0x4 LONG 0x258a J_SPI3Interrupt
+                  0x0000ca          0x4 LONG 0x258e J_SPI3TXInterrupt
+                  0x0000cc          0x4 LONG 0x2592 J_Interrupt92
+                  0x0000ce          0x4 LONG 0x2596 J_Interrupt93
+                  0x0000d0          0x4 LONG 0x259a J_Interrupt94
+                  0x0000d2          0x4 LONG 0x259e J_Interrupt95
+                  0x0000d4          0x4 LONG 0x25a2 J_Interrupt96
+                  0x0000d6          0x4 LONG 0x25a6 J_Interrupt97
+                  0x0000d8          0x4 LONG 0x25aa J_Interrupt98
+                  0x0000da          0x4 LONG 0x25ae J_Interrupt99
+                  0x0000dc          0x4 LONG 0x25b2 J_Interrupt100
+                  0x0000de          0x4 LONG 0x25b6 J_Interrupt101
+                  0x0000e0          0x4 LONG 0x25ba J_Interrupt102
+                  0x0000e2          0x4 LONG 0x25be J_Interrupt103
+                  0x0000e4          0x4 LONG 0x25c2 J_Interrupt104
+                  0x0000e6          0x4 LONG 0x25c6 J_Interrupt105
+                  0x0000e8          0x4 LONG 0x25ca J_FSTInterrupt
+                  0x0000ea          0x4 LONG 0x25ce J_Interrupt107
+                  0x0000ec          0x4 LONG 0x25d2 J_Interrupt108
+                  0x0000ee          0x4 LONG 0x25d6 J_Interrupt109
+                  0x0000f0          0x4 LONG 0x25da J_Interrupt110
+                  0x0000f2          0x4 LONG 0x25de J_Interrupt111
+                  0x0000f4          0x4 LONG 0x25e2 J_Interrupt112
+                  0x0000f6          0x4 LONG 0x25e6 J_Interrupt113
+                  0x0000f8          0x4 LONG 0x25ea J_Interrupt114
+                  0x0000fa          0x4 LONG 0x25ee J_Interrupt115
+                  0x0000fc          0x4 LONG 0x25f2 J_Interrupt116
+                  0x0000fe          0x4 LONG 0x25f6 J_JTAGInterrupt
 
 .aivt             0x000104         0xfc
                   0x000104          0x4 LONG 0x0 DEFINED (__AltReservedTrap0)?ABSOLUTE (__AltReservedTrap0):DEFINED (__ReservedTrap0)?ABSOLUTE (__ReservedTrap0):ABSOLUTE (__DefaultInterrupt)
@@ -1068,7 +1071,7 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x8100
+.debug_info       0x000000       0x8119
  *(.debug_info)
  .debug_info      0x000000         0x96 build/default/debug/mcc_generated_files/memory/flash.o
  .debug_info      0x000096        0x2ae build/default/debug/mcc_generated_files/memory/flash_demo.o
@@ -1082,8 +1085,8 @@ __CONFIG1
  .debug_info      0x006997        0x328 build/default/debug/mcc_generated_files/pin_manager.o
  .debug_info      0x006cbf        0x383 build/default/debug/mcc_generated_files/traps.o
  .debug_info      0x007042        0x33a build/default/debug/mcc_generated_files/system.o
- .debug_info      0x00737c        0xbb2 build/default/debug/main.o
- .debug_info      0x007f2e        0x1d2 build/default/debug/timer.o
+ .debug_info      0x00737c        0xbcb build/default/debug/main.o
+ .debug_info      0x007f47        0x1d2 build/default/debug/timer.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0xf27
@@ -1104,7 +1107,7 @@ __CONFIG1
  .debug_abbrev    0x000ce8        0x1b5 build/default/debug/main.o
  .debug_abbrev    0x000e9d         0x8a build/default/debug/timer.o
 
-.debug_line       0x000000       0x12cc
+.debug_line       0x000000       0x12db
  *(.debug_line)
  .debug_line      0x000000         0xf7 build/default/debug/mcc_generated_files/memory/flash.o
  .debug_line      0x0000f7         0xc0 build/default/debug/mcc_generated_files/memory/flash_demo.o
@@ -1119,8 +1122,8 @@ __CONFIG1
  .debug_line      0x000de7        0x131 build/default/debug/mcc_generated_files/traps.o
  .debug_line      0x000f18        0x103 build/default/debug/mcc_generated_files/system.o
  .debug_line      0x00101b         0x1a build/default/debug/mcc_generated_files/mcc.o
- .debug_line      0x001035        0x1a5 build/default/debug/main.o
- .debug_line      0x0011da         0xf2 build/default/debug/timer.o
+ .debug_line      0x001035        0x1b4 build/default/debug/main.o
+ .debug_line      0x0011e9         0xf2 build/default/debug/timer.o
 
 .debug_frame      0x000000        0x672
  *(.debug_frame)
@@ -2705,7 +2708,7 @@ __c30_signature
  __c30_signature
                   0x000a12          0x6 /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(strlen.DA_eo)
 
-.nbss               0x0850         0x3c
+.nbss               0x0850         0x3e
  .nbss              0x0850         0x1c build/default/debug/mcc_generated_files/usb/usb_device.o
                     0x0850                  _USBDeferOUTDataStagePackets
                     0x0851                  _USBDeferStatusStagePacket
@@ -2739,47 +2742,53 @@ __c30_signature
                     0x0878                  _control_signal_bitmap
                     0x087a                  _BaudRateGen
  .nbss              0x087e          0xa build/default/debug/mcc_generated_files/usb/usb_hal_16bit.o
- .nbss              0x0888          0x4 build/default/debug/main.o
+ .nbss              0x0888          0x6 build/default/debug/main.o
                     0x0888                  _upgrade_mode
                     0x0889                  _message_received
 
 .ndata              0x0828          0x2
  .ndata             0x0828          0x2 build/default/debug/mcc_generated_files/traps.o
 
-.bss                0x088c        0x3a4
- .bss               0x088c        0x30a build/default/debug/main.o
-                    0x088c                  _usbCmd
-                    0x0896                  _message_buffer
- .bss               0x0b96         0x9a build/default/debug/mcc_generated_files/usb/usb_device_cdc.o
-                    0x0b96                  _cdc_notice
-                    0x0ba0                  _line_coding
-                    0x0ba8                  _cdc_data_tx
-                    0x0be8                  _cdc_data_rx
-                    0x0c28                  _dummy_encapsulated_cmd_response
+.bss                0x088e        0x324
+ .bss               0x088e        0x28a build/default/debug/main.o
+                    0x088e                  _usbCmd
+                    0x0898                  _message_buffer
+ .bss               0x0b18         0x9a build/default/debug/mcc_generated_files/usb/usb_device_cdc.o
+                    0x0b18                  _cdc_notice
+                    0x0b22                  _line_coding
+                    0x0b2a                  _cdc_data_tx
+                    0x0b6a                  _cdc_data_rx
+                    0x0baa                  _dummy_encapsulated_cmd_response
 
-_0x7f847a1e196061dc478f
-                    0x0e00         0x30
- _0x7f847a1e196061dc478f
-                    0x0e00         0x30 build/default/debug/mcc_generated_files/usb/usb_device.o
-                    0x0e00                  _BDT
+_0x7faee8e0496061e04e57
+                    0x0c00         0x30
+ _0x7faee8e0496061e04e57
+                    0x0c00         0x30 build/default/debug/mcc_generated_files/usb/usb_device.o
+                    0x0c00                  _BDT
 
-.bss                0x0c30         0x60
- .bss               0x0c30         0x32 build/default/debug/mcc_generated_files/usb/usb_device.o
-                    0x0c30                  _inPipes
-                    0x0c36                  _outPipes
-                    0x0c3e                  _pBDTEntryOut
-                    0x0c44                  _pBDTEntryIn
-                    0x0c4a                  _SetupPkt
-                    0x0c52                  _USBAlternateInterface
-                    0x0c54                  _ep_data_in
-                    0x0c57                  _ep_data_out
-                    0x0c5a                  _CtrlTrfData
- .bss               0x0c62         0x20 build/default/debug/mcc_generated_files/traps.o
- .bss               0x0c82          0xe build/default/debug/mcc_generated_files/usb/usb_hal_16bit.o
+.bss                0x0bb2         0x32
+ .bss               0x0bb2         0x32 build/default/debug/mcc_generated_files/usb/usb_device.o
+                    0x0bb2                  _inPipes
+                    0x0bb8                  _outPipes
+                    0x0bc0                  _pBDTEntryOut
+                    0x0bc6                  _pBDTEntryIn
+                    0x0bcc                  _SetupPkt
+                    0x0bd4                  _USBAlternateInterface
+                    0x0bd6                  _ep_data_in
+                    0x0bd9                  _ep_data_out
+                    0x0bdc                  _CtrlTrfData
 
-.data               0x0c90         0x10
- .data              0x0c90          0xc /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xscanf_s.DAeo)
- .data              0x0c9c          0x4 build/default/debug/mcc_generated_files/memory/flash.o
+.bss                0x0c30         0x20
+ .bss               0x0c30         0x20 build/default/debug/mcc_generated_files/traps.o
+
+.bss                0x0be4          0xe
+ .bss               0x0be4          0xe build/default/debug/mcc_generated_files/usb/usb_hal_16bit.o
+
+.data               0x0bf2          0xc
+ .data              0x0bf2          0xc /opt/microchip/xc16/v1.70/bin/bin/../../lib/liblega-c-elf.a(xscanf_s.DAeo)
+
+.data               0x0c50          0x4
+ .data              0x0c50          0x4 build/default/debug/mcc_generated_files/memory/flash.o
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
@@ -2822,9 +2831,9 @@ _0x7f847a1e196061dc478f
                   0x00147e                  _USBDeviceTasks
                   0x00156a                  _USBGet1msTickCount
 
-_a58108c061dc478f
+_5f3948c061e04e57
                   0x001800        0x400
- _a58108c061dc478f
+ _5f3948c061e04e57
                   0x001800        0x400 build/default/debug/mcc_generated_files/memory/flash_demo.o
 
 .text             0x00157a        0x248
@@ -2838,55 +2847,55 @@ _a58108c061dc478f
                   0x00170c                  _putrsUSBUSART
                   0x001730                  _CDCTxService
 
-.text             0x001c00        0x27e
- .text            0x001c00        0x142 build/default/debug/mcc_generated_files/usb/usb_hal_16bit.o
-                  0x001c78                  _USBMaskAllUSBInterrupts
-                  0x001c88                  _USBRestoreUSBInterrupts
-                  0x001c90                  _USBVBUSSessionValidStateGet
-                  0x001ce8                  _USBSleepOnSuspend
-                  0x001cfe                  _USBRemoteWakeupAssertBlocking
- .text            0x001d42        0x13c build/default/debug/main.o
-                  0x001d42                  _clearUsbBuffers
-                  0x001d5a                  _disableInterrupts
-                  0x001d6c                  _DoUSBComms
-                  0x001e48                  _main
+.text             0x001c00        0x2c6
+ .text            0x001c00        0x184 build/default/debug/main.o
+                  0x001c00                  _clearUsbBuffers
+                  0x001c18                  _disableInterrupts
+                  0x001c2a                  _DoUSBComms
+                  0x001d4e                  _main
+ .text            0x001d84        0x142 build/default/debug/mcc_generated_files/usb/usb_hal_16bit.o
+                  0x001dfc                  _USBMaskAllUSBInterrupts
+                  0x001e0c                  _USBRestoreUSBInterrupts
+                  0x001e14                  _USBVBUSSessionValidStateGet
+                  0x001e6c                  _USBSleepOnSuspend
+                  0x001e82                  _USBRemoteWakeupAssertBlocking
 
-.NVM_flash        0x001e7e        0x12e
- .NVM_flash       0x001e7e        0x12e build/default/debug/mcc_generated_files/memory/flash.o
-                  0x001e80                  _FLASH_Unlock
-                  0x001e8a                  _FLASH_Lock
-                  0x001eb2                  _FLASH_ReadWord24
-                  0x001ebe                  _FLASH_ReadWord16
-                  0x001eca                  _FLASH_ErasePage
-                  0x001ef0                  _FLASH_WriteWord24
-                  0x001f16                  _FLASH_WriteWord16
-                  0x001f3e                  _FLASH_WriteRow24
-                  0x001f6c                  _FLASH_WriteRow16
-                  0x001f9c                  _FLASH_GetErasePageOffset
-                  0x001fa2                  _FLASH_GetErasePageAddress
+.NVM_flash        0x001ec6        0x12e
+ .NVM_flash       0x001ec6        0x12e build/default/debug/mcc_generated_files/memory/flash.o
+                  0x001ec8                  _FLASH_Unlock
+                  0x001ed2                  _FLASH_Lock
+                  0x001efa                  _FLASH_ReadWord24
+                  0x001f06                  _FLASH_ReadWord16
+                  0x001f12                  _FLASH_ErasePage
+                  0x001f38                  _FLASH_WriteWord24
+                  0x001f5e                  _FLASH_WriteWord16
+                  0x001f86                  _FLASH_WriteRow24
+                  0x001fb4                  _FLASH_WriteRow16
+                  0x001fe4                  _FLASH_GetErasePageOffset
+                  0x001fea                  _FLASH_GetErasePageAddress
 
-.text             0x001fac         0xcc
- .text            0x001fac         0xcc build/default/debug/mcc_generated_files/memory/flash_demo.o
-                  0x002074                  _FlashDemo
+.text             0x001ff4         0xcc
+ .text            0x001ff4         0xcc build/default/debug/mcc_generated_files/memory/flash_demo.o
+                  0x0020bc                  _FlashDemo
 
-.dinit            0x002078         0x5e
- .dinit           0x002078         0x5e data_init
+.dinit            0x0020c0         0x5e
+ .dinit           0x0020c0         0x5e data_init
 
 .text             0x0017c2         0x3e
  .text            0x0017c2         0x3e build/default/debug/mcc_generated_files/clock.o
                   0x0017c2                  _CLOCK_Initialize
 
-.text             0x0020d6         0x8a
- .text            0x0020d6         0x32 build/default/debug/timer.o
-                  0x0020d6                  _TMR1_Init
-                  0x0020e0                  _delay_ms
- .text            0x002108         0x26 build/default/debug/mcc_generated_files/pin_manager.o
-                  0x002108                  _PIN_MANAGER_Initialize
- .text            0x00212e         0x12 build/default/debug/mcc_generated_files/usb/usb_device_events.o
-                  0x00212e                  _USER_USB_CALLBACK_EVENT_HANDLER
- .text            0x002140         0x10 build/default/debug/mcc_generated_files/traps.o
-                  0x00214a                  _TRAPS_halt_on_error
- .text            0x002150          0xa build/default/debug/mcc_generated_files/interrupt_manager.o
-                  0x002150                  _INTERRUPT_Initialize
- .text            0x00215a          0x6 build/default/debug/mcc_generated_files/system.o
-                  0x00215a                  _SYSTEM_Initialize
+.text             0x00211e         0x8a
+ .text            0x00211e         0x32 build/default/debug/timer.o
+                  0x00211e                  _TMR1_Init
+                  0x002128                  _delay_ms
+ .text            0x002150         0x26 build/default/debug/mcc_generated_files/pin_manager.o
+                  0x002150                  _PIN_MANAGER_Initialize
+ .text            0x002176         0x12 build/default/debug/mcc_generated_files/usb/usb_device_events.o
+                  0x002176                  _USER_USB_CALLBACK_EVENT_HANDLER
+ .text            0x002188         0x10 build/default/debug/mcc_generated_files/traps.o
+                  0x002192                  _TRAPS_halt_on_error
+ .text            0x002198          0xa build/default/debug/mcc_generated_files/interrupt_manager.o
+                  0x002198                  _INTERRUPT_Initialize
+ .text            0x0021a2          0x6 build/default/debug/mcc_generated_files/system.o
+                  0x0021a2                  _SYSTEM_Initialize

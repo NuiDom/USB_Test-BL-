@@ -67,7 +67,7 @@ MEMORY
   ivt            : ORIGIN = 0x4,           LENGTH = 0xFC
   _reserved      : ORIGIN = 0x100,         LENGTH = 0x4
   aivt           : ORIGIN = 0x104,         LENGTH = 0xFC
-  program (xr)   : ORIGIN = 0x200,         LENGTH = 0x2000
+  program (xr)   : ORIGIN = 0x200,         LENGTH = 0x2200
   CONFIG4        : ORIGIN = 0xABF8,        LENGTH = 0x2
   CONFIG3        : ORIGIN = 0xABFA,        LENGTH = 0x2
   CONFIG2        : ORIGIN = 0xABFC,        LENGTH = 0x2
@@ -80,7 +80,7 @@ __CONFIG2 = 0xABFC;
 __CONFIG1 = 0xABFE;
 __NO_HANDLES = 1;          /* Suppress handles on this device  */
 __CODE_BASE = 0x200;
-__CODE_LENGTH = 0x2000;
+__CODE_LENGTH = 0x2200;
 __IVT_BASE  = 0x4;
 __AIVT_BASE = 0x104;
 
@@ -88,163 +88,163 @@ __DATA_BASE = 0x800;
 __DATA_LENGTH = 0x2000;
 
 /* First Interrupt Vector Table - Each pointed to a fixed location in the application code*/
-J_ReservedTrap0      = 0x2202;
-J_OscillatorFail     = 0x2206;
-J_AddressError       = 0x220A;
-J_StackError         = 0x220E;
+J_ReservedTrap0      = 0x2402;
+J_OscillatorFail     = 0x2406;
+J_AddressError       = 0x240A;
+J_StackError         = 0x240E;
 
-J_MathError          = 0x2212;
-J_ReservedTrap5      = 0x2216;
-J_ReservedTrap6      = 0x221A;
-J_ReservedTrap7      = 0x221E;
+J_MathError          = 0x2412;
+J_ReservedTrap5      = 0x2416;
+J_ReservedTrap6      = 0x241A;
+J_ReservedTrap7      = 0x241E;
 
-J_INT0Interrupt      = 0x2222;
-J_IC1Interrupt       = 0x2226;
-J_OC1Interrupt       = 0x222A;
-J_T1Interrupt        = 0x222E;
+J_INT0Interrupt      = 0x2422;
+J_IC1Interrupt       = 0x2426;
+J_OC1Interrupt       = 0x242A;
+J_T1Interrupt        = 0x242E;
 
-J_DMA0Interrupt      = 0x2232;
-J_IC2Interrupt       = 0x2236;
-J_OC2Interrupt       = 0x223A;
-J_T2Interrupt        = 0x223E;
+J_DMA0Interrupt      = 0x2432;
+J_IC2Interrupt       = 0x2436;
+J_OC2Interrupt       = 0x243A;
+J_T2Interrupt        = 0x243E;
 
-J_T3Interrupt        = 0x2242;
-J_SPI1Interrupt      = 0x2246;
-J_SPI1TXInterrupt    = 0x224A;
-J_U1RXInterrupt      = 0x224E;
+J_T3Interrupt        = 0x2442;
+J_SPI1Interrupt      = 0x2446;
+J_SPI1TXInterrupt    = 0x244A;
+J_U1RXInterrupt      = 0x244E;
 
-J_U1TXInterrupt      = 0x2252;
-J_ADC1Interrupt      = 0x2256;
-J_DMA1Interrupt      = 0x225A;
-J_Interrupt15        = 0x225E;
+J_U1TXInterrupt      = 0x2452;
+J_ADC1Interrupt      = 0x2456;
+J_DMA1Interrupt      = 0x245A;
+J_Interrupt15        = 0x245E;
 
-J_SI2C1Interrupt     = 0x2262;
-J_MI2C1Interrupt     = 0x2266;
-J_CompInterrupt      = 0x226A;
-J_CNInterrupt        = 0x226E;
+J_SI2C1Interrupt     = 0x2462;
+J_MI2C1Interrupt     = 0x2466;
+J_CompInterrupt      = 0x246A;
+J_CNInterrupt        = 0x246E;
 
-J_INT1Interrupt      = 0x2272;
-J_Interrupt21        = 0x2276;
-J_Interrupt22        = 0x227A;
-J_Interrupt23        = 0x227E;
+J_INT1Interrupt      = 0x2472;
+J_Interrupt21        = 0x2476;
+J_Interrupt22        = 0x247A;
+J_Interrupt23        = 0x247E;
 
-J_DMA2Interrupt      = 0x2282;
-J_OC3Interrupt       = 0x2286;
-J_OC4Interrupt       = 0x228A;
-J_T4Interrupt        = 0x228E;
+J_DMA2Interrupt      = 0x2482;
+J_OC3Interrupt       = 0x2486;
+J_OC4Interrupt       = 0x248A;
+J_T4Interrupt        = 0x248E;
 
-J_T5Interrupt        = 0x2292;
-J_INT2Interrupt      = 0x2296;
-J_U2RXInterrupt      = 0x229A;
-J_U2TXInterrupt      = 0x229E;
+J_T5Interrupt        = 0x2492;
+J_INT2Interrupt      = 0x2496;
+J_U2RXInterrupt      = 0x249A;
+J_U2TXInterrupt      = 0x249E;
 
-J_SPI2Interrupt      = 0x22A2;
-J_SPI2TXInterrupt    = 0x22A6;
-J_Interrupt34        = 0x22AA;
-J_Interrupt35        = 0x22AE;
+J_SPI2Interrupt      = 0x24A2;
+J_SPI2TXInterrupt    = 0x24A6;
+J_Interrupt34        = 0x24AA;
+J_Interrupt35        = 0x24AE;
 
-J_DMA3Interrupt      = 0x22B2;
-J_IC3Interrupt       = 0x22B6;
-J_IC4Interrupt       = 0x22BA;
-J_IC5Interrupt       = 0x22BE;
+J_DMA3Interrupt      = 0x24B2;
+J_IC3Interrupt       = 0x24B6;
+J_IC4Interrupt       = 0x24BA;
+J_IC5Interrupt       = 0x24BE;
 
-J_IC6Interrupt       = 0x22C2;
-J_OC5Interrupt       = 0x22C6;
-J_OC6Interrupt       = 0x22CA;
-J_Interrupt43        = 0x22CE;
+J_IC6Interrupt       = 0x24C2;
+J_OC5Interrupt       = 0x24C6;
+J_OC6Interrupt       = 0x24CA;
+J_Interrupt43        = 0x24CE;
 
-J_Interrupt44        = 0x22D2;
-J_PMPInterrupt       = 0x22D6;
-J_DMA4Interrupt      = 0x22DA;
-J_Interrupt47        = 0x22DE;
+J_Interrupt44        = 0x24D2;
+J_PMPInterrupt       = 0x24D6;
+J_DMA4Interrupt      = 0x24DA;
+J_Interrupt47        = 0x24DE;
 
-J_Interrupt48        = 0x22E2;
-J_SI2C2Interrupt     = 0x22E6;
-J_MI2C2Interrupt     = 0x22EA;
-J_Interrupt51        = 0x22EE;
+J_Interrupt48        = 0x24E2;
+J_SI2C2Interrupt     = 0x24E6;
+J_MI2C2Interrupt     = 0x24EA;
+J_Interrupt51        = 0x24EE;
 
-J_Interrupt52        = 0x22F2;
-J_INT3Interrupt      = 0x22F6;
-J_INT4Interrupt      = 0x22FA;
-J_CRYPTOInterrupt    = 0x22FE;
+J_Interrupt52        = 0x24F2;
+J_INT3Interrupt      = 0x24F6;
+J_INT4Interrupt      = 0x24FA;
+J_CRYPTOInterrupt    = 0x24FE;
 
-J_CRYPTOKeyInterrupt = 0x2302;
-J_Interrupt57        = 0x2306;
-J_SPI1RXInterrupt    = 0x230A;
-J_SPI2RXInterrupt    = 0x230E;
+J_CRYPTOKeyInterrupt = 0x2502;
+J_Interrupt57        = 0x2506;
+J_SPI1RXInterrupt    = 0x250A;
+J_SPI2RXInterrupt    = 0x250E;
 
-J_SPI3RXInterrupt    = 0x2312;
-J_DMA5Interrupt      = 0x2316;
-J_RTCCInterrupt      = 0x231A;
-J_Interrupt63        = 0x231E;
+J_SPI3RXInterrupt    = 0x2512;
+J_DMA5Interrupt      = 0x2516;
+J_RTCCInterrupt      = 0x251A;
+J_Interrupt63        = 0x251E;
 
-J_Interrupt64        = 0x2322;
-J_U1ErrInterrupt     = 0x2326;
-J_U2ErrInterrupt     = 0x232A;
-J_CRCInterrupt       = 0x232E;
+J_Interrupt64        = 0x2522;
+J_U1ErrInterrupt     = 0x2526;
+J_U2ErrInterrupt     = 0x252A;
+J_CRCInterrupt       = 0x252E;
 
-J_Interrupt68        = 0x2332;
-J_Interrupt69        = 0x2336;
-J_Interrupt70        = 0x233A;
-J_Interrupt71        = 0x233E;
+J_Interrupt68        = 0x2532;
+J_Interrupt69        = 0x2536;
+J_Interrupt70        = 0x253A;
+J_Interrupt71        = 0x253E;
 
-J_LVDInterrupt       = 0x2342;
-J_Interrupt73        = 0x2346;
-J_Interrupt74        = 0x234A;
-J_Interrupt75        = 0x234E;
+J_LVDInterrupt       = 0x2542;
+J_Interrupt73        = 0x2546;
+J_Interrupt74        = 0x254A;
+J_Interrupt75        = 0x254E;
 
-J_Interrupt76        = 0x2352;
-J_CTMUInterrupt      = 0x2356;
-J_Interrupt78        = 0x235A;
-J_Interrupt79        = 0x235E;
+J_Interrupt76        = 0x2552;
+J_CTMUInterrupt      = 0x2556;
+J_Interrupt78        = 0x255A;
+J_Interrupt79        = 0x255E;
 
-J_Interrupt80        = 0x2362;
-J_U3ErrInterrupt     = 0x2366;
-J_U3RXInterrupt      = 0x236A;
-J_U3TXInterrupt      = 0x236E;
+J_Interrupt80        = 0x2562;
+J_U3ErrInterrupt     = 0x2566;
+J_U3RXInterrupt      = 0x256A;
+J_U3TXInterrupt      = 0x256E;
 
-J_I2C1BCLInterrupt   = 0x2372;
-J_I2C2BCLInterrupt   = 0x2376;
-J_USB1Interrupt      = 0x237A;
-J_U4ErrInterrupt     = 0x237E;
+J_I2C1BCLInterrupt   = 0x2572;
+J_I2C2BCLInterrupt   = 0x2576;
+J_USB1Interrupt      = 0x257A;
+J_U4ErrInterrupt     = 0x257E;
 
-J_U4RXInterrupt      = 0x2382;
-J_U4TXInterrupt      = 0x2386;
-J_SPI3Interrupt      = 0x238A;
-J_SPI3TXInterrupt    = 0x238E;
+J_U4RXInterrupt      = 0x2582;
+J_U4TXInterrupt      = 0x2586;
+J_SPI3Interrupt      = 0x258A;
+J_SPI3TXInterrupt    = 0x258E;
 
-J_Interrupt92        = 0x2392;
-J_Interrupt93        = 0x2396;
-J_Interrupt94        = 0x239A;
-J_Interrupt95        = 0x239E;
+J_Interrupt92        = 0x2592;
+J_Interrupt93        = 0x2596;
+J_Interrupt94        = 0x259A;
+J_Interrupt95        = 0x259E;
 
-J_Interrupt96        = 0x23A2;
-J_Interrupt97        = 0x23A6;
-J_Interrupt98        = 0x23AA;
-J_Interrupt99        = 0x23AE;
+J_Interrupt96        = 0x25A2;
+J_Interrupt97        = 0x25A6;
+J_Interrupt98        = 0x25AA;
+J_Interrupt99        = 0x25AE;
 
-J_Interrupt100       = 0x23B2;
-J_Interrupt101       = 0x23B6;
-J_Interrupt102       = 0x23BA;
-J_Interrupt103       = 0x23BE;
+J_Interrupt100       = 0x25B2;
+J_Interrupt101       = 0x25B6;
+J_Interrupt102       = 0x25BA;
+J_Interrupt103       = 0x25BE;
 
-J_Interrupt104       = 0x23C2;
-J_Interrupt105       = 0x23C6;
-J_FSTInterrupt       = 0x23CA;
-J_Interrupt107       = 0x23CE;
+J_Interrupt104       = 0x25C2;
+J_Interrupt105       = 0x25C6;
+J_FSTInterrupt       = 0x25CA;
+J_Interrupt107       = 0x25CE;
 
-J_Interrupt108       = 0x23D2;
-J_Interrupt109       = 0x23D6;
-J_Interrupt110       = 0x23DA;
-J_Interrupt111       = 0x23DE;
+J_Interrupt108       = 0x25D2;
+J_Interrupt109       = 0x25D6;
+J_Interrupt110       = 0x25DA;
+J_Interrupt111       = 0x25DE;
 
-J_Interrupt112       = 0x23E2;
-J_Interrupt113       = 0x23E6;
-J_Interrupt114       = 0x23EA;
-J_Interrupt115       = 0x23EE;
+J_Interrupt112       = 0x25E2;
+J_Interrupt113       = 0x25E6;
+J_Interrupt114       = 0x25EA;
+J_Interrupt115       = 0x25EE;
 
-J_Interrupt116       = 0x23F2;
-J_JTAGInterrupt      = 0x23F6;
+J_Interrupt116       = 0x25F2;
+J_JTAGInterrupt      = 0x25F6;
 
 /*
 ** ==================== Section Map ======================

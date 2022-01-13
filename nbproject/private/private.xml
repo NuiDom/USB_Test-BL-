@@ -7,7 +7,9 @@
             <file>file:/root/MPLABXProjects/USB_Bootloader.X/main.c</file>
             <file>file:/root/MPLABXProjects/USB_Bootloader.X/mcc_generated_files/usb/usb_device.c</file>
             <file>file:/root/MPLABXProjects/USB_Bootloader.X/mcc_generated_files/memory/flash.h</file>
+            <file>file:/root/MPLABXProjects/USB_Bootloader.X/mcc_generated_files/memory/flash_demo.c</file>
             <file>file:/root/MPLABXProjects/USB_Bootloader.X/timer.c</file>
+            <file>file:/root/MPLABXProjects/USB_Bootloader.X/mcc_generated_files/memory/flash.s</file>
             <file>file:/root/MPLABXProjects/USB_Bootloader.X/upgradesystems.c</file>
             <file>file:/root/MPLABXProjects/USB_Bootloader.X/mcc_generated_files/usb/usb_device_cdc.h</file>
             <file>file:/root/MPLABXProjects/USB_Bootloader.X/USB_p24FJ64GB202.gld</file>
