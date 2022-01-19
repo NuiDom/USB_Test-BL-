@@ -34,17 +34,22 @@ void DoUSBComms(void);
 void disableInterrupts(void);
 void erase(void);
 void clearUsbBuffers(void);
+void writeRowFlash(int upgradeRow);
+void erasePage(void);
+void readFlash(int currentWord);
 
 bool upgrade_mode = false;
+bool in_bootloader = false;
 static uint32_t *upgradeBuffer[192];
 //Used for USB
-char message_buffer[192];
+char message_buffer[64];
 bool message_received = false;
 static uint8_t readBuffer[64];
 static uint8_t writeBuffer[64];
 char usbCmd[10] = "";
-static int upgradeRow = 0;
+static int upgradeRowReceived = 0;
 static int upgradeBufferCounter = 0;
+int currentWordCounter = 0;
 /*
                          Main application
  */
@@ -64,7 +69,7 @@ int main(void)
         int y=0;
         for(y=0; y<64; y++)
             readBuffer[y]='\0';
-        
+//        in_bootloader = true;
         while (1)
         {
         // Add your application code
@@ -125,6 +130,13 @@ void DoUSBComms(void)
     
     else{
         
+//        if(in_bootloader == true){
+//            putUSBUSART((uint8_t *)"bl\r\n",2);
+//            in_bootloader = false;
+//            message_received = false;
+//            clearUsbBuffers();            
+//        }
+         
         if(numBytesRead == 64){
             for(i=0+upgradeBufferCounter; i<numBytesRead+upgradeBufferCounter; i++){
             upgradeBuffer[i] = readBuffer[t];
@@ -133,19 +145,45 @@ void DoUSBComms(void)
             upgradeBufferCounter += 64;
             message_received = false;
             clearUsbBuffers();
+            
             if(upgradeBufferCounter == 192){
                 //write row to flash
-                upgradeBufferCounter == 0;
+                writeRowFlash(upgradeRowReceived);
+                upgradeRowReceived += 1;
+                upgradeBufferCounter = 0;
                 delay_ms(1);
+//                putUSBUSART((uint8_t *)"NextRow\r\n",7);
             }
+            
             else{
-                putUSBUSART((uint8_t *)"OK",2);
-            }
+                putUSBUSART((uint8_t *)"64\r\n",2);
+                message_received = false;
+                clearUsbBuffers();
+            }     
         }
     
+        if((strcmp(usbCmd,"READ_MEM")==0)){
+            uint32_t address = 0x2400 + (0x0002*currentWordCounter);
+            uint32_t word = FLASH_ReadWord24(address);
+            uint8_t word8bit[4];
+            word8bit[0] = (word & 0xff000000UL) >> 24;
+            word8bit[1] = (word & 0x00ff0000UL) >> 16; 
+            word8bit[2] = (word & 0x0000ff00UL) >>  8;
+            word8bit[3] = (word & 0x000000ffUL)      ;
+            currentWordCounter += 1;
+            if( USBUSARTIsTxTrfReady() == false)
+                CDCTxService();
+            putUSBUSART(word8bit, 4);
+            
+        }
+        
     if(upgrade_mode == false)
-    {     
+    {
+        if(strcmp(usbCmd,"ERASE")==0){
+            erasePage();
+        }
         if(strcmp(usbCmd,"JUMP")==0){
+            currentWordCounter = 0;
             disableInterrupts();
             delay_ms(50);
             USBDeviceDetach();
@@ -154,10 +192,9 @@ void DoUSBComms(void)
         }
             
         else if(strcmp(usbCmd,"UPGRADE")==0){
-            upgrade_mode = true;
             message_received = false;
             clearUsbBuffers();
-//            putUSBUSART((uint8_t *)"OK",2);
+            putUSBUSART((uint8_t *)"NextRow\r\n",7);
         }
         else{
             message_received = false;
@@ -179,11 +216,11 @@ void DoUSBComms(void)
         
         else if(numBytesRead == 192){
             FLASH_Unlock(FLASH_UNLOCK_KEY);
-            FLASH_WriteRow24(PROGRAM_START_ADDRESS+(0x80*upgradeRow), upgradeBuffer);
+            FLASH_WriteRow24(PROGRAM_START_ADDRESS+(0x80*upgradeRowReceived), upgradeBuffer);
             FLASH_Lock();
             putUSBUSART((uint8_t *)"OK",2);
             message_received = false;
-            upgradeRow++;
+            upgradeRowReceived++;
             numBytesRead = 0;
         }
         
@@ -202,6 +239,8 @@ void DoUSBComms(void)
     }
     if( USBUSARTIsTxTrfReady() == true)
     {
+        
+        
 //        uint8_t i;
 //        uint8_t numBytesRead;
 //
@@ -273,6 +312,24 @@ void DoUSBComms(void)
     CDCTxService();
 }
 
+void writeRowFlash(int upgradeRow)
+{
+    FLASH_Unlock(FLASH_UNLOCK_KEY);
+//    FLASH_ErasePage(0x002400);
+    FLASH_WriteRow24(PROGRAM_START_ADDRESS+(0x80*upgradeRow), upgradeBuffer);
+    FLASH_Lock();
+}
+void erasePage(void)
+{
+    FLASH_Unlock(FLASH_UNLOCK_KEY);
+    FLASH_ErasePage(0x002400);
+    FLASH_Lock();
+}
+
+void readFlash(int currentWord)
+{
+    FLASH_ReadWord24(0x002400 + (0x04*currentWord));
+}
 //void erase(void)
 //{
 //    // C example using MPLAB C30
