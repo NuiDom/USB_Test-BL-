@@ -174,7 +174,11 @@ void DoUSBComms(void)
             if( USBUSARTIsTxTrfReady() == false)
                 CDCTxService();
             putUSBUSART(word8bit, 4);
-            
+            if(address == 0xABF6){
+                if( USBUSARTIsTxTrfReady() == false)
+                    CDCTxService();
+                putUSBUSART("STOP", 4);
+            }
         }
         
     if(upgrade_mode == false)
