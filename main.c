@@ -49,7 +49,7 @@ static uint8_t writeBuffer[64];
 char usbCmd[10] = "";
 static int upgradeRowReceived = 0;
 static int upgradeBufferCounter = 0;
-int currentWordCounter = 0;
+uint32_t currentWordCounter = 0;
 /*
                          Main application
  */
@@ -165,20 +165,32 @@ void DoUSBComms(void)
         if((strcmp(usbCmd,"READ_MEM")==0)){
             uint32_t address = 0x2400 + (0x0002*currentWordCounter);
             uint32_t word = FLASH_ReadWord24(address);
+            
             uint8_t word8bit[4];
             word8bit[0] = (word & 0xff000000UL) >> 24;
             word8bit[1] = (word & 0x00ff0000UL) >> 16; 
             word8bit[2] = (word & 0x0000ff00UL) >>  8;
             word8bit[3] = (word & 0x000000ffUL)      ;
+            
             currentWordCounter += 1;
-            if( USBUSARTIsTxTrfReady() == false)
-                CDCTxService();
-            putUSBUSART(word8bit, 4);
-            if(address == 0xABF6){
+            
+            if(address <= 0xABF6){
                 if( USBUSARTIsTxTrfReady() == false)
                     CDCTxService();
-                putUSBUSART("STOP", 4);
+                putUSBUSART(word8bit, 4);
             }
+            
+            else{
+                if( USBUSARTIsTxTrfReady() == false)
+                    CDCTxService();
+                putUSBUSART((uint8_t *)"STOP\r\n", 4);
+                if( USBUSARTIsTxTrfReady() == false)
+                    CDCTxService();
+                putUSBUSART((uint8_t *)"STOP\r\n", 4);
+            }
+            
+            message_received = false;
+            clearUsbBuffers();
         }
         
     if(upgrade_mode == false)
