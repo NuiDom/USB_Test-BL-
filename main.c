@@ -37,6 +37,7 @@ void clearUsbBuffers(void);
 void writeRowFlash(int upgradeRow);
 void erasePage(void);
 void readFlash(int currentWord);
+void writeWordFlash(int currentWord, uint32_t *buffer);
 
 bool upgrade_mode = false;
 bool in_bootloader = false;
@@ -47,9 +48,10 @@ bool message_received = false;
 static uint8_t readBuffer[64];
 static uint8_t writeBuffer[64];
 char usbCmd[10] = "";
-static int upgradeRowReceived = 0;
+static int upgradeWordWritten = 0;
 static int upgradeBufferCounter = 0;
-uint32_t currentWordCounter = 0;
+uint32_t currentWordReadCounter = 0;
+uint32_t currentWordWriteCounter = 0;
 /*
                          Main application
  */
@@ -139,8 +141,9 @@ void DoUSBComms(void)
          
         if(numBytesRead == 64){
             for(i=0+upgradeBufferCounter; i<numBytesRead+upgradeBufferCounter; i++){
-            upgradeBuffer[i] = readBuffer[t];
-            t++;
+            upgradeBuffer[i] = (readBuffer[t]<<16) | (readBuffer[t+1] & 0xffff);
+//            uint16_t temp1 = upgradeBuffer[i]
+            t+=2;
             }
             upgradeBufferCounter += 64;
             message_received = false;
@@ -148,10 +151,16 @@ void DoUSBComms(void)
             
             if(upgradeBufferCounter == 192){
                 //write row to flash
-                writeRowFlash(upgradeRowReceived);
-                upgradeRowReceived += 1;
+                FLASH_Unlock(FLASH_UNLOCK_KEY);
+                int temp;
+                for(temp=0; temp<192; temp++){
+                    uint32_t address = 0x2400 + (0x0002*currentWordWriteCounter);
+                    FLASH_WriteWord24(address, upgradeBuffer[temp]);
+                    currentWordWriteCounter++;
+                }
                 upgradeBufferCounter = 0;
                 delay_ms(1);
+                FLASH_Lock();
 //                putUSBUSART((uint8_t *)"NextRow\r\n",7);
             }
             
@@ -163,7 +172,7 @@ void DoUSBComms(void)
         }
     
         if((strcmp(usbCmd,"READ_MEM")==0)){
-            uint32_t address = 0x2400 + (0x0002*currentWordCounter);
+            uint32_t address = 0x2400 + (0x0002*currentWordReadCounter);
             uint32_t word = FLASH_ReadWord24(address);
             
             uint8_t word8bit[4];
@@ -172,7 +181,7 @@ void DoUSBComms(void)
             word8bit[2] = (word & 0x0000ff00UL) >>  8;
             word8bit[3] = (word & 0x000000ffUL)      ;
             
-            currentWordCounter += 1;
+            currentWordReadCounter += 1;
             
             if(address <= 0xABF6){
                 if( USBUSARTIsTxTrfReady() == false)
@@ -199,7 +208,7 @@ void DoUSBComms(void)
             erasePage();
         }
         if(strcmp(usbCmd,"JUMP")==0){
-            currentWordCounter = 0;
+            currentWordReadCounter = 0;
             disableInterrupts();
             delay_ms(50);
             USBDeviceDetach();
@@ -217,41 +226,6 @@ void DoUSBComms(void)
             clearUsbBuffers();
         }
         
-    }
-    
-    if(upgrade_mode == true)
-    {
-        if(strcmp(usbCmd,"1")==0){
-            FLASH_Unlock(FLASH_UNLOCK_KEY);
-            FLASH_ErasePage(0x002400);
-            FLASH_Lock();
-            message_received = false;
-            clearUsbBuffers();
-            putUSBUSART((uint8_t *)"OK",2);
-        }
-        
-        else if(numBytesRead == 192){
-            FLASH_Unlock(FLASH_UNLOCK_KEY);
-            FLASH_WriteRow24(PROGRAM_START_ADDRESS+(0x80*upgradeRowReceived), upgradeBuffer);
-            FLASH_Lock();
-            putUSBUSART((uint8_t *)"OK",2);
-            message_received = false;
-            upgradeRowReceived++;
-            numBytesRead = 0;
-        }
-        
-        else if(strcmp(usbCmd,"JUMP")==0){
-            disableInterrupts();
-            delay_ms(50);
-            USBDeviceDetach();
-            delay_ms(700);
-            asm("GOTO 0x2600");
-        }
-        
-        else{
-            message_received = false;
-            clearUsbBuffers();
-        }
     }
     if( USBUSARTIsTxTrfReady() == true)
     {
@@ -335,6 +309,14 @@ void writeRowFlash(int upgradeRow)
     FLASH_WriteRow24(PROGRAM_START_ADDRESS+(0x80*upgradeRow), upgradeBuffer);
     FLASH_Lock();
 }
+
+//void writeWordFlash(uint32_t address, uint32_t *buffer)
+//{
+//    FLASH_Unlock(FLASH_UNLOCK_KEY);
+//    FLASH_WriteWord24(address, buffer);
+//    FLASH_Lock();
+//}
+
 void erasePage(void)
 {
     FLASH_Unlock(FLASH_UNLOCK_KEY);
