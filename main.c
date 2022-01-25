@@ -116,7 +116,7 @@ void DoUSBComms(void)
         if(address <= 0xABF6){                                                                  //Checks to see if we are at last word write
             if( USBUSARTIsTxTrfReady() == false)
                     CDCTxService();
-            putUSBUSART((uint8_t *)"64\r\n",2);
+            putUSBUSART((uint8_t *)"Next\r\n",4);
         }
         else{
             if( USBUSARTIsTxTrfReady() == false)
